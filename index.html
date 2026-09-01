@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Caddy Boys provides 3D modelling, engineering drawings, 3D printing and FEA services from Melbourne." />
+    <title>Caddy Boys | Design it. Build it.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Caddy Boys home">
+        <span class="brand-mark">CB</span>
+        <span>CADDY BOYS</span>
+      </a>
+      <button class="menu-button" aria-label="Open navigation" aria-expanded="false">Menu</button>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#work">Projects</a>
+        <a href="#about">About</a>
+        <a class="nav-cta" href="#contact">Get a quote</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Melbourne-based · Working worldwide</p>
+          <h1>We turn ideas into <span>real things.</span></h1>
+          <p class="hero-text">3D modelling, engineering drawings, FEA and 3D printing for creators, students and growing businesses.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#contact">Start a project</a>
+            <a class="button button-secondary" href="#work">See our work</a>
+          </div>
+          <div class="hero-stats" aria-label="Key capabilities">
+            <div><strong>CAD</strong><span>SolidWorks + Fusion 360</span></div>
+            <div><strong>FEA</strong><span>Design validation</span></div>
+            <div><strong>3DP</strong><span>Made in Melbourne</span></div>
+          </div>
+        </div>
+        <div class="viewer-card">
+          <canvas id="model-canvas" aria-label="Interactive 3D mechanical model"></canvas>
+          <div class="viewer-label"><span class="live-dot"></span> Interactive model</div>
+          <p class="viewer-help">Drag to rotate · Scroll to zoom</p>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="section-heading">
+          <p class="eyebrow">What we do</p>
+          <h2>From sketch to finished part.</h2>
+        </div>
+        <div class="service-grid">
+          <article class="service-card"><span>01</span><h3>3D Modelling</h3><p>Accurate, manufacturable CAD models built in SolidWorks and Fusion 360.</p></article>
+          <article class="service-card"><span>02</span><h3>Engineering Drawings</h3><p>Clear production drawings with dimensions, tolerances and material details.</p></article>
+          <article class="service-card"><span>03</span><h3>3D Printing</h3><p>Fast prototypes and functional parts, printed locally in Melbourne.</p></article>
+          <article class="service-card"><span>04</span><h3>FEA Analysis</h3><p>Stress, deformation and design insights before you commit to manufacturing.</p></article>
+        </div>
+      </section>
+
+      <section class="section work-section" id="work">
+        <div class="section-heading">
+          <p class="eyebrow">Selected projects</p>
+          <h2>Built around real problems.</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project-card project-one"><div class="project-art"><span class="part part-a"></span><span class="part part-b"></span></div><div class="project-copy"><p>Reverse engineering</p><h3>Wheel Shunt Production Jig</h3><span>CAD · Prototyping · 3D Printing</span></div></article>
+          <article class="project-card project-two"><div class="project-art"><span class="ring"></span><span class="ring ring-small"></span></div><div class="project-copy"><p>Mechanical design</p><h3>Custom Functional Component</h3><span>SolidWorks · FEA · Drawing</span></div></article>
+        </div>
+      </section>
+
+      <section class="section about-section" id="about">
+        <p class="eyebrow">About Caddy Boys</p>
+        <div class="about-grid">
+          <h2>Good engineering should make ambitious ideas feel achievable.</h2>
+          <div><p>We help people bring concepts to life through practical design, clear communication and rapid prototyping.</p><p>Whether you have a rough sketch or an existing part that needs improvement, we can help move it toward a manufacturable solution.</p></div>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact">
+        <p class="eyebrow">Have an idea?</p>
+        <h2>Let’s build it together.</h2>
+        <p>Tell us what you are making, what stage it is at, and any deadline or budget you have in mind.</p>
+        <a class="button button-light" href="mailto:hello@caddyboys.com?subject=Project%20enquiry">Email Caddy Boys</a>
+        <p class="contact-note">Replace this email with your real contact address before publishing.</p>
+      </section>
+    </main>
+
+    <footer><a class="brand" href="#home"><span class="brand-mark">CB</span><span>CADDY BOYS</span></a><p>© <span id="year"></span> Caddy Boys. Melbourne, Australia.</p></footer>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
