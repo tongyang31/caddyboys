@@ -32,19 +32,21 @@
       color: inherit;
     }
 
-    /* ------------------------------
-       GLOBAL
-    ------------------------------ */
+    /* =========================
+       GLOBAL SCREENS
+    ========================== */
 
     .screen {
       position: absolute;
       inset: 0;
       opacity: 0;
       pointer-events: none;
+      transform: translateY(12px);
+
       transition:
         opacity 0.7s ease,
         transform 0.7s ease;
-      transform: translateY(12px);
+
       background: #ffffff;
     }
 
@@ -79,12 +81,12 @@
     .small-label {
       font-size: 11px;
       letter-spacing: 3px;
-      color: #777;
+      color: #777777;
     }
 
-    /* ------------------------------
+    /* =========================
        LANDING
-    ------------------------------ */
+    ========================== */
 
     #landing {
       display: flex;
@@ -95,16 +97,12 @@
     #scene {
       width: 100%;
       height: 100%;
-      cursor: grab;
-    }
-
-    #scene:active {
-      cursor: grabbing;
     }
 
     .landing-content {
       position: absolute;
       inset: 0;
+
       pointer-events: none;
 
       display: flex;
@@ -118,19 +116,14 @@
     #enterText {
       font-size: 11px;
       letter-spacing: 4px;
-      color: #555;
+      color: #555555;
       text-transform: uppercase;
-      opacity: 0.7;
-      transition: opacity 0.3s ease;
+      opacity: 0.8;
     }
 
-    #landing:hover #enterText {
-      opacity: 1;
-    }
-
-    /* ------------------------------
+    /* =========================
        MENU
-    ------------------------------ */
+    ========================== */
 
     #menu {
       display: flex;
@@ -140,6 +133,7 @@
 
     .menu-wrapper {
       width: min(1100px, 86%);
+
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 28px;
@@ -147,6 +141,7 @@
 
     .menu-card {
       min-height: 330px;
+
       border: 1px solid #dcdcdc;
       background: #ffffff;
 
@@ -155,6 +150,7 @@
       justify-content: space-between;
 
       padding: 36px;
+
       cursor: pointer;
 
       transition:
@@ -195,9 +191,9 @@
       margin-top: 20px;
     }
 
-    /* ------------------------------
-       WORK SECTION
-    ------------------------------ */
+    /* =========================
+       OUR WORK
+    ========================== */
 
     #work {
       padding: 110px 7% 60px;
@@ -218,7 +214,7 @@
       margin-top: 14px;
       font-size: 12px;
       letter-spacing: 3px;
-      color: #777;
+      color: #777777;
     }
 
     .project-viewer {
@@ -230,18 +226,18 @@
 
     .project-model {
       min-height: 520px;
+
       border: 1px solid #e1e1e1;
+      background: #fafafa;
 
       display: flex;
       align-items: center;
       justify-content: center;
-
-      background: #fafafa;
     }
 
     .placeholder-model {
       text-align: center;
-      color: #999;
+      color: #999999;
     }
 
     .placeholder-model .big {
@@ -262,7 +258,7 @@
     .project-count {
       font-size: 11px;
       letter-spacing: 3px;
-      color: #888;
+      color: #888888;
       margin-bottom: 30px;
     }
 
@@ -270,49 +266,55 @@
       font-size: clamp(32px, 4vw, 56px);
       font-weight: 400;
       line-height: 1.05;
+
       margin-bottom: 20px;
     }
 
     .project-tags {
       font-size: 11px;
       letter-spacing: 2px;
-      color: #777;
+      color: #777777;
+
       margin-bottom: 28px;
     }
 
     .project-description {
       max-width: 460px;
+
       line-height: 1.8;
-      color: #444;
+      color: #444444;
       font-size: 14px;
     }
 
     .project-controls {
       display: flex;
       gap: 12px;
+
       margin-top: 40px;
     }
 
     .outline-button {
-      border: 1px solid #222;
-      background: #fff;
+      border: 1px solid #222222;
+      background: #ffffff;
+
       padding: 14px 22px;
 
       font-size: 11px;
       letter-spacing: 2px;
 
       cursor: pointer;
+
       transition: all 0.25s ease;
     }
 
     .outline-button:hover {
-      background: #111;
-      color: #fff;
+      background: #111111;
+      color: #ffffff;
     }
 
-    /* ------------------------------
-       CONTACT SECTION
-    ------------------------------ */
+    /* =========================
+       CONTACT
+    ========================== */
 
     #contact {
       padding: 110px 7% 60px;
@@ -324,6 +326,7 @@
       grid-template-columns: 0.9fr 1.1fr;
       gap: 100px;
       align-items: start;
+
       margin-top: 50px;
     }
 
@@ -336,18 +339,22 @@
 
     .contact-intro p {
       margin-top: 32px;
+
       max-width: 420px;
+
       line-height: 1.8;
-      color: #555;
+      color: #555555;
       font-size: 14px;
     }
 
     .contact-location {
       margin-top: 40px;
+
       font-size: 11px;
       letter-spacing: 2px;
       line-height: 2;
-      color: #777;
+
+      color: #777777;
     }
 
     .contact-form {
@@ -365,7 +372,7 @@
     .field label {
       font-size: 10px;
       letter-spacing: 3px;
-      color: #777;
+      color: #777777;
     }
 
     .field input,
@@ -373,30 +380,33 @@
       width: 100%;
 
       border: none;
-      border-bottom: 1px solid #bbb;
+      border-bottom: 1px solid #bbbbbb;
 
       padding: 12px 0;
+
       outline: none;
       background: transparent;
 
       font-size: 16px;
+
       resize: none;
     }
 
     .field input:focus,
     .field textarea:focus {
-      border-bottom-color: #111;
+      border-bottom-color: #111111;
     }
 
     .send-button {
       margin-top: 20px;
       width: fit-content;
 
-      border: 1px solid #111;
-      background: #111;
-      color: #fff;
+      border: 1px solid #111111;
+      background: #111111;
+      color: #ffffff;
 
       padding: 16px 28px;
+
       cursor: pointer;
 
       font-size: 11px;
@@ -406,13 +416,13 @@
     }
 
     .send-button:hover {
-      background: #fff;
-      color: #111;
+      background: #ffffff;
+      color: #111111;
     }
 
-    /* ------------------------------
+    /* =========================
        MOBILE
-    ------------------------------ */
+    ========================== */
 
     @media (max-width: 800px) {
       .topbar {
@@ -455,7 +465,7 @@
 <body>
 
   <!-- =========================
-       LANDING SCREEN
+       LANDING
   ========================== -->
 
   <section id="landing" class="screen active">
@@ -463,19 +473,21 @@
     <div id="scene"></div>
 
     <div class="landing-content">
-      <div id="enterText">Click logo to enter</div>
+      <div id="enterText">
+        Stay tuned.
+      </div>
     </div>
 
   </section>
 
-
   <!-- =========================
-       MAIN MENU
+       MENU
   ========================== -->
 
   <section id="menu" class="screen">
 
     <div class="topbar">
+
       <button class="brand-button" data-home>
         CADDY BOYS
       </button>
@@ -483,6 +495,7 @@
       <div class="small-label">
         MELBOURNE
       </div>
+
     </div>
 
     <div class="menu-wrapper">
@@ -494,6 +507,7 @@
         </div>
 
         <div>
+
           <div class="menu-title">
             OUR WORK
           </div>
@@ -506,10 +520,10 @@
           <div class="menu-arrow">
             →
           </div>
+
         </div>
 
       </button>
-
 
       <button class="menu-card" id="openContact">
 
@@ -518,6 +532,7 @@
         </div>
 
         <div>
+
           <div class="menu-title">
             CONTACT US
           </div>
@@ -530,6 +545,7 @@
           <div class="menu-arrow">
             →
           </div>
+
         </div>
 
       </button>
@@ -538,7 +554,6 @@
 
   </section>
 
-
   <!-- =========================
        OUR WORK
   ========================== -->
@@ -546,6 +561,7 @@
   <section id="work" class="screen">
 
     <div class="topbar">
+
       <button class="brand-button" data-home>
         CADDY BOYS
       </button>
@@ -553,6 +569,7 @@
       <div class="small-label">
         OUR WORK
       </div>
+
     </div>
 
     <div class="section-heading">
@@ -566,7 +583,6 @@
       </p>
 
     </div>
-
 
     <div class="project-viewer">
 
@@ -585,7 +601,6 @@
         </div>
 
       </div>
-
 
       <div class="project-info">
 
@@ -625,7 +640,6 @@
 
   </section>
 
-
   <!-- =========================
        CONTACT
   ========================== -->
@@ -644,7 +658,6 @@
 
     </div>
 
-
     <div class="contact-layout">
 
       <div class="contact-intro">
@@ -661,12 +674,12 @@
         </p>
 
         <div class="contact-location">
-          MELBOURNE, AUSTRALIA<br>
+          MELBOURNE, AUSTRALIA
+          <br>
           PROJECTS WELCOME WORLDWIDE
         </div>
 
       </div>
-
 
       <form class="contact-form" id="contactForm">
 
@@ -685,7 +698,6 @@
 
         </div>
 
-
         <div class="field">
 
           <label>
@@ -700,7 +712,6 @@
           />
 
         </div>
-
 
         <div class="field">
 
@@ -717,7 +728,6 @@
 
         </div>
 
-
         <button
           type="submit"
           class="send-button"
@@ -731,23 +741,18 @@
 
   </section>
 
-
   <!-- =========================
-       THREE.JS
+       THREE.JS IMPORTS
   ========================== -->
 
   <script type="importmap">
   {
     "imports": {
-      "three":
-      "https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.js",
-
-      "three/addons/":
-      "https://cdn.jsdelivr.net/npm/three@0.179.1/examples/jsm/"
+      "three": "https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.179.1/examples/jsm/"
     }
   }
   </script>
-
 
   <script type="module">
 
@@ -761,7 +766,6 @@
       OrbitControls
     } from 'three/addons/controls/OrbitControls.js';
 
-
     /* =========================
        SCREEN NAVIGATION
     ========================== */
@@ -773,7 +777,6 @@
       contact: document.getElementById('contact')
     };
 
-
     function showScreen(name) {
 
       Object.values(screens).forEach(screen => {
@@ -784,37 +787,27 @@
 
     }
 
-
     document
       .getElementById('openWork')
       .addEventListener('click', () => {
-
         showScreen('work');
-
       });
-
 
     document
       .getElementById('openContact')
       .addEventListener('click', () => {
-
         showScreen('contact');
-
       });
-
 
     document
       .querySelectorAll('[data-home]')
       .forEach(button => {
 
         button.addEventListener('click', () => {
-
           showScreen('menu');
-
         });
 
       });
-
 
     /* =========================
        CONTACT FORM
@@ -832,14 +825,12 @@
 
       });
 
-
     /* =========================
-       3D LANDING LOGO
+       THREE.JS LANDING
     ========================== */
 
     const container =
       document.getElementById('scene');
-
 
     const scene =
       new THREE.Scene();
@@ -847,12 +838,10 @@
     scene.background =
       new THREE.Color(0xffffff);
 
-
     const camera =
       new THREE.PerspectiveCamera(
         45,
-        window.innerWidth /
-        window.innerHeight,
+        window.innerWidth / window.innerHeight,
         0.1,
         1000
       );
@@ -863,19 +852,16 @@
       120
     );
 
-
     const renderer =
       new THREE.WebGLRenderer({
         antialias: true,
         alpha: true
       });
 
-
     renderer.setSize(
       window.innerWidth,
       window.innerHeight
     );
-
 
     renderer.setPixelRatio(
       Math.min(
@@ -884,13 +870,13 @@
       )
     );
 
-
     container.appendChild(
       renderer.domElement
     );
 
-
-    /* LIGHTS */
+    /* =========================
+       LIGHTING
+    ========================== */
 
     const ambientLight =
       new THREE.AmbientLight(
@@ -901,7 +887,6 @@
     scene.add(
       ambientLight
     );
-
 
     const directionalLight =
       new THREE.DirectionalLight(
@@ -919,7 +904,6 @@
       directionalLight
     );
 
-
     const backLight =
       new THREE.DirectionalLight(
         0xffffff,
@@ -936,8 +920,9 @@
       backLight
     );
 
-
-    /* CONTROLS */
+    /* =========================
+       CONTROLS
+    ========================== */
 
     const controls =
       new OrbitControls(
@@ -946,22 +931,36 @@
       );
 
     controls.enableDamping = true;
-
     controls.dampingFactor = 0.05;
 
     controls.enableZoom = true;
-
     controls.enablePan = false;
 
+    /* =========================
+       RAYCASTER
+    ========================== */
 
-    /* STL */
+    const raycaster =
+      new THREE.Raycaster();
+
+    const mouse =
+      new THREE.Vector2();
+
+    /* =========================
+       ROTATION SPEED
+    ========================== */
+
+    let rotationSpeed = 0.004;
+    let targetRotationSpeed = 0.004;
+
+    /* =========================
+       LOAD LOGO
+    ========================== */
 
     const loader =
       new STLLoader();
 
-
     let logo;
-
 
     loader.load(
 
@@ -970,21 +969,16 @@
       function (geometry) {
 
         geometry.computeVertexNormals();
-
         geometry.center();
-
 
         const material =
           new THREE.MeshStandardMaterial({
 
             color: 0x111111,
-
             roughness: 0.35,
-
             metalness: 0.15
 
           });
-
 
         logo =
           new THREE.Mesh(
@@ -992,18 +986,14 @@
             material
           );
 
-
         const box =
           new THREE.Box3()
             .setFromObject(logo);
 
-
         const size =
           new THREE.Vector3();
 
-
         box.getSize(size);
-
 
         const maxDimension =
           Math.max(
@@ -1012,36 +1002,22 @@
             size.z
           );
 
-
         const desiredSize = 50;
-
 
         const scale =
           desiredSize /
           maxDimension;
 
-
         logo.scale.setScalar(
           scale
         );
 
-
         logo.rotation.x =
           -0.15;
-
 
         scene.add(
           logo
         );
-
-
-        /* CLICK LOGO */
-
-        renderer.domElement
-          .addEventListener(
-            'click',
-            handleLogoClick
-          );
 
       },
 
@@ -1058,67 +1034,97 @@
 
     );
 
-
     /* =========================
-       CLICK DETECTION
+       MOUSE HOVER
     ========================== */
 
-    const raycaster =
-      new THREE.Raycaster();
+    renderer.domElement
+      .addEventListener(
+        'mousemove',
+        event => {
 
+          if (!logo) return;
 
-    const mouse =
-      new THREE.Vector2();
+          const rect =
+            renderer.domElement
+              .getBoundingClientRect();
 
+          mouse.x =
+            ((event.clientX - rect.left) / rect.width) * 2 - 1;
 
-    function handleLogoClick(event) {
+          mouse.y =
+            -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-      if (!logo) return;
+          raycaster.setFromCamera(
+            mouse,
+            camera
+          );
 
+          const intersects =
+            raycaster.intersectObject(
+              logo
+            );
 
-      const rect =
-        renderer.domElement
-          .getBoundingClientRect();
+          if (intersects.length > 0) {
 
+            targetRotationSpeed = 0.0007;
 
-      mouse.x =
-        ((event.clientX -
-        rect.left) /
-        rect.width) * 2 - 1;
+            renderer.domElement.style.cursor =
+              'pointer';
 
+          } else {
 
-      mouse.y =
-        -(
-          (event.clientY -
-          rect.top) /
-          rect.height
-        ) * 2 + 1;
+            targetRotationSpeed = 0.004;
 
+            renderer.domElement.style.cursor =
+              'default';
 
-      raycaster.setFromCamera(
-        mouse,
-        camera
+          }
+
+        }
       );
 
+    /* =========================
+       CLICK LOGO
+    ========================== */
 
-      const intersects =
-        raycaster.intersectObject(
-          logo
-        );
+    renderer.domElement
+      .addEventListener(
+        'click',
+        event => {
 
+          if (!logo) return;
 
-      if (
-        intersects.length > 0
-      ) {
+          const rect =
+            renderer.domElement
+              .getBoundingClientRect();
 
-        showScreen(
-          'menu'
-        );
+          mouse.x =
+            ((event.clientX - rect.left) / rect.width) * 2 - 1;
 
-      }
+          mouse.y =
+            -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-    }
+          raycaster.setFromCamera(
+            mouse,
+            camera
+          );
 
+          const intersects =
+            raycaster.intersectObject(
+              logo
+            );
+
+          if (intersects.length > 0) {
+
+            showScreen(
+              'menu'
+            );
+
+          }
+
+        }
+      );
 
     /* =========================
        ANIMATION
@@ -1130,17 +1136,20 @@
         animate
       );
 
+      rotationSpeed +=
+        (
+          targetRotationSpeed -
+          rotationSpeed
+        ) * 0.08;
 
       if (logo) {
 
         logo.rotation.y +=
-          0.004;
+          rotationSpeed;
 
       }
 
-
       controls.update();
-
 
       renderer.render(
         scene,
@@ -1149,9 +1158,7 @@
 
     }
 
-
     animate();
-
 
     /* =========================
        RESIZE
@@ -1166,10 +1173,8 @@
             window.innerWidth /
             window.innerHeight;
 
-
           camera
             .updateProjectionMatrix();
-
 
           renderer.setSize(
             window.innerWidth,
