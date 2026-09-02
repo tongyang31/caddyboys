@@ -25,8 +25,10 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
+
       background: #ffffff;
       color: #171717;
+
       font-family: 'VT323', monospace;
     }
 
@@ -54,33 +56,38 @@
       --shadow: 5px 5px 0 #191919;
     }
 
-    /* =========================
+    /* =====================================================
        SCREEN SYSTEM
-    ========================== */
+    ====================================================== */
 
     .screen {
       position: absolute;
       inset: 0;
+
       opacity: 0;
       pointer-events: none;
-      transform: translateY(10px);
+
+      transform: translateY(8px);
+
       transition:
-        opacity 0.45s ease,
-        transform 0.45s ease;
+        opacity 0.4s ease,
+        transform 0.4s ease;
     }
 
     .screen.active {
       opacity: 1;
       pointer-events: auto;
+
       transform: translateY(0);
     }
 
-    /* =========================
+    /* =====================================================
        LANDING
-    ========================== */
+    ====================================================== */
 
     #landing {
       background: #ffffff;
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -94,6 +101,7 @@
     .landing-content {
       position: absolute;
       inset: 0;
+
       pointer-events: none;
 
       display: flex;
@@ -105,14 +113,17 @@
 
     #enterText {
       font-family: 'Press Start 2P', cursive;
+
       font-size: 10px;
+
       color: #4f4f4f;
+
       text-transform: uppercase;
     }
 
-    /* =========================
+    /* =====================================================
        GAME BACKGROUND
-    ========================== */
+    ====================================================== */
 
     .game-screen {
       background:
@@ -133,8 +144,10 @@
 
     .game-screen::before {
       content: "";
+
       position: absolute;
       inset: 0;
+
       pointer-events: none;
 
       background:
@@ -161,100 +174,143 @@
       display: flex;
       flex-direction: column;
 
-      padding: 28px 0 30px;
+      padding: 22px 0 26px;
     }
 
-    /* =========================
-       TOP TITLE
-    ========================== */
+    /* =====================================================
+       PAGE TITLE
+    ====================================================== */
 
     .screen-title {
-      min-height: 64px;
+      height: 58px;
+
+      flex-shrink: 0;
 
       display: flex;
       justify-content: center;
       align-items: center;
 
       font-family: 'Press Start 2P', cursive;
-      font-size: clamp(15px, 1.8vw, 24px);
+
+      font-size: clamp(15px, 1.8vw, 23px);
 
       color: var(--gold);
 
       letter-spacing: 1px;
+
       text-shadow: 2px 2px 0 #ffffff;
 
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
 
-    /* =========================
-       MAIN MENU
-    ========================== */
+    /* =====================================================
+       GENERAL PANEL
+    ====================================================== */
 
-    .menu-layout {
-      flex: 1;
+    .pixel-panel {
+      position: relative;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: rgba(255,255,255,0.6);
 
-      min-height: 0;
+      border: 3px solid var(--border);
+      border-radius: 16px;
 
-      padding-bottom: 35px;
+      box-shadow: var(--shadow);
+
+      overflow: hidden;
     }
 
-    .menu-left {
-      width: min(760px, 92%);
+    .pixel-panel::before {
+      content: "";
 
-      display: flex;
-      flex-direction: column;
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.32),
+          transparent 20%
+        );
     }
 
     .tiny-label {
+      position: relative;
+      z-index: 2;
+
       font-family: 'Press Start 2P', cursive;
-      font-size: 9px;
-      line-height: 1.8;
+
+      font-size: 8px;
+      line-height: 1.6;
 
       color: #8a806b;
 
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
     .page-heading {
+      position: relative;
+      z-index: 2;
+
       font-family: 'Press Start 2P', cursive;
 
-      font-size: clamp(28px, 4vw, 52px);
-      line-height: 1.55;
+      font-size: clamp(25px, 3.6vw, 47px);
+      line-height: 1.45;
 
       color: #171717;
 
       text-shadow: 2px 2px 0 #ffffff;
 
-      margin-bottom: 25px;
+      margin-bottom: 18px;
+    }
+
+    /* =====================================================
+       MAIN MENU
+    ====================================================== */
+
+    .menu-layout {
+      flex: 1;
+
+      min-height: 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu-left {
+      width: min(740px, 92%);
+
+      display: flex;
+      flex-direction: column;
+
+      padding-bottom: 10px;
     }
 
     .menu-description {
-      font-size: 29px;
-      line-height: 1.35;
+      font-size: 25px;
+      line-height: 1.25;
 
       color: var(--muted);
 
-      max-width: 660px;
+      max-width: 640px;
 
-      margin-bottom: 34px;
+      margin-bottom: 22px;
     }
 
     .menu-options {
       display: flex;
       flex-direction: column;
-      gap: 18px;
 
-      width: 100%;
+      gap: 12px;
     }
 
     .menu-option {
       width: 100%;
 
-      padding: 21px 22px;
+      padding: 15px 18px;
 
       text-align: left;
 
@@ -272,23 +328,28 @@
 
     .menu-option:hover {
       background: var(--gold-soft);
-      transform: translate(-3px, -3px);
+
+      transform: translate(-2px, -2px);
     }
 
     .menu-option-title {
       display: flex;
       align-items: center;
-      gap: 14px;
+
+      gap: 12px;
 
       font-family: 'Press Start 2P', cursive;
-      font-size: 12px;
-      line-height: 1.7;
+
+      font-size: 11px;
+      line-height: 1.5;
     }
 
     .selector {
       color: #b29239;
+
       visibility: hidden;
-      min-width: 16px;
+
+      min-width: 14px;
     }
 
     .menu-option:hover .selector {
@@ -296,18 +357,332 @@
     }
 
     .menu-option-description {
-      margin-top: 9px;
-      margin-left: 31px;
+      margin-top: 5px;
+      margin-left: 28px;
 
-      font-size: 24px;
-      line-height: 1.25;
+      font-size: 21px;
+      line-height: 1.15;
 
       color: #6c6454;
     }
 
-    /* =========================
+    /* =====================================================
+       CONTENT PAGE GRID
+    ====================================================== */
+
+    .content-layout {
+      flex: 1;
+      min-height: 0;
+
+      display: grid;
+
+      grid-template-columns: 0.85fr 1.15fr;
+
+      gap: 24px;
+    }
+
+    .content-left,
+    .content-right {
+      padding: 25px 28px;
+
+      min-height: 0;
+    }
+
+    .brand-home {
+      position: absolute;
+
+      top: 25px;
+      left: 0;
+
+      z-index: 10;
+
+      font-family: 'Press Start 2P', cursive;
+
+      font-size: 8px;
+
+      color: #fff5d8;
+
+      background: #24211b;
+
+      border: 3px solid #111;
+      border-radius: 9px;
+
+      box-shadow: 4px 4px 0 #111;
+
+      padding: 11px 13px;
+    }
+
+    .back-button {
+      position: relative;
+      z-index: 2;
+
+      margin-top: 16px;
+
+      padding: 10px 14px;
+
+      border: 3px solid #111;
+      border-radius: 8px;
+
+      box-shadow: 4px 4px 0 #111;
+
+      background: #fff4c9;
+
+      font-family: 'Press Start 2P', cursive;
+
+      font-size: 7px;
+    }
+
+    /* =====================================================
+       OUR WORK
+    ====================================================== */
+
+    .project-list {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      flex-direction: column;
+
+      gap: 10px;
+    }
+
+    .project-button {
+      text-align: left;
+
+      padding: 11px 13px;
+
+      border: 3px solid #111;
+      border-radius: 9px;
+
+      box-shadow: 4px 4px 0 #111;
+
+      background: #fbf8ef;
+
+      transition:
+        transform 0.14s ease,
+        background 0.14s ease;
+    }
+
+    .project-button:hover,
+    .project-button.active {
+      background: var(--gold-soft);
+
+      transform: translate(-2px, -2px);
+    }
+
+    .project-button strong {
+      display: block;
+
+      font-family: 'Press Start 2P', cursive;
+
+      font-size: 8px;
+      line-height: 1.5;
+
+      margin-bottom: 4px;
+    }
+
+    .project-button span {
+      font-size: 19px;
+
+      color: #675f51;
+    }
+
+    .project-preview {
+      height: 280px;
+
+      border: 3px dashed #a9a69e;
+      border-radius: 12px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          rgba(0,0,0,0.02) 0px,
+          rgba(0,0,0,0.02) 6px,
+          transparent 6px,
+          transparent 12px
+        ),
+        #faf7ef;
+
+      margin-bottom: 14px;
+    }
+
+    .project-code {
+      font-family: 'Press Start 2P', cursive;
+
+      font-size: clamp(28px, 4.5vw, 55px);
+
+      text-align: center;
+    }
+
+    .project-title {
+      position: relative;
+      z-index: 2;
+
+      font-family: 'Press Start 2P', cursive;
+
+      font-size: 10px;
+      line-height: 1.6;
+
+      margin-bottom: 5px;
+    }
+
+    .project-tags {
+      position: relative;
+      z-index: 2;
+
+      font-size: 20px;
+
+      color: #8a7645;
+
+      margin-bottom: 7px;
+    }
+
+    .project-description {
+      position: relative;
+      z-index: 2;
+
+      font-size: 20px;
+      line-height: 1.2;
+
+      color: #625a4b;
+    }
+
+    /* =====================================================
+       CONTACT
+    ====================================================== */
+
+    .contact-copy,
+    .about-copy {
+      position: relative;
+      z-index: 2;
+
+      font-size: 22px;
+      line-height: 1.25;
+
+      color: #625a4b;
+
+      margin-bottom: 16px;
+    }
+
+    .contact-form {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      flex-direction: column;
+
+      gap: 10px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+
+      gap: 5px;
+    }
+
+    .field label {
+      font-family: 'Press Start 2P', cursive;
+
+      font-size: 7px;
+
+      line-height: 1.4;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+
+      padding: 10px 12px;
+
+      border: 3px solid #111;
+      border-radius: 8px;
+
+      box-shadow: 4px 4px 0 #111;
+
+      background: #fffdf7;
+
+      font-size: 21px;
+
+      resize: none;
+
+      outline: none;
+    }
+
+    .field textarea {
+      height: 190px;
+    }
+
+    .send-button {
+      align-self: flex-start;
+
+      margin-top: 6px;
+
+      padding: 10px 14px;
+
+      border: 3px solid #111;
+      border-radius: 8px;
+
+      box-shadow: 4px 4px 0 #111;
+
+      background: #ffe398;
+
+      font-family: 'Press Start 2P', cursive;
+
+      font-size: 7px;
+    }
+
+    /* =====================================================
+       INFO CARDS
+    ====================================================== */
+
+    .about-stats {
+      position: relative;
+      z-index: 2;
+
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 10px;
+
+      margin-top: 12px;
+    }
+
+    .stat-card {
+      padding: 12px;
+
+      border: 3px solid #111;
+      border-radius: 9px;
+
+      box-shadow: 4px 4px 0 #111;
+
+      background: #fbf8ef;
+    }
+
+    .stat-card strong {
+      display: block;
+
+      font-family: 'Press Start 2P', cursive;
+
+      font-size: 7px;
+
+      margin-bottom: 7px;
+    }
+
+    .stat-card span {
+      font-size: 19px;
+
+      color: #625a4b;
+    }
+
+    /* =====================================================
        LOADING SCREEN
-    ========================== */
+    ====================================================== */
 
     #loading {
       z-index: 100;
@@ -322,6 +697,7 @@
 
     .loading-content {
       width: min(520px, 86%);
+
       text-align: center;
     }
 
@@ -329,6 +705,7 @@
       font-family: 'Press Start 2P', cursive;
 
       font-size: clamp(18px, 3vw, 34px);
+
       line-height: 1.5;
 
       margin-bottom: 30px;
@@ -373,321 +750,19 @@
     }
 
     .loading-tip {
-      margin-top: 24px;
+      margin-top: 22px;
 
-      font-size: 20px;
+      font-size: 19px;
+
       color: #9e947d;
     }
 
-    /* =========================
-       GENERAL CONTENT PAGES
-    ========================== */
-
-    .content-layout {
-      flex: 1;
-
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 26px;
-
-      min-height: 0;
-    }
-
-    .pixel-panel {
-      position: relative;
-
-      background: rgba(255,255,255,0.6);
-
-      border: 3px solid var(--border);
-      border-radius: 16px;
-
-      box-shadow: var(--shadow);
-
-      overflow: hidden;
-    }
-
-    .pixel-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-
-      pointer-events: none;
-
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(255,255,255,0.32),
-          transparent 20%
-        );
-    }
-
-    .content-left,
-    .content-right {
-      padding: 30px;
-    }
-
-    .brand-home {
-      position: absolute;
-      top: 30px;
-      left: 0;
-
-      font-family: 'Press Start 2P', cursive;
-      font-size: 9px;
-
-      background: #24211b;
-      color: #fff5d8;
-
-      border: 3px solid #111;
-      border-radius: 9px;
-
-      box-shadow: 4px 4px 0 #111;
-
-      padding: 13px 15px;
-
-      z-index: 10;
-    }
-
-    .back-button {
-      position: relative;
-      z-index: 2;
-
-      margin-top: 24px;
-
-      padding: 12px 16px;
-
-      border: 3px solid #111;
-      border-radius: 8px;
-
-      box-shadow: 4px 4px 0 #111;
-
-      background: #fff4c9;
-
-      font-family: 'Press Start 2P', cursive;
-      font-size: 8px;
-    }
-
-    /* =========================
-       OUR WORK
-    ========================== */
-
-    .project-list {
-      position: relative;
-      z-index: 2;
-
-      display: flex;
-      flex-direction: column;
-      gap: 13px;
-    }
-
-    .project-button {
-      text-align: left;
-
-      padding: 15px;
-
-      border: 3px solid #111;
-      border-radius: 9px;
-
-      box-shadow: 4px 4px 0 #111;
-
-      background: #fbf8ef;
-
-      transition:
-        transform 0.14s ease,
-        background 0.14s ease;
-    }
-
-    .project-button:hover,
-    .project-button.active {
-      background: var(--gold-soft);
-      transform: translate(-2px, -2px);
-    }
-
-    .project-button strong {
-      display: block;
-
-      font-family: 'Press Start 2P', cursive;
-      font-size: 9px;
-      line-height: 1.7;
-
-      margin-bottom: 6px;
-    }
-
-    .project-button span {
-      font-size: 22px;
-      color: #675f51;
-    }
-
-    .project-preview {
-      min-height: 340px;
-
-      border: 3px dashed #a9a69e;
-      border-radius: 12px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      background:
-        repeating-linear-gradient(
-          -45deg,
-          rgba(0,0,0,0.02) 0px,
-          rgba(0,0,0,0.02) 6px,
-          transparent 6px,
-          transparent 12px
-        ),
-        #faf7ef;
-
-      margin-bottom: 20px;
-    }
-
-    .project-code {
-      font-family: 'Press Start 2P', cursive;
-      font-size: clamp(30px, 5vw, 62px);
-      text-align: center;
-    }
-
-    .project-title {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 13px;
-      line-height: 1.8;
-
-      margin-bottom: 8px;
-    }
-
-    .project-tags {
-      font-size: 23px;
-      color: #8a7645;
-
-      margin-bottom: 12px;
-    }
-
-    .project-description {
-      font-size: 24px;
-      line-height: 1.3;
-
-      color: #625a4b;
-    }
-
-    /* =========================
-       CONTACT
-    ========================== */
-
-    .contact-copy,
-    .about-copy {
-      position: relative;
-      z-index: 2;
-
-      font-size: 26px;
-      line-height: 1.35;
-
-      color: #625a4b;
-
-      margin-bottom: 22px;
-    }
-
-    .contact-form {
-      position: relative;
-      z-index: 2;
-
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .field label {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 8px;
-      line-height: 1.7;
-    }
-
-    .field input,
-    .field textarea {
-      width: 100%;
-
-      padding: 13px 15px;
-
-      border: 3px solid #111;
-      border-radius: 8px;
-
-      box-shadow: 4px 4px 0 #111;
-
-      background: #fffdf7;
-
-      font-size: 24px;
-
-      resize: none;
-      outline: none;
-    }
-
-    .send-button {
-      align-self: flex-start;
-
-      margin-top: 8px;
-
-      padding: 13px 17px;
-
-      border: 3px solid #111;
-      border-radius: 8px;
-
-      box-shadow: 4px 4px 0 #111;
-
-      background: #ffe398;
-
-      font-family: 'Press Start 2P', cursive;
-      font-size: 8px;
-    }
-
-    /* =========================
-       ABOUT
-    ========================== */
-
-    .about-stats {
-      position: relative;
-      z-index: 2;
-
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-
-      margin-top: 20px;
-    }
-
-    .stat-card {
-      padding: 17px;
-
-      border: 3px solid #111;
-      border-radius: 9px;
-
-      box-shadow: 4px 4px 0 #111;
-
-      background: #fbf8ef;
-    }
-
-    .stat-card strong {
-      display: block;
-
-      font-family: 'Press Start 2P', cursive;
-      font-size: 8px;
-
-      margin-bottom: 10px;
-    }
-
-    .stat-card span {
-      font-size: 23px;
-      color: #625a4b;
-    }
-
-    /* =========================
+    /* =====================================================
        MOBILE
-    ========================== */
+    ====================================================== */
 
-    @media (max-width: 980px) {
+    @media (max-width: 900px) {
+
       .content-layout {
         grid-template-columns: 1fr;
       }
@@ -703,68 +778,64 @@
 
       .brand-home {
         position: static;
+
         align-self: flex-start;
+
         margin-bottom: 8px;
       }
+
     }
 
     @media (max-width: 700px) {
+
       .game-wrap {
         width: 94%;
-        padding-top: 16px;
+
+        padding-top: 14px;
       }
 
-      .menu-left,
+      .menu-left {
+        width: 94%;
+      }
+
       .content-left,
       .content-right {
-        padding-left: 6px;
-        padding-right: 6px;
-      }
-
-      .menu-description,
-      .contact-copy,
-      .about-copy,
-      .project-description {
-        font-size: 21px;
-      }
-
-      .menu-option-description,
-      .project-button span,
-      .project-tags,
-      .field input,
-      .field textarea {
-        font-size: 19px;
+        padding: 18px;
       }
 
       .about-stats {
         grid-template-columns: 1fr;
       }
+
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- =========================
+  <!-- =====================================================
        LANDING
-  ========================== -->
+  ====================================================== -->
 
   <section id="landing" class="screen active">
 
     <div id="scene"></div>
 
     <div class="landing-content">
+
       <div id="enterText">
         Stay tuned.
       </div>
+
     </div>
 
   </section>
 
 
-  <!-- =========================
+  <!-- =====================================================
        MAIN MENU
-  ========================== -->
+  ====================================================== -->
 
   <section id="menu" class="screen game-screen">
 
@@ -788,8 +859,10 @@
           </div>
 
           <div class="menu-description">
+
             Explore our work, learn about Caddy Boys,
             or send us your next idea.
+
           </div>
 
           <div class="menu-options">
@@ -800,8 +873,13 @@
             >
 
               <div class="menu-option-title">
-                <span class="selector">▶</span>
+
+                <span class="selector">
+                  ▶
+                </span>
+
                 OUR WORK
+
               </div>
 
               <div class="menu-option-description">
@@ -817,8 +895,13 @@
             >
 
               <div class="menu-option-title">
-                <span class="selector">▶</span>
+
+                <span class="selector">
+                  ▶
+                </span>
+
                 CONTACT US
+
               </div>
 
               <div class="menu-option-description">
@@ -834,8 +917,13 @@
             >
 
               <div class="menu-option-title">
-                <span class="selector">▶</span>
+
+                <span class="selector">
+                  ▶
+                </span>
+
                 ABOUT
+
               </div>
 
               <div class="menu-option-description">
@@ -855,9 +943,9 @@
   </section>
 
 
-  <!-- =========================
+  <!-- =====================================================
        LOADING
-  ========================== -->
+  ====================================================== -->
 
   <section id="loading" class="screen">
 
@@ -872,7 +960,9 @@
       </div>
 
       <div class="progress-shell">
+
         <div id="progressBar"></div>
+
       </div>
 
       <div class="loading-tip">
@@ -884,9 +974,9 @@
   </section>
 
 
-  <!-- =========================
+  <!-- =====================================================
        OUR WORK
-  ========================== -->
+  ====================================================== -->
 
   <section id="work" class="screen game-screen">
 
@@ -904,6 +994,8 @@
       </div>
 
       <div class="content-layout">
+
+        <!-- LEFT -->
 
         <div class="content-left pixel-panel">
 
@@ -977,6 +1069,8 @@
         </div>
 
 
+        <!-- RIGHT -->
+
         <div class="content-right pixel-panel">
 
           <div class="tiny-label">
@@ -1014,8 +1108,6 @@
           >
             A production jig designed to improve assembly
             repeatability and support manufacturing workflow.
-            Your real interactive STL model can replace this
-            preview later.
           </div>
 
         </div>
@@ -1027,9 +1119,9 @@
   </section>
 
 
-  <!-- =========================
+  <!-- =====================================================
        CONTACT
-  ========================== -->
+  ====================================================== -->
 
   <section id="contact" class="screen game-screen">
 
@@ -1048,6 +1140,9 @@
 
       <div class="content-layout">
 
+
+        <!-- LEFT -->
+
         <div class="content-left pixel-panel">
 
           <div class="tiny-label">
@@ -1060,21 +1155,38 @@
           </div>
 
           <div class="contact-copy">
+
             Got a sketch, broken part, concept,
             prototype or engineering problem?
+
             Tell us what you want to make.
+
           </div>
 
           <div class="about-stats">
 
             <div class="stat-card">
-              <strong>BASE</strong>
-              <span>Melbourne, Australia</span>
+
+              <strong>
+                BASE
+              </strong>
+
+              <span>
+                Melbourne, Australia
+              </span>
+
             </div>
 
             <div class="stat-card">
-              <strong>PROJECTS</strong>
-              <span>Local and worldwide</span>
+
+              <strong>
+                PROJECTS
+              </strong>
+
+              <span>
+                Local and worldwide
+              </span>
+
             </div>
 
           </div>
@@ -1088,6 +1200,8 @@
 
         </div>
 
+
+        <!-- RIGHT -->
 
         <div class="content-right pixel-panel">
 
@@ -1137,7 +1251,6 @@
               </label>
 
               <textarea
-                rows="7"
                 placeholder="Tell us about your idea..."
                 required
               ></textarea>
@@ -1146,8 +1259,8 @@
 
 
             <button
-              class="send-button"
               type="submit"
+              class="send-button"
             >
               SEND MESSAGE
             </button>
@@ -1163,9 +1276,9 @@
   </section>
 
 
-  <!-- =========================
+  <!-- =====================================================
        ABOUT
-  ========================== -->
+  ====================================================== -->
 
   <section id="about" class="screen game-screen">
 
@@ -1184,6 +1297,9 @@
 
       <div class="content-layout">
 
+
+        <!-- LEFT -->
+
         <div class="content-left pixel-panel">
 
           <div class="tiny-label">
@@ -1196,10 +1312,12 @@
           </div>
 
           <div class="about-copy">
+
             Caddy Boys is a Melbourne-based engineering
             design and prototyping studio focused on
             turning ideas into functional digital and
             physical designs.
+
           </div>
 
           <button
@@ -1212,6 +1330,8 @@
         </div>
 
 
+        <!-- RIGHT -->
+
         <div class="content-right pixel-panel">
 
           <div class="tiny-label">
@@ -1221,42 +1341,68 @@
           <div class="about-stats">
 
             <div class="stat-card">
-              <strong>CAD</strong>
+
+              <strong>
+                CAD
+              </strong>
+
               <span>
                 3D modelling, parts and assemblies
               </span>
+
             </div>
 
+
             <div class="stat-card">
-              <strong>DRAWINGS</strong>
+
+              <strong>
+                DRAWINGS
+              </strong>
+
               <span>
                 Technical and manufacturing drawings
               </span>
+
             </div>
 
+
             <div class="stat-card">
-              <strong>PRINTING</strong>
+
+              <strong>
+                PRINTING
+              </strong>
+
               <span>
                 Rapid prototyping and physical parts
               </span>
+
             </div>
 
+
             <div class="stat-card">
-              <strong>FEA</strong>
+
+              <strong>
+                FEA
+              </strong>
+
               <span>
                 Structural analysis and validation
               </span>
+
             </div>
 
           </div>
 
+
           <div
             class="about-copy"
-            style="margin-top: 28px;"
+            style="margin-top: 24px;"
           >
+
             Our goal is simple: help turn a rough idea,
             sketch or concept into something that can
             actually be visualised, tested and made.
+
           </div>
 
         </div>
@@ -1268,9 +1414,9 @@
   </section>
 
 
-  <!-- =========================
-       THREE.JS
-  ========================== -->
+  <!-- =====================================================
+       THREE JS
+  ====================================================== -->
 
   <script type="importmap">
   {
@@ -1283,6 +1429,7 @@
     }
   }
   </script>
+
 
   <script type="module">
 
@@ -1297,17 +1444,30 @@
     } from 'three/addons/controls/OrbitControls.js';
 
 
-    /* =========================
-       SCREEN MANAGEMENT
-    ========================== */
+    /* =====================================================
+       SCREENS
+    ====================================================== */
 
     const screens = {
-      landing: document.getElementById('landing'),
-      menu: document.getElementById('menu'),
-      loading: document.getElementById('loading'),
-      work: document.getElementById('work'),
-      contact: document.getElementById('contact'),
-      about: document.getElementById('about')
+
+      landing:
+        document.getElementById('landing'),
+
+      menu:
+        document.getElementById('menu'),
+
+      loading:
+        document.getElementById('loading'),
+
+      work:
+        document.getElementById('work'),
+
+      contact:
+        document.getElementById('contact'),
+
+      about:
+        document.getElementById('about')
+
     };
 
 
@@ -1327,9 +1487,9 @@
     }
 
 
-    /* =========================
+    /* =====================================================
        LOADING TRANSITION
-    ========================== */
+    ====================================================== */
 
     const loadingText =
       document.getElementById('loadingText');
@@ -1358,12 +1518,14 @@
 
 
     let loadingInterval = null;
+
     let progressInterval = null;
 
 
     function loadSection(destination) {
 
       clearInterval(loadingInterval);
+
       clearInterval(progressInterval);
 
 
@@ -1374,14 +1536,17 @@
         destinationMessages[destination];
 
 
-      progressBar.style.width = '0%';
+      progressBar.style.width =
+        '0%';
 
 
       let dotCount = 1;
+
       let progress = 0;
 
 
-      loadingText.textContent = 'LOADING.';
+      loadingText.textContent =
+        'LOADING.';
 
 
       loadingInterval =
@@ -1390,8 +1555,11 @@
           dotCount++;
 
           if (dotCount > 3) {
+
             dotCount = 1;
+
           }
+
 
           loadingText.textContent =
             'LOADING' +
@@ -1403,11 +1571,16 @@
       progressInterval =
         setInterval(() => {
 
-          progress += Math.random() * 7 + 2;
+          progress +=
+            Math.random() * 7 + 2;
+
 
           if (progress > 96) {
+
             progress = 96;
+
           }
+
 
           progressBar.style.width =
             progress + '%';
@@ -1417,18 +1590,29 @@
 
       setTimeout(() => {
 
-        clearInterval(loadingInterval);
-        clearInterval(progressInterval);
+        clearInterval(
+          loadingInterval
+        );
 
 
-        progressBar.style.width = '100%';
+        clearInterval(
+          progressInterval
+        );
 
-        loadingText.textContent = 'LOADED!';
+
+        progressBar.style.width =
+          '100%';
+
+
+        loadingText.textContent =
+          'LOADED!';
 
 
         setTimeout(() => {
 
-          showScreen(destination);
+          showScreen(
+            destination
+          );
 
         }, 180);
 
@@ -1438,7 +1622,9 @@
 
 
     document
-      .querySelectorAll('[data-destination]')
+      .querySelectorAll(
+        '[data-destination]'
+      )
       .forEach(button => {
 
         button.addEventListener(
@@ -1455,12 +1641,14 @@
       });
 
 
-    /* =========================
-       RETURN TO MAIN MENU
-    ========================== */
+    /* =====================================================
+       RETURN TO MENU
+    ====================================================== */
 
     document
-      .querySelectorAll('[data-menu]')
+      .querySelectorAll(
+        '[data-menu]'
+      )
       .forEach(button => {
 
         button.addEventListener(
@@ -1475,14 +1663,16 @@
       });
 
 
-    /* =========================
+    /* =====================================================
        PROJECT SELECTOR
-    ========================== */
+    ====================================================== */
 
     const projects = [
 
       {
-        code: 'JIG',
+
+        code:
+          'JIG',
 
         title:
           'WHEEL SHUNT PRODUCTION JIG',
@@ -1491,11 +1681,14 @@
           'CAD · REVERSE ENGINEERING · 3D PRINTING',
 
         description:
-          'A production jig designed to improve assembly repeatability and support manufacturing workflow. Your real interactive STL model can replace this preview later.'
+          'A production jig designed to improve assembly repeatability and support manufacturing workflow.'
+
       },
 
       {
-        code: 'CAD',
+
+        code:
+          'CAD',
 
         title:
           'CUSTOM BRACKET CONCEPT',
@@ -1505,10 +1698,13 @@
 
         description:
           'A mechanical design example showing concept development, CAD modelling and design-for-manufacture thinking.'
+
       },
 
       {
-        code: 'FEA',
+
+        code:
+          'FEA',
 
         title:
           'FEA STRUCTURAL STUDY',
@@ -1518,29 +1714,40 @@
 
         description:
           'A structural assessment showing how a design behaves under load before manufacturing or prototyping.'
+
       }
 
     ];
 
 
     const projectButtons =
-      document.querySelectorAll('.project-button');
+      document.querySelectorAll(
+        '.project-button'
+      );
 
 
     const projectCode =
-      document.getElementById('projectCode');
+      document.getElementById(
+        'projectCode'
+      );
 
 
     const projectTitle =
-      document.getElementById('projectTitle');
+      document.getElementById(
+        'projectTitle'
+      );
 
 
     const projectTags =
-      document.getElementById('projectTags');
+      document.getElementById(
+        'projectTags'
+      );
 
 
     const projectDescription =
-      document.getElementById('projectDescription');
+      document.getElementById(
+        'projectDescription'
+      );
 
 
     function updateProject(index) {
@@ -1565,64 +1772,79 @@
         project.description;
 
 
-      projectButtons.forEach(button => {
+      projectButtons.forEach(
+        button => {
 
-        button.classList.remove('active');
-
-      });
-
-
-      projectButtons[index]
-        .classList.add('active');
-
-    }
-
-
-    projectButtons.forEach(button => {
-
-      button.addEventListener(
-        'click',
-        () => {
-
-          updateProject(
-            Number(button.dataset.project)
+          button.classList.remove(
+            'active'
           );
 
         }
       );
 
-    });
+
+      projectButtons[index]
+        .classList.add(
+          'active'
+        );
+
+    }
+
+
+    projectButtons.forEach(
+      button => {
+
+        button.addEventListener(
+          'click',
+          () => {
+
+            updateProject(
+              Number(
+                button.dataset.project
+              )
+            );
+
+          }
+        );
+
+      }
+    );
 
 
     updateProject(0);
 
 
-    /* =========================
+    /* =====================================================
        CONTACT FORM
-    ========================== */
+    ====================================================== */
 
     document
-      .getElementById('contactForm')
+      .getElementById(
+        'contactForm'
+      )
       .addEventListener(
         'submit',
         event => {
 
           event.preventDefault();
 
+
           alert(
-            'Form UI is working. Next we can connect it to your email.'
+            'Form UI works. We can connect real email sending later.'
           );
 
         }
       );
 
 
-    /* =========================
+    /* =====================================================
        THREE.JS LANDING
-    ========================== */
+    ====================================================== */
 
     const container =
-      document.getElementById('scene');
+      document.getElementById(
+        'scene'
+      );
 
 
     const scene =
@@ -1630,15 +1852,23 @@
 
 
     scene.background =
-      new THREE.Color(0xffffff);
+      new THREE.Color(
+        0xffffff
+      );
 
 
     const camera =
       new THREE.PerspectiveCamera(
+
         45,
-        window.innerWidth / window.innerHeight,
+
+        window.innerWidth /
+        window.innerHeight,
+
         0.1,
+
         1000
+
       );
 
 
@@ -1651,8 +1881,13 @@
 
     const renderer =
       new THREE.WebGLRenderer({
-        antialias: true,
-        alpha: true
+
+        antialias:
+          true,
+
+        alpha:
+          true
+
       });
 
 
@@ -1663,10 +1898,12 @@
 
 
     renderer.setPixelRatio(
+
       Math.min(
         window.devicePixelRatio,
         2
       )
+
     );
 
 
@@ -1675,9 +1912,9 @@
     );
 
 
-    /* =========================
+    /* =====================================================
        LIGHTING
-    ========================== */
+    ====================================================== */
 
     const ambientLight =
       new THREE.AmbientLight(
@@ -1729,9 +1966,9 @@
     );
 
 
-    /* =========================
+    /* =====================================================
        CONTROLS
-    ========================== */
+    ====================================================== */
 
     const controls =
       new OrbitControls(
@@ -1740,15 +1977,25 @@
       );
 
 
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.enableZoom = true;
-    controls.enablePan = false;
+    controls.enableDamping =
+      true;
 
 
-    /* =========================
+    controls.dampingFactor =
+      0.05;
+
+
+    controls.enableZoom =
+      true;
+
+
+    controls.enablePan =
+      false;
+
+
+    /* =====================================================
        RAYCASTER
-    ========================== */
+    ====================================================== */
 
     const raycaster =
       new THREE.Raycaster();
@@ -1766,9 +2013,9 @@
       0.004;
 
 
-    /* =========================
+    /* =====================================================
        LOAD STL LOGO
-    ========================== */
+    ====================================================== */
 
     const loader =
       new STLLoader();
@@ -1783,23 +2030,27 @@
 
       function (geometry) {
 
-        geometry.computeVertexNormals();
+        geometry
+          .computeVertexNormals();
+
+
         geometry.center();
 
 
         const material =
-          new THREE.MeshStandardMaterial({
+          new THREE
+            .MeshStandardMaterial({
 
-            color:
-              0x111111,
+              color:
+                0x111111,
 
-            roughness:
-              0.35,
+              roughness:
+                0.35,
 
-            metalness:
-              0.15
+              metalness:
+                0.15
 
-          });
+            });
 
 
         logo =
@@ -1811,21 +2062,29 @@
 
         const box =
           new THREE.Box3()
-            .setFromObject(logo);
+            .setFromObject(
+              logo
+            );
 
 
         const size =
           new THREE.Vector3();
 
 
-        box.getSize(size);
+        box.getSize(
+          size
+        );
 
 
         const maxDimension =
           Math.max(
+
             size.x,
+
             size.y,
+
             size.z
+
           );
 
 
@@ -1867,17 +2126,20 @@
     );
 
 
-    /* =========================
+    /* =====================================================
        LOGO HOVER
-    ========================== */
+    ====================================================== */
 
-    renderer.domElement
+    renderer
+      .domElement
       .addEventListener(
         'mousemove',
         event => {
 
           if (!logo) {
+
             return;
+
           }
 
 
@@ -1907,19 +2169,24 @@
             ) * 2 + 1;
 
 
-          raycaster.setFromCamera(
-            mouse,
-            camera
-          );
-
-
-          const intersects =
-            raycaster.intersectObject(
-              logo
+          raycaster
+            .setFromCamera(
+              mouse,
+              camera
             );
 
 
-          if (intersects.length > 0) {
+          const intersects =
+            raycaster
+              .intersectObject(
+                logo
+              );
+
+
+          if (
+            intersects.length >
+            0
+          ) {
 
             targetRotationSpeed =
               0.0007;
@@ -1931,7 +2198,9 @@
               .cursor =
               'pointer';
 
-          } else {
+          }
+
+          else {
 
             targetRotationSpeed =
               0.004;
@@ -1949,17 +2218,20 @@
       );
 
 
-    /* =========================
+    /* =====================================================
        CLICK LOGO
-    ========================== */
+    ====================================================== */
 
-    renderer.domElement
+    renderer
+      .domElement
       .addEventListener(
         'click',
         event => {
 
           if (!logo) {
+
             return;
+
           }
 
 
@@ -1989,21 +2261,28 @@
             ) * 2 + 1;
 
 
-          raycaster.setFromCamera(
-            mouse,
-            camera
-          );
-
-
-          const intersects =
-            raycaster.intersectObject(
-              logo
+          raycaster
+            .setFromCamera(
+              mouse,
+              camera
             );
 
 
-          if (intersects.length > 0) {
+          const intersects =
+            raycaster
+              .intersectObject(
+                logo
+              );
 
-            showScreen('menu');
+
+          if (
+            intersects.length >
+            0
+          ) {
+
+            showScreen(
+              'menu'
+            );
 
           }
 
@@ -2011,9 +2290,9 @@
       );
 
 
-    /* =========================
+    /* =====================================================
        ANIMATION
-    ========================== */
+    ====================================================== */
 
     function animate() {
 
@@ -2051,9 +2330,9 @@
     animate();
 
 
-    /* =========================
+    /* =====================================================
        RESIZE
-    ========================== */
+    ====================================================== */
 
     window.addEventListener(
       'resize',
