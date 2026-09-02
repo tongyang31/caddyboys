@@ -1443,6 +1443,29 @@
       OrbitControls
     } from 'three/addons/controls/OrbitControls.js';
 
+    /* =========================
+   STAY TUNED ANIMATION
+========================== */
+
+const enterText =
+  document.getElementById('enterText');
+
+let stayTunedDots = 1;
+
+setInterval(() => {
+
+  stayTunedDots++;
+
+  if (stayTunedDots > 3) {
+    stayTunedDots = 1;
+  }
+
+  enterText.textContent =
+    'STAY TUNED' +
+    '.'.repeat(stayTunedDots);
+
+}, 450);
+
 
     /* =====================================================
        SCREENS
