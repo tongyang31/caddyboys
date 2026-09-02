@@ -25,10 +25,8 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-
       background: #ffffff;
       color: #171717;
-
       font-family: 'VT323', monospace;
     }
 
@@ -47,7 +45,6 @@
 
     :root {
       --paper: #f5f2e9;
-      --paper-2: #ebe5d8;
       --ink: #171717;
       --muted: #6c6454;
       --gold: #ccb15f;
@@ -77,7 +74,6 @@
     .screen.active {
       opacity: 1;
       pointer-events: auto;
-
       transform: translateY(0);
     }
 
@@ -113,12 +109,96 @@
 
     #enterText {
       font-family: 'Press Start 2P', cursive;
-
       font-size: 10px;
-
       color: #4f4f4f;
-
       text-transform: uppercase;
+
+      min-width: 180px;
+      text-align: center;
+    }
+
+    /* =====================================================
+       PIXEL MASCOT
+    ====================================================== */
+
+    #mascotLayer {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+
+      pointer-events: none;
+    }
+
+    #pixelMascot {
+      position: absolute;
+
+      width: 72px;
+      height: 72px;
+
+      left: 50%;
+      top: 50%;
+
+      image-rendering: pixelated;
+
+      pointer-events: auto;
+      cursor: pointer;
+
+      z-index: 7;
+
+      transform:
+        translate(-50%, -50%);
+    }
+
+    #sparkleLayer {
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+
+      z-index: 6;
+    }
+
+    .sparkle {
+      position: absolute;
+
+      width: 4px;
+      height: 4px;
+
+      background: #f4d86f;
+
+      transform:
+        translate(-50%, -50%);
+
+      box-shadow:
+        0 -5px 0 #f4d86f,
+        0 5px 0 #f4d86f,
+        5px 0 0 #f4d86f,
+        -5px 0 0 #f4d86f;
+
+      animation:
+        sparkleAnimation 0.75s ease-out forwards;
+    }
+
+    @keyframes sparkleAnimation {
+
+      0% {
+        opacity: 0;
+        transform:
+          translate(-50%, -50%)
+          scale(0.4);
+      }
+
+      25% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+
+        transform:
+          translate(-50%, -80%)
+          scale(1.4);
+      }
     }
 
     /* =====================================================
@@ -198,72 +278,10 @@
 
       letter-spacing: 1px;
 
-      text-shadow: 2px 2px 0 #ffffff;
+      text-shadow:
+        2px 2px 0 #ffffff;
 
       margin-bottom: 12px;
-    }
-
-    /* =====================================================
-       GENERAL PANEL
-    ====================================================== */
-
-    .pixel-panel {
-      position: relative;
-
-      background: rgba(255,255,255,0.6);
-
-      border: 3px solid var(--border);
-      border-radius: 16px;
-
-      box-shadow: var(--shadow);
-
-      overflow: hidden;
-    }
-
-    .pixel-panel::before {
-      content: "";
-
-      position: absolute;
-      inset: 0;
-
-      pointer-events: none;
-
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(255,255,255,0.32),
-          transparent 20%
-        );
-    }
-
-    .tiny-label {
-      position: relative;
-      z-index: 2;
-
-      font-family: 'Press Start 2P', cursive;
-
-      font-size: 8px;
-      line-height: 1.6;
-
-      color: #8a806b;
-
-      margin-bottom: 14px;
-    }
-
-    .page-heading {
-      position: relative;
-      z-index: 2;
-
-      font-family: 'Press Start 2P', cursive;
-
-      font-size: clamp(25px, 3.6vw, 47px);
-      line-height: 1.45;
-
-      color: #171717;
-
-      text-shadow: 2px 2px 0 #ffffff;
-
-      margin-bottom: 18px;
     }
 
     /* =====================================================
@@ -287,6 +305,39 @@
       flex-direction: column;
 
       padding-bottom: 10px;
+    }
+
+    .tiny-label {
+      position: relative;
+      z-index: 2;
+
+      font-family: 'Press Start 2P', cursive;
+
+      font-size: 8px;
+      line-height: 1.6;
+
+      color: #8a806b;
+
+      margin-bottom: 14px;
+    }
+
+    .page-heading {
+      position: relative;
+      z-index: 2;
+
+      font-family: 'Press Start 2P', cursive;
+
+      font-size:
+        clamp(25px, 3.6vw, 47px);
+
+      line-height: 1.45;
+
+      color: #171717;
+
+      text-shadow:
+        2px 2px 0 #ffffff;
+
+      margin-bottom: 18px;
     }
 
     .menu-description {
@@ -317,9 +368,11 @@
       background: #fbf8ef;
 
       border: 3px solid #111;
+
       border-radius: 11px;
 
-      box-shadow: 4px 4px 0 #111;
+      box-shadow:
+        4px 4px 0 #111;
 
       transition:
         transform 0.14s ease,
@@ -327,9 +380,11 @@
     }
 
     .menu-option:hover {
-      background: var(--gold-soft);
+      background:
+        var(--gold-soft);
 
-      transform: translate(-2px, -2px);
+      transform:
+        translate(-2px, -2px);
     }
 
     .menu-option-title {
@@ -338,9 +393,12 @@
 
       gap: 12px;
 
-      font-family: 'Press Start 2P', cursive;
+      font-family:
+        'Press Start 2P',
+        cursive;
 
       font-size: 11px;
+
       line-height: 1.5;
     }
 
@@ -358,25 +416,66 @@
 
     .menu-option-description {
       margin-top: 5px;
+
       margin-left: 28px;
 
       font-size: 21px;
+
       line-height: 1.15;
 
       color: #6c6454;
     }
 
     /* =====================================================
-       CONTENT PAGE GRID
+       PANELS
+    ====================================================== */
+
+    .pixel-panel {
+      position: relative;
+
+      background:
+        rgba(255,255,255,0.6);
+
+      border: 3px solid
+        var(--border);
+
+      border-radius: 16px;
+
+      box-shadow:
+        var(--shadow);
+
+      overflow: hidden;
+    }
+
+    .pixel-panel::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.32),
+          transparent 20%
+        );
+    }
+
+    /* =====================================================
+       CONTENT PAGES
     ====================================================== */
 
     .content-layout {
       flex: 1;
+
       min-height: 0;
 
       display: grid;
 
-      grid-template-columns: 0.85fr 1.15fr;
+      grid-template-columns:
+        0.85fr 1.15fr;
 
       gap: 24px;
     }
@@ -396,7 +495,9 @@
 
       z-index: 10;
 
-      font-family: 'Press Start 2P', cursive;
+      font-family:
+        'Press Start 2P',
+        cursive;
 
       font-size: 8px;
 
@@ -404,10 +505,13 @@
 
       background: #24211b;
 
-      border: 3px solid #111;
+      border:
+        3px solid #111;
+
       border-radius: 9px;
 
-      box-shadow: 4px 4px 0 #111;
+      box-shadow:
+        4px 4px 0 #111;
 
       padding: 11px 13px;
     }
@@ -420,14 +524,19 @@
 
       padding: 10px 14px;
 
-      border: 3px solid #111;
+      border:
+        3px solid #111;
+
       border-radius: 8px;
 
-      box-shadow: 4px 4px 0 #111;
+      box-shadow:
+        4px 4px 0 #111;
 
       background: #fff4c9;
 
-      font-family: 'Press Start 2P', cursive;
+      font-family:
+        'Press Start 2P',
+        cursive;
 
       font-size: 7px;
     }
@@ -451,10 +560,13 @@
 
       padding: 11px 13px;
 
-      border: 3px solid #111;
+      border:
+        3px solid #111;
+
       border-radius: 9px;
 
-      box-shadow: 4px 4px 0 #111;
+      box-shadow:
+        4px 4px 0 #111;
 
       background: #fbf8ef;
 
@@ -465,17 +577,22 @@
 
     .project-button:hover,
     .project-button.active {
-      background: var(--gold-soft);
+      background:
+        var(--gold-soft);
 
-      transform: translate(-2px, -2px);
+      transform:
+        translate(-2px, -2px);
     }
 
     .project-button strong {
       display: block;
 
-      font-family: 'Press Start 2P', cursive;
+      font-family:
+        'Press Start 2P',
+        cursive;
 
       font-size: 8px;
+
       line-height: 1.5;
 
       margin-bottom: 4px;
@@ -490,7 +607,9 @@
     .project-preview {
       height: 280px;
 
-      border: 3px dashed #a9a69e;
+      border:
+        3px dashed #a9a69e;
+
       border-radius: 12px;
 
       display: flex;
@@ -511,9 +630,12 @@
     }
 
     .project-code {
-      font-family: 'Press Start 2P', cursive;
+      font-family:
+        'Press Start 2P',
+        cursive;
 
-      font-size: clamp(28px, 4.5vw, 55px);
+      font-size:
+        clamp(28px, 4.5vw, 55px);
 
       text-align: center;
     }
@@ -522,9 +644,12 @@
       position: relative;
       z-index: 2;
 
-      font-family: 'Press Start 2P', cursive;
+      font-family:
+        'Press Start 2P',
+        cursive;
 
       font-size: 10px;
+
       line-height: 1.6;
 
       margin-bottom: 5px;
@@ -546,13 +671,14 @@
       z-index: 2;
 
       font-size: 20px;
+
       line-height: 1.2;
 
       color: #625a4b;
     }
 
     /* =====================================================
-       CONTACT
+       CONTACT / ABOUT
     ====================================================== */
 
     .contact-copy,
@@ -561,6 +687,7 @@
       z-index: 2;
 
       font-size: 22px;
+
       line-height: 1.25;
 
       color: #625a4b;
@@ -586,7 +713,9 @@
     }
 
     .field label {
-      font-family: 'Press Start 2P', cursive;
+      font-family:
+        'Press Start 2P',
+        cursive;
 
       font-size: 7px;
 
@@ -599,10 +728,13 @@
 
       padding: 10px 12px;
 
-      border: 3px solid #111;
+      border:
+        3px solid #111;
+
       border-radius: 8px;
 
-      box-shadow: 4px 4px 0 #111;
+      box-shadow:
+        4px 4px 0 #111;
 
       background: #fffdf7;
 
@@ -624,21 +756,22 @@
 
       padding: 10px 14px;
 
-      border: 3px solid #111;
+      border:
+        3px solid #111;
+
       border-radius: 8px;
 
-      box-shadow: 4px 4px 0 #111;
+      box-shadow:
+        4px 4px 0 #111;
 
       background: #ffe398;
 
-      font-family: 'Press Start 2P', cursive;
+      font-family:
+        'Press Start 2P',
+        cursive;
 
       font-size: 7px;
     }
-
-    /* =====================================================
-       INFO CARDS
-    ====================================================== */
 
     .about-stats {
       position: relative;
@@ -646,7 +779,8 @@
 
       display: grid;
 
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns:
+        repeat(2, 1fr);
 
       gap: 10px;
 
@@ -656,10 +790,13 @@
     .stat-card {
       padding: 12px;
 
-      border: 3px solid #111;
+      border:
+        3px solid #111;
+
       border-radius: 9px;
 
-      box-shadow: 4px 4px 0 #111;
+      box-shadow:
+        4px 4px 0 #111;
 
       background: #fbf8ef;
     }
@@ -667,7 +804,9 @@
     .stat-card strong {
       display: block;
 
-      font-family: 'Press Start 2P', cursive;
+      font-family:
+        'Press Start 2P',
+        cursive;
 
       font-size: 7px;
 
@@ -688,6 +827,7 @@
       z-index: 100;
 
       background: #151411;
+
       color: #fff1c7;
 
       display: flex;
@@ -696,15 +836,19 @@
     }
 
     .loading-content {
-      width: min(520px, 86%);
+      width:
+        min(520px, 86%);
 
       text-align: center;
     }
 
     #loadingText {
-      font-family: 'Press Start 2P', cursive;
+      font-family:
+        'Press Start 2P',
+        cursive;
 
-      font-size: clamp(18px, 3vw, 34px);
+      font-size:
+        clamp(18px, 3vw, 34px);
 
       line-height: 1.5;
 
@@ -712,9 +856,12 @@
     }
 
     #loadingDestination {
-      font-family: 'Press Start 2P', cursive;
+      font-family:
+        'Press Start 2P',
+        cursive;
 
       font-size: 9px;
+
       line-height: 1.8;
 
       color: #c9b47a;
@@ -728,7 +875,8 @@
 
       padding: 4px;
 
-      border: 3px solid #fff1c7;
+      border:
+        3px solid #fff1c7;
 
       background: #151411;
     }
@@ -746,7 +894,8 @@
           #c7aa57 20px
         );
 
-      transition: width 0.1s linear;
+      transition:
+        width 0.1s linear;
     }
 
     .loading-tip {
@@ -788,9 +937,13 @@
 
     @media (max-width: 700px) {
 
+      #pixelMascot {
+        width: 58px;
+        height: 58px;
+      }
+
       .game-wrap {
         width: 94%;
-
         padding-top: 14px;
       }
 
@@ -818,14 +971,29 @@
        LANDING
   ====================================================== -->
 
-  <section id="landing" class="screen active">
+  <section
+    id="landing"
+    class="screen active"
+  >
 
     <div id="scene"></div>
+
+    <div id="mascotLayer">
+
+      <canvas
+        id="pixelMascot"
+        width="64"
+        height="64"
+      ></canvas>
+
+      <div id="sparkleLayer"></div>
+
+    </div>
 
     <div class="landing-content">
 
       <div id="enterText">
-        Stay tuned.
+        STAY TUNED.
       </div>
 
     </div>
@@ -837,7 +1005,10 @@
        MAIN MENU
   ====================================================== -->
 
-  <section id="menu" class="screen game-screen">
+  <section
+    id="menu"
+    class="screen game-screen"
+  >
 
     <div class="game-wrap">
 
@@ -860,12 +1031,14 @@
 
           <div class="menu-description">
 
-            Explore our work, learn about Caddy Boys,
+            Explore our work,
+            learn about Caddy Boys,
             or send us your next idea.
 
           </div>
 
           <div class="menu-options">
+
 
             <button
               class="menu-option"
@@ -947,7 +1120,10 @@
        LOADING
   ====================================================== -->
 
-  <section id="loading" class="screen">
+  <section
+    id="loading"
+    class="screen"
+  >
 
     <div class="loading-content">
 
@@ -978,7 +1154,10 @@
        OUR WORK
   ====================================================== -->
 
-  <section id="work" class="screen game-screen">
+  <section
+    id="work"
+    class="screen game-screen"
+  >
 
     <div class="game-wrap">
 
@@ -994,8 +1173,6 @@
       </div>
 
       <div class="content-layout">
-
-        <!-- LEFT -->
 
         <div class="content-left pixel-panel">
 
@@ -1069,8 +1246,6 @@
         </div>
 
 
-        <!-- RIGHT -->
-
         <div class="content-right pixel-panel">
 
           <div class="tiny-label">
@@ -1123,7 +1298,10 @@
        CONTACT
   ====================================================== -->
 
-  <section id="contact" class="screen game-screen">
+  <section
+    id="contact"
+    class="screen game-screen"
+  >
 
     <div class="game-wrap">
 
@@ -1140,9 +1318,6 @@
 
       <div class="content-layout">
 
-
-        <!-- LEFT -->
-
         <div class="content-left pixel-panel">
 
           <div class="tiny-label">
@@ -1156,8 +1331,9 @@
 
           <div class="contact-copy">
 
-            Got a sketch, broken part, concept,
-            prototype or engineering problem?
+            Got a sketch, broken part,
+            concept, prototype or
+            engineering problem?
 
             Tell us what you want to make.
 
@@ -1200,8 +1376,6 @@
 
         </div>
 
-
-        <!-- RIGHT -->
 
         <div class="content-right pixel-panel">
 
@@ -1280,7 +1454,10 @@
        ABOUT
   ====================================================== -->
 
-  <section id="about" class="screen game-screen">
+  <section
+    id="about"
+    class="screen game-screen"
+  >
 
     <div class="game-wrap">
 
@@ -1297,9 +1474,6 @@
 
       <div class="content-layout">
 
-
-        <!-- LEFT -->
-
         <div class="content-left pixel-panel">
 
           <div class="tiny-label">
@@ -1313,10 +1487,10 @@
 
           <div class="about-copy">
 
-            Caddy Boys is a Melbourne-based engineering
-            design and prototyping studio focused on
-            turning ideas into functional digital and
-            physical designs.
+            Caddy Boys is a Melbourne-based
+            engineering design and prototyping
+            studio focused on turning ideas into
+            functional digital and physical designs.
 
           </div>
 
@@ -1329,8 +1503,6 @@
 
         </div>
 
-
-        <!-- RIGHT -->
 
         <div class="content-right pixel-panel">
 
@@ -1393,15 +1565,16 @@
 
           </div>
 
-
           <div
             class="about-copy"
             style="margin-top: 24px;"
           >
 
-            Our goal is simple: help turn a rough idea,
-            sketch or concept into something that can
-            actually be visualised, tested and made.
+            Our goal is simple:
+            help turn a rough idea,
+            sketch or concept into something
+            that can actually be visualised,
+            tested and made.
 
           </div>
 
@@ -1415,7 +1588,7 @@
 
 
   <!-- =====================================================
-       THREE JS
+       THREE.JS
   ====================================================== -->
 
   <script type="importmap">
@@ -1443,32 +1616,9 @@
       OrbitControls
     } from 'three/addons/controls/OrbitControls.js';
 
-    /* =========================
-   STAY TUNED ANIMATION
-========================== */
-
-const enterText =
-  document.getElementById('enterText');
-
-let stayTunedDots = 1;
-
-setInterval(() => {
-
-  stayTunedDots++;
-
-  if (stayTunedDots > 3) {
-    stayTunedDots = 1;
-  }
-
-  enterText.textContent =
-    'STAY TUNED' +
-    '.'.repeat(stayTunedDots);
-
-}, 450);
-
 
     /* =====================================================
-       SCREENS
+       SCREEN MANAGEMENT
     ====================================================== */
 
     const screens = {
@@ -1496,18 +1646,51 @@ setInterval(() => {
 
     function showScreen(name) {
 
-      Object.values(screens)
+      Object
+        .values(screens)
         .forEach(screen => {
 
-          screen.classList.remove('active');
+          screen.classList.remove(
+            'active'
+          );
 
         });
 
 
       screens[name]
-        .classList.add('active');
+        .classList
+        .add('active');
 
     }
+
+
+    /* =====================================================
+       STAY TUNED ANIMATION
+    ====================================================== */
+
+    const enterText =
+      document.getElementById(
+        'enterText'
+      );
+
+
+    let stayDots = 1;
+
+
+    setInterval(() => {
+
+      stayDots++;
+
+      if (stayDots > 3) {
+        stayDots = 1;
+      }
+
+
+      enterText.textContent =
+        'STAY TUNED' +
+        '.'.repeat(stayDots);
+
+    }, 450);
 
 
     /* =====================================================
@@ -1515,15 +1698,21 @@ setInterval(() => {
     ====================================================== */
 
     const loadingText =
-      document.getElementById('loadingText');
+      document.getElementById(
+        'loadingText'
+      );
 
 
     const loadingDestination =
-      document.getElementById('loadingDestination');
+      document.getElementById(
+        'loadingDestination'
+      );
 
 
     const progressBar =
-      document.getElementById('progressBar');
+      document.getElementById(
+        'progressBar'
+      );
 
 
     const destinationMessages = {
@@ -1541,30 +1730,40 @@ setInterval(() => {
 
 
     let loadingInterval = null;
-
     let progressInterval = null;
 
 
     function loadSection(destination) {
 
-      clearInterval(loadingInterval);
-
-      clearInterval(progressInterval);
-
-
-      showScreen('loading');
+      clearInterval(
+        loadingInterval
+      );
 
 
-      loadingDestination.textContent =
-        destinationMessages[destination];
+      clearInterval(
+        progressInterval
+      );
 
 
-      progressBar.style.width =
+      showScreen(
+        'loading'
+      );
+
+
+      loadingDestination
+        .textContent =
+        destinationMessages[
+          destination
+        ];
+
+
+      progressBar
+        .style
+        .width =
         '0%';
 
 
       let dotCount = 1;
-
       let progress = 0;
 
 
@@ -1577,10 +1776,9 @@ setInterval(() => {
 
           dotCount++;
 
+
           if (dotCount > 3) {
-
             dotCount = 1;
-
           }
 
 
@@ -1599,13 +1797,13 @@ setInterval(() => {
 
 
           if (progress > 96) {
-
             progress = 96;
-
           }
 
 
-          progressBar.style.width =
+          progressBar
+            .style
+            .width =
             progress + '%';
 
         }, 120);
@@ -1623,7 +1821,9 @@ setInterval(() => {
         );
 
 
-        progressBar.style.width =
+        progressBar
+          .style
+          .width =
           '100%';
 
 
@@ -1655,7 +1855,8 @@ setInterval(() => {
           () => {
 
             loadSection(
-              button.dataset.destination
+              button.dataset
+                .destination
             );
 
           }
@@ -1663,10 +1864,6 @@ setInterval(() => {
 
       });
 
-
-    /* =====================================================
-       RETURN TO MENU
-    ====================================================== */
 
     document
       .querySelectorAll(
@@ -1678,7 +1875,9 @@ setInterval(() => {
           'click',
           () => {
 
-            showScreen('menu');
+            showScreen(
+              'menu'
+            );
 
           }
         );
@@ -1693,7 +1892,6 @@ setInterval(() => {
     const projects = [
 
       {
-
         code:
           'JIG',
 
@@ -1705,11 +1903,9 @@ setInterval(() => {
 
         description:
           'A production jig designed to improve assembly repeatability and support manufacturing workflow.'
-
       },
 
       {
-
         code:
           'CAD',
 
@@ -1721,11 +1917,9 @@ setInterval(() => {
 
         description:
           'A mechanical design example showing concept development, CAD modelling and design-for-manufacture thinking.'
-
       },
 
       {
-
         code:
           'FEA',
 
@@ -1737,7 +1931,6 @@ setInterval(() => {
 
         description:
           'A structural assessment showing how a design behaves under load before manufacturing or prototyping.'
-
       }
 
     ];
@@ -1795,27 +1988,24 @@ setInterval(() => {
         project.description;
 
 
-      projectButtons.forEach(
-        button => {
+      projectButtons
+        .forEach(button => {
 
-          button.classList.remove(
-            'active'
-          );
+          button.classList
+            .remove('active');
 
-        }
-      );
+        });
 
 
       projectButtons[index]
-        .classList.add(
-          'active'
-        );
+        .classList
+        .add('active');
 
     }
 
 
-    projectButtons.forEach(
-      button => {
+    projectButtons
+      .forEach(button => {
 
         button.addEventListener(
           'click',
@@ -1823,15 +2013,15 @@ setInterval(() => {
 
             updateProject(
               Number(
-                button.dataset.project
+                button.dataset
+                  .project
               )
             );
 
           }
         );
 
-      }
-    );
+      });
 
 
     updateProject(0);
@@ -1936,7 +2126,7 @@ setInterval(() => {
 
 
     /* =====================================================
-       LIGHTING
+       LIGHTS
     ====================================================== */
 
     const ambientLight =
@@ -2017,7 +2207,7 @@ setInterval(() => {
 
 
     /* =====================================================
-       RAYCASTER
+       LOGO
     ====================================================== */
 
     const raycaster =
@@ -2028,6 +2218,9 @@ setInterval(() => {
       new THREE.Vector2();
 
 
+    let logo;
+
+
     let rotationSpeed =
       0.004;
 
@@ -2036,15 +2229,12 @@ setInterval(() => {
       0.004;
 
 
-    /* =====================================================
-       LOAD STL LOGO
-    ====================================================== */
+    let isLogoHovered =
+      false;
+
 
     const loader =
       new STLLoader();
-
-
-    let logo;
 
 
     loader.load(
@@ -2101,13 +2291,9 @@ setInterval(() => {
 
         const maxDimension =
           Math.max(
-
             size.x,
-
             size.y,
-
             size.z
-
           );
 
 
@@ -2150,6 +2336,655 @@ setInterval(() => {
 
 
     /* =====================================================
+       PIXEL MASCOT
+    ====================================================== */
+
+    const pixelMascot =
+      document.getElementById(
+        'pixelMascot'
+      );
+
+
+    const mascotCtx =
+      pixelMascot
+        .getContext('2d');
+
+
+    const sparkleLayer =
+      document.getElementById(
+        'sparkleLayer'
+      );
+
+
+    mascotCtx
+      .imageSmoothingEnabled =
+      false;
+
+
+    const mascotState = {
+
+      x:
+        window.innerWidth / 2 +
+        130,
+
+      y:
+        window.innerHeight / 2,
+
+      angle:
+        0,
+
+      radius:
+        135,
+
+      direction:
+        1,
+
+      rotation:
+        0,
+
+      spinVelocity:
+        0,
+
+      bounce:
+        0,
+
+      nextSit:
+        performance.now() +
+        6500,
+
+      sitUntil:
+        0,
+
+      nextDirectionChange:
+        performance.now() +
+        5000
+
+    };
+
+
+    const screenMouse = {
+
+      x:
+        window.innerWidth / 2,
+
+      y:
+        window.innerHeight / 2
+
+    };
+
+
+    function drawMascot(
+      blinking = false
+    ) {
+
+      mascotCtx.clearRect(
+        0,
+        0,
+        64,
+        64
+      );
+
+
+      const colors = {
+
+        O: '#372933',
+
+        P: '#f4b3d3',
+
+        D: '#d97cad',
+
+        L: '#ffd8e8',
+
+        E: '#ffffff',
+
+        B: '#2c2430',
+
+        C: '#74b2c8'
+
+      };
+
+
+      const openSprite = [
+
+        '................',
+        '.......OO.......',
+        '.....OOPPOO.....',
+        '....OPPPPPO.....',
+        '...OPPPPPPPO....',
+        '..OPPPPPPPPPO...',
+        '..OPPEPPEPPPPO..',
+        '..OPPBPPBPPPPO..',
+        '..OPPPPPPPPPPO..',
+        '...OPPPPPPPPO...',
+        '....OPPPPPPO....',
+        '.....OPPPPO.....',
+        '......OPPO...P..',
+        '......OPP...PPP.',
+        '.......OO....PP.',
+        '..............P.'
+
+      ];
+
+
+      const blinkSprite = [
+
+        '................',
+        '.......OO.......',
+        '.....OOPPOO.....',
+        '....OPPPPPO.....',
+        '...OPPPPPPPO....',
+        '..OPPPPPPPPPO...',
+        '..OPPBBBBPPPPO..',
+        '..OPPPPPPPPPPO..',
+        '..OPPPPPPPPPPO..',
+        '...OPPPPPPPPO...',
+        '....OPPPPPPO....',
+        '.....OPPPPO.....',
+        '......OPPO...P..',
+        '......OPP...PPP.',
+        '.......OO....PP.',
+        '..............P.'
+
+      ];
+
+
+      const sprite =
+        blinking
+          ? blinkSprite
+          : openSprite;
+
+
+      const pixelSize =
+        4;
+
+
+      for (
+        let y = 0;
+        y < sprite.length;
+        y++
+      ) {
+
+        for (
+          let x = 0;
+          x < sprite[y].length;
+          x++
+        ) {
+
+          const symbol =
+            sprite[y][x];
+
+
+          if (
+            symbol === '.'
+          ) {
+            continue;
+          }
+
+
+          mascotCtx.fillStyle =
+            colors[symbol] ||
+            '#000000';
+
+
+          mascotCtx.fillRect(
+
+            x * pixelSize,
+
+            y * pixelSize,
+
+            pixelSize,
+
+            pixelSize
+
+          );
+
+        }
+
+      }
+
+    }
+
+
+    function createSparkle(
+      x,
+      y
+    ) {
+
+      const sparkle =
+        document.createElement(
+          'div'
+        );
+
+
+      sparkle.className =
+        'sparkle';
+
+
+      sparkle.style.left =
+        x + 'px';
+
+
+      sparkle.style.top =
+        y + 'px';
+
+
+      sparkleLayer.appendChild(
+        sparkle
+      );
+
+
+      setTimeout(() => {
+
+        sparkle.remove();
+
+      }, 760);
+
+    }
+
+
+    function getLogoPosition() {
+
+      if (!logo) {
+
+        return {
+
+          x:
+            window.innerWidth /
+            2,
+
+          y:
+            window.innerHeight /
+            2
+
+        };
+
+      }
+
+
+      const position =
+        new THREE.Vector3();
+
+
+      logo.getWorldPosition(
+        position
+      );
+
+
+      position.project(
+        camera
+      );
+
+
+      return {
+
+        x:
+          (
+            position.x *
+            0.5 +
+            0.5
+          ) *
+          window.innerWidth,
+
+        y:
+          (
+            -position.y *
+            0.5 +
+            0.5
+          ) *
+          window.innerHeight
+
+      };
+
+    }
+
+
+    function updateMascot(
+      time
+    ) {
+
+      if (
+        !screens.landing
+          .classList
+          .contains('active')
+      ) {
+
+        return;
+
+      }
+
+
+      const now =
+        performance.now();
+
+
+      const seconds =
+        time * 0.001;
+
+
+      const logoPosition =
+        getLogoPosition();
+
+
+      if (
+        now >
+        mascotState
+          .nextDirectionChange
+      ) {
+
+        if (
+          Math.random() <
+          0.45
+        ) {
+
+          mascotState
+            .direction *=
+            -1;
+
+        }
+
+
+        mascotState
+          .nextDirectionChange =
+          now +
+          4500 +
+          Math.random() *
+          3500;
+
+      }
+
+
+      if (
+
+        !isLogoHovered &&
+
+        now >
+        mascotState.nextSit &&
+
+        now >
+        mascotState.sitUntil
+
+      ) {
+
+        mascotState
+          .sitUntil =
+          now + 1900;
+
+
+        mascotState
+          .nextSit =
+          now +
+          8500 +
+          Math.random() *
+          5000;
+
+      }
+
+
+      const sitting =
+        now <
+        mascotState.sitUntil;
+
+
+      let targetX;
+      let targetY;
+
+
+      if (sitting) {
+
+        targetX =
+          logoPosition.x +
+          10;
+
+
+        targetY =
+          logoPosition.y -
+          95 +
+          Math.sin(
+            seconds * 4
+          ) * 3;
+
+      }
+
+      else if (
+        isLogoHovered
+      ) {
+
+        mascotState.angle +=
+          0.009 *
+          mascotState.direction;
+
+
+        const curiosityX =
+          logoPosition.x *
+          0.82 +
+          screenMouse.x *
+          0.18;
+
+
+        const curiosityY =
+          logoPosition.y *
+          0.82 +
+          screenMouse.y *
+          0.18;
+
+
+        targetX =
+          curiosityX +
+          Math.cos(
+            mascotState.angle
+          ) * 65;
+
+
+        targetY =
+          curiosityY -
+          35 +
+          Math.sin(
+            mascotState.angle *
+            1.7
+          ) * 18;
+
+      }
+
+      else {
+
+        mascotState.angle +=
+          0.014 *
+          mascotState.direction;
+
+
+        targetX =
+          logoPosition.x +
+          Math.cos(
+            mascotState.angle
+          ) *
+          mascotState.radius;
+
+
+        targetY =
+          logoPosition.y +
+          Math.sin(
+            mascotState.angle *
+            1.45
+          ) *
+          32 +
+          Math.sin(
+            seconds * 3
+          ) *
+          8;
+
+      }
+
+
+      mascotState.x +=
+        (
+          targetX -
+          mascotState.x
+        ) *
+        0.11;
+
+
+      mascotState.y +=
+        (
+          targetY -
+          mascotState.bounce -
+          mascotState.y
+        ) *
+        0.11;
+
+
+      mascotState.bounce *=
+        0.88;
+
+
+      mascotState.rotation +=
+        mascotState.spinVelocity;
+
+
+      mascotState.spinVelocity *=
+        0.9;
+
+
+      const blink =
+        Math.floor(
+          seconds * 2
+        ) %
+        11 === 0;
+
+
+      drawMascot(
+        blink
+      );
+
+
+      pixelMascot.style.left =
+        mascotState.x +
+        'px';
+
+
+      pixelMascot.style.top =
+        mascotState.y +
+        'px';
+
+
+      pixelMascot.style.transform =
+        `
+        translate(-50%, -50%)
+        rotate(${mascotState.rotation}deg)
+        `;
+
+
+      const sparkleChance =
+        isLogoHovered
+          ? 0.045
+          : 0.018;
+
+
+      if (
+        Math.random() <
+        sparkleChance
+      ) {
+
+        createSparkle(
+
+          mascotState.x +
+          Math.random() *
+          32 -
+          16,
+
+          mascotState.y +
+          Math.random() *
+          30 -
+          15
+
+        );
+
+      }
+
+    }
+
+
+    pixelMascot
+      .addEventListener(
+        'click',
+        event => {
+
+          event.stopPropagation();
+
+
+          mascotState
+            .spinVelocity =
+            26;
+
+
+          mascotState
+            .bounce =
+            35;
+
+
+          mascotState
+            .sitUntil =
+            0;
+
+
+          mascotState.angle =
+            Math.random() *
+            Math.PI *
+            2;
+
+
+          mascotState
+            .direction *=
+            -1;
+
+
+          const logoPosition =
+            getLogoPosition();
+
+
+          mascotState.x =
+            logoPosition.x +
+            Math.random() *
+            220 -
+            110;
+
+
+          mascotState.y =
+            logoPosition.y +
+            Math.random() *
+            130 -
+            65;
+
+
+          for (
+            let i = 0;
+            i < 10;
+            i++
+          ) {
+
+            createSparkle(
+
+              mascotState.x +
+              Math.random() *
+              60 -
+              30,
+
+              mascotState.y +
+              Math.random() *
+              60 -
+              30
+
+            );
+
+          }
+
+        }
+      );
+
+
+    drawMascot(false);
+
+
+    /* =====================================================
        LOGO HOVER
     ====================================================== */
 
@@ -2160,10 +2995,16 @@ setInterval(() => {
         event => {
 
           if (!logo) {
-
             return;
-
           }
+
+
+          screenMouse.x =
+            event.clientX;
+
+
+          screenMouse.y =
+            event.clientY;
 
 
           const rect =
@@ -2179,7 +3020,9 @@ setInterval(() => {
                 rect.left
               ) /
               rect.width
-            ) * 2 - 1;
+            ) *
+            2 -
+            1;
 
 
           mouse.y =
@@ -2189,7 +3032,9 @@ setInterval(() => {
                 rect.top
               ) /
               rect.height
-            ) * 2 + 1;
+            ) *
+            2 +
+            1;
 
 
           raycaster
@@ -2211,6 +3056,10 @@ setInterval(() => {
             0
           ) {
 
+            isLogoHovered =
+              true;
+
+
             targetRotationSpeed =
               0.0007;
 
@@ -2224,6 +3073,10 @@ setInterval(() => {
           }
 
           else {
+
+            isLogoHovered =
+              false;
+
 
             targetRotationSpeed =
               0.004;
@@ -2252,9 +3105,7 @@ setInterval(() => {
         event => {
 
           if (!logo) {
-
             return;
-
           }
 
 
@@ -2271,7 +3122,9 @@ setInterval(() => {
                 rect.left
               ) /
               rect.width
-            ) * 2 - 1;
+            ) *
+            2 -
+            1;
 
 
           mouse.y =
@@ -2281,7 +3134,9 @@ setInterval(() => {
                 rect.top
               ) /
               rect.height
-            ) * 2 + 1;
+            ) *
+            2 +
+            1;
 
 
           raycaster
@@ -2317,7 +3172,9 @@ setInterval(() => {
        ANIMATION
     ====================================================== */
 
-    function animate() {
+    function animate(
+      time
+    ) {
 
       requestAnimationFrame(
         animate
@@ -2328,7 +3185,8 @@ setInterval(() => {
         (
           targetRotationSpeed -
           rotationSpeed
-        ) * 0.08;
+        ) *
+        0.08;
 
 
       if (logo) {
@@ -2342,6 +3200,11 @@ setInterval(() => {
       controls.update();
 
 
+      updateMascot(
+        time
+      );
+
+
       renderer.render(
         scene,
         camera
@@ -2350,7 +3213,9 @@ setInterval(() => {
     }
 
 
-    animate();
+    animate(
+      performance.now()
+    );
 
 
     /* =====================================================
