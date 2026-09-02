@@ -97,8 +97,8 @@
       pointer-events: none;
 
       display: flex;
-      align-items: flex-end;
       justify-content: center;
+      align-items: flex-end;
 
       padding-bottom: 7%;
     }
@@ -106,7 +106,7 @@
     #enterText {
       font-family: 'Press Start 2P', cursive;
       font-size: 10px;
-      color: #4e4e4e;
+      color: #4f4f4f;
       text-transform: uppercase;
     }
 
@@ -127,6 +127,7 @@
           #f2eee5 2px,
           #f2eee5 4px
         );
+
       overflow: hidden;
     }
 
@@ -152,7 +153,7 @@
       position: relative;
       z-index: 2;
 
-      width: min(1320px, 94%);
+      width: min(1200px, 94%);
       height: 100%;
 
       margin: 0 auto;
@@ -160,11 +161,11 @@
       display: flex;
       flex-direction: column;
 
-      padding: 28px 0 26px;
+      padding: 28px 0 30px;
     }
 
     /* =========================
-       CENTER TITLE
+       TOP TITLE
     ========================== */
 
     .screen-title {
@@ -175,94 +176,14 @@
       align-items: center;
 
       font-family: 'Press Start 2P', cursive;
-      font-size: clamp(14px, 1.7vw, 22px);
+      font-size: clamp(15px, 1.8vw, 24px);
+
       color: var(--gold);
-      text-shadow: 2px 2px 0 #ffffff;
 
       letter-spacing: 1px;
-
-      margin-bottom: 18px;
-    }
-
-    .brand-home {
-      position: absolute;
-      top: 30px;
-      left: 0;
-
-      font-family: 'Press Start 2P', cursive;
-      font-size: 10px;
-
-      background: #24211b;
-      color: #fff5d8;
-
-      border: 3px solid #111;
-      border-radius: 9px;
-      box-shadow: 4px 4px 0 #111;
-
-      padding: 13px 15px;
-
-      z-index: 10;
-    }
-
-    /* =========================
-       PANELS
-    ========================== */
-
-    .pixel-panel {
-      position: relative;
-
-      background: rgba(255,255,255,0.6);
-
-      border: 3px solid var(--border);
-      border-radius: 16px;
-
-      box-shadow: var(--shadow);
-
-      overflow: hidden;
-    }
-
-    .pixel-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-
-      pointer-events: none;
-
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(255,255,255,0.32),
-          transparent 20%
-        );
-    }
-
-    .tiny-label {
-      position: relative;
-      z-index: 2;
-
-      font-family: 'Press Start 2P', cursive;
-      font-size: 9px;
-      line-height: 1.8;
-
-      color: #8b8068;
-
-      margin-bottom: 18px;
-    }
-
-    .page-heading {
-      position: relative;
-      z-index: 2;
-
-      font-family: 'Press Start 2P', cursive;
-
-      font-size: clamp(24px, 3vw, 46px);
-      line-height: 1.55;
-
-      color: #171717;
-
       text-shadow: 2px 2px 0 #ffffff;
 
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
     /* =========================
@@ -272,47 +193,68 @@
     .menu-layout {
       flex: 1;
 
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 26px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       min-height: 0;
+
+      padding-bottom: 35px;
     }
 
     .menu-left {
-      padding: 40px 38px;
+      width: min(760px, 92%);
 
       display: flex;
       flex-direction: column;
-      justify-content: center;
+    }
+
+    .tiny-label {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 9px;
+      line-height: 1.8;
+
+      color: #8a806b;
+
+      margin-bottom: 18px;
+    }
+
+    .page-heading {
+      font-family: 'Press Start 2P', cursive;
+
+      font-size: clamp(28px, 4vw, 52px);
+      line-height: 1.55;
+
+      color: #171717;
+
+      text-shadow: 2px 2px 0 #ffffff;
+
+      margin-bottom: 25px;
     }
 
     .menu-description {
-      position: relative;
-      z-index: 2;
-
-      font-size: 28px;
-      line-height: 1.3;
+      font-size: 29px;
+      line-height: 1.35;
 
       color: var(--muted);
 
-      max-width: 520px;
-      margin-bottom: 26px;
+      max-width: 660px;
+
+      margin-bottom: 34px;
     }
 
     .menu-options {
-      position: relative;
-      z-index: 2;
-
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 18px;
+
+      width: 100%;
     }
 
     .menu-option {
       width: 100%;
 
-      padding: 18px 20px;
+      padding: 21px 22px;
 
       text-align: left;
 
@@ -330,7 +272,7 @@
 
     .menu-option:hover {
       background: var(--gold-soft);
-      transform: translate(-2px, -2px);
+      transform: translate(-3px, -3px);
     }
 
     .menu-option-title {
@@ -346,6 +288,7 @@
     .selector {
       color: #b29239;
       visibility: hidden;
+      min-width: 16px;
     }
 
     .menu-option:hover .selector {
@@ -353,302 +296,13 @@
     }
 
     .menu-option-description {
-      margin-top: 7px;
+      margin-top: 9px;
       margin-left: 31px;
 
-      font-size: 23px;
-      line-height: 1.2;
+      font-size: 24px;
+      line-height: 1.25;
 
       color: #6c6454;
-    }
-
-    /* =========================
-       INTERACTIVE WORKSHOP
-    ========================== */
-
-    .workshop-panel {
-      padding: 26px;
-
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-
-      gap: 15px;
-    }
-
-    .workshop-scene {
-      position: relative;
-
-      min-height: 400px;
-
-      border: 3px dashed #b7b4ad;
-      border-radius: 14px;
-
-      background:
-        repeating-linear-gradient(
-          -45deg,
-          rgba(0,0,0,0.022) 0,
-          rgba(0,0,0,0.022) 5px,
-          transparent 5px,
-          transparent 10px
-        ),
-        #faf8f2;
-
-      overflow: hidden;
-    }
-
-    .floor {
-      position: absolute;
-
-      left: 0;
-      right: 0;
-      bottom: 0;
-
-      height: 100px;
-
-      border-top: 3px solid #111;
-
-      background:
-        repeating-linear-gradient(
-          90deg,
-          #bdb49e 0px,
-          #bdb49e 25px,
-          #aaa18b 25px,
-          #aaa18b 50px
-        );
-    }
-
-    .workbench {
-      position: absolute;
-
-      left: 50%;
-      bottom: 95px;
-
-      transform: translateX(-50%);
-
-      width: 72%;
-      height: 28px;
-
-      background: #8b7358;
-
-      border: 3px solid #111;
-      box-shadow: 4px 4px 0 #111;
-    }
-
-    .station {
-      position: absolute;
-
-      border: 3px solid #111;
-      box-shadow: 4px 4px 0 #111;
-
-      cursor: pointer;
-
-      transition:
-        transform 0.14s ease,
-        filter 0.14s ease;
-    }
-
-    .station:hover,
-    .station.active {
-      transform: translate(-2px, -3px);
-      filter: brightness(1.08);
-    }
-
-    .station::after {
-      content: attr(data-short);
-
-      position: absolute;
-
-      left: 50%;
-      bottom: -34px;
-
-      transform: translateX(-50%);
-
-      font-family: 'Press Start 2P', cursive;
-      font-size: 7px;
-
-      white-space: nowrap;
-
-      color: #4f483b;
-    }
-
-    /* CAD monitor */
-
-    .cad-monitor {
-      left: 12%;
-      bottom: 150px;
-
-      width: 145px;
-      height: 95px;
-
-      border-radius: 9px;
-
-      background: #8ea4c4;
-    }
-
-    .cad-monitor::before {
-      content: "";
-
-      position: absolute;
-
-      inset: 12px;
-
-      border: 3px solid #111;
-
-      background:
-        linear-gradient(135deg, transparent 48%, #fff 49%, #fff 52%, transparent 53%),
-        linear-gradient(45deg, transparent 48%, #fff 49%, #fff 52%, transparent 53%),
-        #607a9c;
-    }
-
-    /* 3D printer */
-
-    .printer {
-      left: 38%;
-      bottom: 145px;
-
-      width: 125px;
-      height: 150px;
-
-      background: #d7b46c;
-    }
-
-    .printer::before {
-      content: "";
-
-      position: absolute;
-
-      left: 18px;
-      right: 18px;
-      top: 20px;
-      bottom: 35px;
-
-      border: 3px solid #111;
-
-      background: #fcf7e8;
-    }
-
-    .printer::after {
-      content: "3D PRINT";
-
-      position: absolute;
-
-      left: 50%;
-      bottom: -34px;
-
-      transform: translateX(-50%);
-
-      font-family: 'Press Start 2P', cursive;
-      font-size: 7px;
-
-      white-space: nowrap;
-
-      color: #4f483b;
-    }
-
-    .printed-part {
-      position: absolute;
-
-      left: 50%;
-      bottom: 42px;
-
-      transform: translateX(-50%);
-
-      width: 40px;
-      height: 30px;
-
-      background: #6f89bb;
-
-      border: 3px solid #111;
-    }
-
-    /* Drawing station */
-
-    .drawing-board {
-      right: 28%;
-      bottom: 150px;
-
-      width: 118px;
-      height: 102px;
-
-      background: #f7f3e8;
-    }
-
-    .drawing-board::before {
-      content: "";
-
-      position: absolute;
-
-      inset: 12px;
-
-      background:
-        linear-gradient(#5b5b5b 2px, transparent 2px),
-        linear-gradient(90deg, #5b5b5b 2px, transparent 2px);
-
-      background-size: 20px 20px;
-
-      border: 2px solid #111;
-    }
-
-    /* FEA station */
-
-    .fea-station {
-      right: 8%;
-      bottom: 145px;
-
-      width: 130px;
-      height: 118px;
-
-      background: #bf7a73;
-    }
-
-    .fea-station::before {
-      content: "";
-
-      position: absolute;
-
-      inset: 14px;
-
-      border: 3px solid #111;
-
-      background:
-        repeating-linear-gradient(
-          45deg,
-          #6380be 0,
-          #6380be 8px,
-          #80a46f 8px,
-          #80a46f 16px,
-          #d0af61 16px,
-          #d0af61 24px,
-          #bf6464 24px,
-          #bf6464 32px
-        );
-    }
-
-    .workshop-info {
-      min-height: 72px;
-
-      padding: 12px 14px;
-
-      border: 3px solid #111;
-      border-radius: 9px;
-
-      background: #fff9e6;
-
-      box-shadow: 3px 3px 0 #111;
-    }
-
-    .workshop-info-title {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 9px;
-
-      color: #2b2925;
-
-      margin-bottom: 8px;
-    }
-
-    .workshop-info-text {
-      font-size: 22px;
-      color: #625a4b;
     }
 
     /* =========================
@@ -668,7 +322,6 @@
 
     .loading-content {
       width: min(520px, 86%);
-
       text-align: center;
     }
 
@@ -676,7 +329,6 @@
       font-family: 'Press Start 2P', cursive;
 
       font-size: clamp(18px, 3vw, 34px);
-
       line-height: 1.5;
 
       margin-bottom: 30px;
@@ -695,7 +347,6 @@
 
     .progress-shell {
       width: 100%;
-
       height: 30px;
 
       padding: 4px;
@@ -729,7 +380,7 @@
     }
 
     /* =========================
-       WORK / CONTACT / ABOUT
+       GENERAL CONTENT PAGES
     ========================== */
 
     .content-layout {
@@ -742,9 +393,58 @@
       min-height: 0;
     }
 
+    .pixel-panel {
+      position: relative;
+
+      background: rgba(255,255,255,0.6);
+
+      border: 3px solid var(--border);
+      border-radius: 16px;
+
+      box-shadow: var(--shadow);
+
+      overflow: hidden;
+    }
+
+    .pixel-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.32),
+          transparent 20%
+        );
+    }
+
     .content-left,
     .content-right {
       padding: 30px;
+    }
+
+    .brand-home {
+      position: absolute;
+      top: 30px;
+      left: 0;
+
+      font-family: 'Press Start 2P', cursive;
+      font-size: 9px;
+
+      background: #24211b;
+      color: #fff5d8;
+
+      border: 3px solid #111;
+      border-radius: 9px;
+
+      box-shadow: 4px 4px 0 #111;
+
+      padding: 13px 15px;
+
+      z-index: 10;
     }
 
     .back-button {
@@ -766,6 +466,10 @@
       font-size: 8px;
     }
 
+    /* =========================
+       OUR WORK
+    ========================== */
+
     .project-list {
       position: relative;
       z-index: 2;
@@ -786,6 +490,10 @@
       box-shadow: 4px 4px 0 #111;
 
       background: #fbf8ef;
+
+      transition:
+        transform 0.14s ease,
+        background 0.14s ease;
     }
 
     .project-button:hover,
@@ -860,6 +568,10 @@
       color: #625a4b;
     }
 
+    /* =========================
+       CONTACT
+    ========================== */
+
     .contact-copy,
     .about-copy {
       position: relative;
@@ -931,6 +643,10 @@
       font-size: 8px;
     }
 
+    /* =========================
+       ABOUT
+    ========================== */
+
     .about-stats {
       position: relative;
       z-index: 2;
@@ -972,7 +688,6 @@
     ========================== */
 
     @media (max-width: 980px) {
-      .menu-layout,
       .content-layout {
         grid-template-columns: 1fr;
       }
@@ -1000,10 +715,10 @@
       }
 
       .menu-left,
-      .workshop-panel,
       .content-left,
       .content-right {
-        padding: 18px;
+        padding-left: 6px;
+        padding-right: 6px;
       }
 
       .menu-description,
@@ -1017,30 +732,8 @@
       .project-button span,
       .project-tags,
       .field input,
-      .field textarea,
-      .workshop-info-text {
+      .field textarea {
         font-size: 19px;
-      }
-
-      .workshop-scene {
-        min-height: 360px;
-        overflow-x: auto;
-      }
-
-      .cad-monitor {
-        left: 4%;
-      }
-
-      .printer {
-        left: 34%;
-      }
-
-      .drawing-board {
-        right: 28%;
-      }
-
-      .fea-station {
-        right: 3%;
       }
 
       .about-stats {
@@ -1061,7 +754,9 @@
     <div id="scene"></div>
 
     <div class="landing-content">
-      <div id="enterText">Stay tuned.</div>
+      <div id="enterText">
+        Stay tuned.
+      </div>
     </div>
 
   </section>
@@ -1081,9 +776,7 @@
 
       <div class="menu-layout">
 
-        <!-- LEFT -->
-
-        <div class="menu-left pixel-panel">
+        <div class="menu-left">
 
           <div class="tiny-label">
             CADDY BOYS / START SCREEN
@@ -1155,72 +848,6 @@
 
         </div>
 
-
-        <!-- RIGHT WORKSHOP -->
-
-        <div class="workshop-panel pixel-panel">
-
-          <div class="tiny-label">
-            INTERACTIVE WORKSHOP
-          </div>
-
-          <div class="workshop-scene">
-
-            <div
-              class="station cad-monitor"
-              data-short="CAD"
-              data-title="3D MODELLING"
-              data-info="Mechanical parts, assemblies, product concepts and CAD development."
-            ></div>
-
-            <div
-              class="station printer"
-              data-short="PRINT"
-              data-title="3D PRINTING"
-              data-info="Rapid prototypes and physical parts produced from digital designs."
-            >
-              <div class="printed-part"></div>
-            </div>
-
-            <div
-              class="station drawing-board"
-              data-short="DRAWING"
-              data-title="TECHNICAL DRAWINGS"
-              data-info="Manufacturing-ready dimensions, drawings and design documentation."
-            ></div>
-
-            <div
-              class="station fea-station"
-              data-short="FEA"
-              data-title="FEA ANALYSIS"
-              data-info="Stress, deformation and structural performance checks before production."
-            ></div>
-
-            <div class="workbench"></div>
-            <div class="floor"></div>
-
-          </div>
-
-          <div class="workshop-info">
-
-            <div
-              class="workshop-info-title"
-              id="workshopInfoTitle"
-            >
-              SELECT A STATION
-            </div>
-
-            <div
-              class="workshop-info-text"
-              id="workshopInfoText"
-            >
-              Hover or click a workstation to explore what Caddy Boys can do.
-            </div>
-
-          </div>
-
-        </div>
-
       </div>
 
     </div>
@@ -1265,7 +892,10 @@
 
     <div class="game-wrap">
 
-      <button class="brand-home" data-menu>
+      <button
+        class="brand-home"
+        data-menu
+      >
         CADDY BOYS
       </button>
 
@@ -1337,7 +967,10 @@
 
           </div>
 
-          <button class="back-button" data-menu>
+          <button
+            class="back-button"
+            data-menu
+          >
             ← MAIN MENU
           </button>
 
@@ -1402,7 +1035,10 @@
 
     <div class="game-wrap">
 
-      <button class="brand-home" data-menu>
+      <button
+        class="brand-home"
+        data-menu
+      >
         CADDY BOYS
       </button>
 
@@ -1443,7 +1079,10 @@
 
           </div>
 
-          <button class="back-button" data-menu>
+          <button
+            class="back-button"
+            data-menu
+          >
             ← MAIN MENU
           </button>
 
@@ -1532,7 +1171,10 @@
 
     <div class="game-wrap">
 
-      <button class="brand-home" data-menu>
+      <button
+        class="brand-home"
+        data-menu
+      >
         CADDY BOYS
       </button>
 
@@ -1560,7 +1202,10 @@
             physical designs.
           </div>
 
-          <button class="back-button" data-menu>
+          <button
+            class="back-button"
+            data-menu
+          >
             ← MAIN MENU
           </button>
 
@@ -1657,25 +1302,12 @@
     ========================== */
 
     const screens = {
-
-      landing:
-        document.getElementById('landing'),
-
-      menu:
-        document.getElementById('menu'),
-
-      loading:
-        document.getElementById('loading'),
-
-      work:
-        document.getElementById('work'),
-
-      contact:
-        document.getElementById('contact'),
-
-      about:
-        document.getElementById('about')
-
+      landing: document.getElementById('landing'),
+      menu: document.getElementById('menu'),
+      loading: document.getElementById('loading'),
+      work: document.getElementById('work'),
+      contact: document.getElementById('contact'),
+      about: document.getElementById('about')
     };
 
 
@@ -1684,17 +1316,13 @@
       Object.values(screens)
         .forEach(screen => {
 
-          screen.classList.remove(
-            'active'
-          );
+          screen.classList.remove('active');
 
         });
 
 
       screens[name]
-        .classList.add(
-          'active'
-        );
+        .classList.add('active');
 
     }
 
@@ -1704,21 +1332,15 @@
     ========================== */
 
     const loadingText =
-      document.getElementById(
-        'loadingText'
-      );
+      document.getElementById('loadingText');
 
 
     const loadingDestination =
-      document.getElementById(
-        'loadingDestination'
-      );
+      document.getElementById('loadingDestination');
 
 
     const progressBar =
-      document.getElementById(
-        'progressBar'
-      );
+      document.getElementById('progressBar');
 
 
     const destinationMessages = {
@@ -1736,44 +1358,30 @@
 
 
     let loadingInterval = null;
-
     let progressInterval = null;
 
 
     function loadSection(destination) {
 
-      clearInterval(
-        loadingInterval
-      );
-
-      clearInterval(
-        progressInterval
-      );
+      clearInterval(loadingInterval);
+      clearInterval(progressInterval);
 
 
-      showScreen(
-        'loading'
-      );
+      showScreen('loading');
 
 
-      loadingDestination
-        .textContent =
-        destinationMessages[
-          destination
-        ];
+      loadingDestination.textContent =
+        destinationMessages[destination];
 
 
-      progressBar.style.width =
-        '0%';
+      progressBar.style.width = '0%';
 
 
       let dotCount = 1;
-
       let progress = 0;
 
 
-      loadingText.textContent =
-        'LOADING.';
+      loadingText.textContent = 'LOADING.';
 
 
       loadingInterval =
@@ -1795,14 +1403,11 @@
       progressInterval =
         setInterval(() => {
 
-          progress +=
-            Math.random() * 7 + 2;
-
+          progress += Math.random() * 7 + 2;
 
           if (progress > 96) {
             progress = 96;
           }
-
 
           progressBar.style.width =
             progress + '%';
@@ -1812,28 +1417,18 @@
 
       setTimeout(() => {
 
-        clearInterval(
-          loadingInterval
-        );
-
-        clearInterval(
-          progressInterval
-        );
+        clearInterval(loadingInterval);
+        clearInterval(progressInterval);
 
 
-        progressBar.style.width =
-          '100%';
+        progressBar.style.width = '100%';
 
-
-        loadingText.textContent =
-          'LOADED!';
+        loadingText.textContent = 'LOADED!';
 
 
         setTimeout(() => {
 
-          showScreen(
-            destination
-          );
+          showScreen(destination);
 
         }, 180);
 
@@ -1842,12 +1437,8 @@
     }
 
 
-    /* MAIN MENU OPTIONS */
-
     document
-      .querySelectorAll(
-        '[data-destination]'
-      )
+      .querySelectorAll('[data-destination]')
       .forEach(button => {
 
         button.addEventListener(
@@ -1864,106 +1455,24 @@
       });
 
 
-    /* RETURN TO MENU */
+    /* =========================
+       RETURN TO MAIN MENU
+    ========================== */
 
     document
-      .querySelectorAll(
-        '[data-menu]'
-      )
+      .querySelectorAll('[data-menu]')
       .forEach(button => {
 
         button.addEventListener(
           'click',
           () => {
 
-            showScreen(
-              'menu'
-            );
+            showScreen('menu');
 
           }
         );
 
       });
-
-
-    /* =========================
-       INTERACTIVE WORKSHOP
-    ========================== */
-
-    const workshopTitle =
-      document.getElementById(
-        'workshopInfoTitle'
-      );
-
-
-    const workshopText =
-      document.getElementById(
-        'workshopInfoText'
-      );
-
-
-    const stations =
-      document.querySelectorAll(
-        '.station'
-      );
-
-
-    function selectStation(
-      station
-    ) {
-
-      stations.forEach(item => {
-
-        item.classList.remove(
-          'active'
-        );
-
-      });
-
-
-      station.classList.add(
-        'active'
-      );
-
-
-      workshopTitle.textContent =
-        station.dataset.title;
-
-
-      workshopText.textContent =
-        station.dataset.info;
-
-    }
-
-
-    stations.forEach(
-      station => {
-
-        station.addEventListener(
-          'mouseenter',
-          () => {
-
-            selectStation(
-              station
-            );
-
-          }
-        );
-
-
-        station.addEventListener(
-          'click',
-          () => {
-
-            selectStation(
-              station
-            );
-
-          }
-        );
-
-      }
-    );
 
 
     /* =========================
@@ -1973,9 +1482,7 @@
     const projects = [
 
       {
-
-        code:
-          'JIG',
+        code: 'JIG',
 
         title:
           'WHEEL SHUNT PRODUCTION JIG',
@@ -1985,13 +1492,10 @@
 
         description:
           'A production jig designed to improve assembly repeatability and support manufacturing workflow. Your real interactive STL model can replace this preview later.'
-
       },
 
       {
-
-        code:
-          'CAD',
+        code: 'CAD',
 
         title:
           'CUSTOM BRACKET CONCEPT',
@@ -2001,13 +1505,10 @@
 
         description:
           'A mechanical design example showing concept development, CAD modelling and design-for-manufacture thinking.'
-
       },
 
       {
-
-        code:
-          'FEA',
+        code: 'FEA',
 
         title:
           'FEA STRUCTURAL STUDY',
@@ -2017,40 +1518,29 @@
 
         description:
           'A structural assessment showing how a design behaves under load before manufacturing or prototyping.'
-
       }
 
     ];
 
 
     const projectButtons =
-      document.querySelectorAll(
-        '.project-button'
-      );
+      document.querySelectorAll('.project-button');
 
 
     const projectCode =
-      document.getElementById(
-        'projectCode'
-      );
+      document.getElementById('projectCode');
 
 
     const projectTitle =
-      document.getElementById(
-        'projectTitle'
-      );
+      document.getElementById('projectTitle');
 
 
     const projectTags =
-      document.getElementById(
-        'projectTags'
-      );
+      document.getElementById('projectTags');
 
 
     const projectDescription =
-      document.getElementById(
-        'projectDescription'
-      );
+      document.getElementById('projectDescription');
 
 
     function updateProject(index) {
@@ -2075,43 +1565,33 @@
         project.description;
 
 
-      projectButtons.forEach(
-        button => {
+      projectButtons.forEach(button => {
 
-          button.classList.remove(
-            'active'
+        button.classList.remove('active');
+
+      });
+
+
+      projectButtons[index]
+        .classList.add('active');
+
+    }
+
+
+    projectButtons.forEach(button => {
+
+      button.addEventListener(
+        'click',
+        () => {
+
+          updateProject(
+            Number(button.dataset.project)
           );
 
         }
       );
 
-
-      projectButtons[index]
-        .classList.add(
-          'active'
-        );
-
-    }
-
-
-    projectButtons.forEach(
-      button => {
-
-        button.addEventListener(
-          'click',
-          () => {
-
-            updateProject(
-              Number(
-                button.dataset.project
-              )
-            );
-
-          }
-        );
-
-      }
-    );
+    });
 
 
     updateProject(0);
@@ -2122,9 +1602,7 @@
     ========================== */
 
     document
-      .getElementById(
-        'contactForm'
-      )
+      .getElementById('contactForm')
       .addEventListener(
         'submit',
         event => {
@@ -2132,7 +1610,7 @@
           event.preventDefault();
 
           alert(
-            'Contact form design works. We can connect the real email sending next.'
+            'Form UI is working. Next we can connect it to your email.'
           );
 
         }
@@ -2140,13 +1618,11 @@
 
 
     /* =========================
-       LANDING THREE.JS
+       THREE.JS LANDING
     ========================== */
 
     const container =
-      document.getElementById(
-        'scene'
-      );
+      document.getElementById('scene');
 
 
     const scene =
@@ -2154,23 +1630,15 @@
 
 
     scene.background =
-      new THREE.Color(
-        0xffffff
-      );
+      new THREE.Color(0xffffff);
 
 
     const camera =
       new THREE.PerspectiveCamera(
-
         45,
-
-        window.innerWidth /
-        window.innerHeight,
-
+        window.innerWidth / window.innerHeight,
         0.1,
-
         1000
-
       );
 
 
@@ -2183,13 +1651,8 @@
 
     const renderer =
       new THREE.WebGLRenderer({
-
-        antialias:
-          true,
-
-        alpha:
-          true
-
+        antialias: true,
+        alpha: true
       });
 
 
@@ -2200,12 +1663,10 @@
 
 
     renderer.setPixelRatio(
-
       Math.min(
         window.devicePixelRatio,
         2
       )
-
     );
 
 
@@ -2214,7 +1675,9 @@
     );
 
 
-    /* LIGHTS */
+    /* =========================
+       LIGHTING
+    ========================== */
 
     const ambientLight =
       new THREE.AmbientLight(
@@ -2266,7 +1729,9 @@
     );
 
 
-    /* CONTROLS */
+    /* =========================
+       CONTROLS
+    ========================== */
 
     const controls =
       new OrbitControls(
@@ -2275,23 +1740,15 @@
       );
 
 
-    controls.enableDamping =
-      true;
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.enableZoom = true;
+    controls.enablePan = false;
 
 
-    controls.dampingFactor =
-      0.05;
-
-
-    controls.enableZoom =
-      true;
-
-
-    controls.enablePan =
-      false;
-
-
-    /* RAYCASTER */
+    /* =========================
+       RAYCASTER
+    ========================== */
 
     const raycaster =
       new THREE.Raycaster();
@@ -2309,7 +1766,9 @@
       0.004;
 
 
-    /* LOAD STL */
+    /* =========================
+       LOAD STL LOGO
+    ========================== */
 
     const loader =
       new STLLoader();
@@ -2324,27 +1783,23 @@
 
       function (geometry) {
 
-        geometry
-          .computeVertexNormals();
-
-
+        geometry.computeVertexNormals();
         geometry.center();
 
 
         const material =
-          new THREE
-            .MeshStandardMaterial({
+          new THREE.MeshStandardMaterial({
 
-              color:
-                0x111111,
+            color:
+              0x111111,
 
-              roughness:
-                0.35,
+            roughness:
+              0.35,
 
-              metalness:
-                0.15
+            metalness:
+              0.15
 
-            });
+          });
 
 
         logo =
@@ -2356,29 +1811,21 @@
 
         const box =
           new THREE.Box3()
-            .setFromObject(
-              logo
-            );
+            .setFromObject(logo);
 
 
         const size =
           new THREE.Vector3();
 
 
-        box.getSize(
-          size
-        );
+        box.getSize(size);
 
 
         const maxDimension =
           Math.max(
-
             size.x,
-
             size.y,
-
             size.z
-
           );
 
 
@@ -2420,7 +1867,9 @@
     );
 
 
-    /* HOVER */
+    /* =========================
+       LOGO HOVER
+    ========================== */
 
     renderer.domElement
       .addEventListener(
@@ -2465,16 +1914,12 @@
 
 
           const intersects =
-            raycaster
-              .intersectObject(
-                logo
-              );
+            raycaster.intersectObject(
+              logo
+            );
 
 
-          if (
-            intersects.length >
-            0
-          ) {
+          if (intersects.length > 0) {
 
             targetRotationSpeed =
               0.0007;
@@ -2486,9 +1931,7 @@
               .cursor =
               'pointer';
 
-          }
-
-          else {
+          } else {
 
             targetRotationSpeed =
               0.004;
@@ -2506,7 +1949,9 @@
       );
 
 
-    /* CLICK LOGO */
+    /* =========================
+       CLICK LOGO
+    ========================== */
 
     renderer.domElement
       .addEventListener(
@@ -2551,20 +1996,14 @@
 
 
           const intersects =
-            raycaster
-              .intersectObject(
-                logo
-              );
-
-
-          if (
-            intersects.length >
-            0
-          ) {
-
-            showScreen(
-              'menu'
+            raycaster.intersectObject(
+              logo
             );
+
+
+          if (intersects.length > 0) {
+
+            showScreen('menu');
 
           }
 
@@ -2572,7 +2011,9 @@
       );
 
 
-    /* ANIMATION */
+    /* =========================
+       ANIMATION
+    ========================== */
 
     function animate() {
 
@@ -2610,7 +2051,9 @@
     animate();
 
 
-    /* RESIZE */
+    /* =========================
+       RESIZE
+    ========================== */
 
     window.addEventListener(
       'resize',
