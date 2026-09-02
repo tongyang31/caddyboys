@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
     rel="stylesheet"
   >
 
@@ -24,38 +24,38 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      font-family: 'Inter', sans-serif;
       background: #ffffff;
-      color: #111111;
+      color: #111;
+      font-family: 'VT323', monospace;
     }
 
     button,
     input,
     textarea {
       font: inherit;
+      border: none;
+      background: none;
+      color: inherit;
     }
 
     button {
-      color: inherit;
-      border: none;
-      background: transparent;
+      cursor: pointer;
     }
 
     :root {
-      --bg-dark: #0a0f18;
-      --bg-mid: #111826;
-      --panel: rgba(255, 255, 255, 0.08);
-      --panel-strong: rgba(255, 255, 255, 0.12);
-      --border: rgba(255, 255, 255, 0.16);
-      --text-light: #e8edf7;
-      --text-muted: rgba(232, 237, 247, 0.68);
-      --accent: #8ab4ff;
-      --accent-soft: rgba(138, 180, 255, 0.18);
-      --white: #ffffff;
+      --paper: #f3f0e8;
+      --paper-2: #ece7db;
+      --ink: #171717;
+      --muted: #66604f;
+      --gold: #d8b85c;
+      --gold-dark: #a58734;
+      --panel: rgba(255,255,255,0.45);
+      --border: #1e1e1e;
+      --shadow: 4px 4px 0 #111;
     }
 
     /* =========================
-       GLOBAL SCREEN SYSTEM
+       SCREEN SYSTEM
     ========================== */
 
     .screen {
@@ -63,163 +63,14 @@
       inset: 0;
       opacity: 0;
       pointer-events: none;
-      transform: translateY(14px);
-      transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
     .screen.active {
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0);
-    }
-
-    .brand-button {
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-    }
-
-    .game-topbar {
-      position: absolute;
-      top: 30px;
-      left: 34px;
-      right: 34px;
-      z-index: 30;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .game-brand {
-      cursor: pointer;
-      color: var(--text-light);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-    }
-
-    .hud-pill {
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-muted);
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    .game-screen {
-      background:
-        radial-gradient(circle at 18% 22%, rgba(75, 120, 255, 0.18), transparent 28%),
-        radial-gradient(circle at 82% 20%, rgba(0, 201, 255, 0.13), transparent 24%),
-        radial-gradient(circle at 72% 76%, rgba(180, 120, 255, 0.16), transparent 26%),
-        linear-gradient(135deg, #070b12 0%, #0e1420 52%, #111b2b 100%);
-      color: var(--text-light);
-      overflow: hidden;
-    }
-
-    .game-screen::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-      background-size: 44px 44px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.15));
-      pointer-events: none;
-    }
-
-    .game-screen::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.04),
-        transparent 18%,
-        transparent 82%,
-        rgba(255,255,255,0.03)
-      );
-      pointer-events: none;
-    }
-
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(55px);
-      opacity: 0.6;
-      pointer-events: none;
-      animation: floatOrb 11s ease-in-out infinite;
-    }
-
-    .orb-1 {
-      width: 240px;
-      height: 240px;
-      background: rgba(90, 145, 255, 0.24);
-      top: 10%;
-      right: 12%;
-    }
-
-    .orb-2 {
-      width: 190px;
-      height: 190px;
-      background: rgba(126, 80, 255, 0.22);
-      bottom: 12%;
-      left: 10%;
-      animation-delay: -4s;
-    }
-
-    .orb-3 {
-      width: 130px;
-      height: 130px;
-      background: rgba(0, 225, 255, 0.18);
-      bottom: 20%;
-      right: 28%;
-      animation-delay: -2s;
-    }
-
-    @keyframes floatOrb {
-      0%, 100% {
-        transform: translateY(0px) translateX(0px) scale(1);
-      }
-      50% {
-        transform: translateY(-16px) translateX(10px) scale(1.06);
-      }
-    }
-
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
-    }
-
-    .eyebrow {
-      color: var(--text-muted);
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .hud-title {
-      color: var(--text-muted);
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
     }
 
     /* =========================
@@ -244,550 +95,621 @@
       pointer-events: none;
 
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
+      align-items: flex-end;
+      justify-content: center;
 
-      padding-bottom: 8%;
+      padding-bottom: 7%;
     }
 
     #enterText {
-      font-size: 11px;
-      letter-spacing: 4px;
-      color: #555555;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 10px;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      opacity: 0.82;
+      color: #4d4d4d;
+      opacity: 0.9;
     }
 
     /* =========================
-       MENU SCREEN
+       GAME THEME
     ========================== */
 
-    #menu {
-      position: relative;
+    .game-screen {
+      background:
+        linear-gradient(rgba(255,255,255,0.18), rgba(255,255,255,0.18)),
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.7), transparent 25%),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,0.5), transparent 20%),
+        linear-gradient(180deg, #f7f4ee 0%, #ede7dc 100%);
+      color: var(--ink);
+      overflow: hidden;
     }
 
-    .menu-shell {
+    .game-screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.03) 0px,
+          rgba(0,0,0,0.03) 1px,
+          transparent 1px,
+          transparent 4px
+        );
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    .game-screen::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          rgba(0,0,0,0.025) 0px,
+          rgba(0,0,0,0.025) 1px,
+          transparent 1px,
+          transparent 40px
+        );
+      pointer-events: none;
+      opacity: 0.2;
+    }
+
+    .game-wrap {
       position: relative;
-      z-index: 10;
-      width: min(1280px, 92%);
+      z-index: 2;
+      width: min(1300px, 94%);
       height: 100%;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 28px;
-      align-items: center;
-      padding: 90px 0 40px;
-    }
-
-    .menu-left {
-      padding: 24px 10px 24px 6px;
-    }
-
-    .menu-left h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(54px, 8vw, 108px);
-      line-height: 0.96;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-      text-shadow: 0 0 30px rgba(255,255,255,0.06);
-    }
-
-    .menu-subtext {
-      max-width: 520px;
-      color: var(--text-muted);
-      font-size: 16px;
-      line-height: 1.8;
-      margin-bottom: 36px;
-    }
-
-    .menu-list {
+      padding: 24px 0 28px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      max-width: 560px;
+    }
+
+    .pixel-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .brand-home,
+    .hud-side {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 14px;
+      color: #f8f1dd;
+      background: #29261f;
+      border: 3px solid #111;
+      box-shadow: var(--shadow);
+      width: 48px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    .brand-home {
+      width: auto;
+      padding: 0 16px;
+    }
+
+    .pixel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+
+    .pixel-nav span {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 14px;
+      color: #c4b696;
+      text-shadow: 1px 1px 0 #fff;
+    }
+
+    .pixel-nav .active-tab {
+      color: var(--gold-dark);
+    }
+
+    .menu-layout {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 24px;
+      align-items: center;
+      min-height: 0;
+    }
+
+    .menu-left-panel,
+    .menu-right-panel,
+    .work-left-panel,
+    .work-right-panel,
+    .contact-left-panel,
+    .contact-right-panel {
+      background: rgba(255,255,255,0.58);
+      border: 3px solid #111;
+      box-shadow: 6px 6px 0 #111;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-left-panel::before,
+    .menu-right-panel::before,
+    .work-left-panel::before,
+    .work-right-panel::before,
+    .contact-left-panel::before,
+    .contact-right-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(to bottom, rgba(255,255,255,0.25), transparent 18%);
+      opacity: 0.8;
+    }
+
+    .menu-left-panel {
+      padding: 42px 38px;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .menu-right-panel {
+      min-height: 520px;
+      padding: 28px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 20px;
+    }
+
+    .tiny-label {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 10px;
+      color: #8a7d63;
+      margin-bottom: 16px;
+    }
+
+    .menu-title {
+      font-family: 'Press Start 2P', cursive;
+      font-size: clamp(24px, 3vw, 44px);
+      line-height: 1.5;
+      color: #181818;
+      margin-bottom: 24px;
+      text-shadow: 2px 2px 0 #fff;
+    }
+
+    .menu-desc {
+      font-size: 28px;
+      line-height: 1.3;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 30px;
+    }
+
+    .menu-options {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 10px;
     }
 
     .menu-option {
       width: 100%;
       text-align: left;
-      cursor: pointer;
-      padding: 24px 24px;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-light);
-      transition:
-        transform 0.25s ease,
-        background 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
+      padding: 18px 20px;
+      border: 3px solid #111;
+      border-radius: 12px;
+      background: #f8f4ea;
+      box-shadow: 4px 4px 0 #111;
+      transition: transform 0.15s ease, background 0.15s ease;
       position: relative;
+    }
+
+    .menu-option:hover,
+    .menu-option.selected {
+      background: #fff3c9;
+      transform: translate(-2px, -2px);
+    }
+
+    .menu-option .line-1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #171717;
+    }
+
+    .menu-option .line-2 {
+      margin-top: 8px;
+      margin-left: 32px;
+      font-size: 23px;
+      color: #6a6456;
+    }
+
+    .pointer {
+      color: var(--gold-dark);
+      min-width: 16px;
+      display: inline-block;
+      visibility: hidden;
+    }
+
+    .menu-option:hover .pointer,
+    .menu-option.selected .pointer {
+      visibility: visible;
+    }
+
+    .menu-art {
+      position: relative;
+      height: 100%;
+      min-height: 260px;
+      border: 3px dashed rgba(0,0,0,0.25);
+      border-radius: 14px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.65), rgba(0,0,0,0.03)),
+        repeating-linear-gradient(
+          -45deg,
+          rgba(0,0,0,0.02) 0px,
+          rgba(0,0,0,0.02) 6px,
+          transparent 6px,
+          transparent 12px
+        );
       overflow: hidden;
     }
 
-    .menu-option::before {
-      content: "";
+    .pixel-cloud {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        90deg,
-        rgba(138, 180, 255, 0.15),
-        rgba(255,255,255,0.02)
-      );
-      opacity: 0;
-      transition: opacity 0.25s ease;
+      background: #ffffff;
+      border: 3px solid #111;
+      box-shadow: 4px 4px 0 #111;
+      image-rendering: pixelated;
     }
 
-    .menu-option:hover {
-      transform: translateX(10px);
-      border-color: rgba(138, 180, 255, 0.5);
-      box-shadow: 0 0 0 1px rgba(138, 180, 255, 0.18), 0 16px 40px rgba(0,0,0,0.22);
-      background: rgba(255, 255, 255, 0.10);
+    .cloud-1 {
+      width: 120px;
+      height: 44px;
+      top: 36px;
+      left: 40px;
+      border-radius: 8px;
     }
 
-    .menu-option:hover::before {
-      opacity: 1;
+    .cloud-2 {
+      width: 84px;
+      height: 36px;
+      top: 76px;
+      right: 36px;
+      border-radius: 8px;
     }
 
-    .menu-option-inner {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+    .pixel-sun {
+      position: absolute;
+      width: 72px;
+      height: 72px;
+      border-radius: 12px;
+      top: 36px;
+      right: 40px;
+      background: #ffe08a;
+      border: 3px solid #111;
+      box-shadow: 4px 4px 0 #111;
     }
 
-    .menu-option-left {
-      display: flex;
-      align-items: center;
-      gap: 18px;
+    .pixel-ground {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 110px;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          #b4a890 0px,
+          #b4a890 20px,
+          #c8bca4 20px,
+          #c8bca4 40px
+        );
+      border-top: 3px solid #111;
     }
 
-    .menu-index {
-      color: var(--accent);
-      font-family: 'Orbitron', sans-serif;
-      font-size: 13px;
-      letter-spacing: 2px;
-      min-width: 30px;
+    .pixel-box {
+      position: absolute;
+      border: 3px solid #111;
+      box-shadow: 4px 4px 0 #111;
     }
 
-    .menu-option-title {
-      font-size: clamp(26px, 3vw, 40px);
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+    .box-1 {
+      width: 70px;
+      height: 110px;
+      left: 58px;
+      bottom: 110px;
+      background: #d56464;
     }
 
-    .menu-option-desc {
-      color: var(--text-muted);
-      font-size: 13px;
-      margin-top: 6px;
+    .box-2 {
+      width: 92px;
+      height: 70px;
+      left: 150px;
+      bottom: 110px;
+      background: #f1d3a5;
     }
 
-    .menu-arrow {
-      font-size: 28px;
-      color: var(--accent);
-      transform: translateX(0);
-      transition: transform 0.25s ease;
+    .box-3 {
+      width: 72px;
+      height: 150px;
+      right: 70px;
+      bottom: 110px;
+      background: #7c92d9;
     }
 
-    .menu-option:hover .menu-arrow {
-      transform: translateX(6px);
+    .box-4 {
+      width: 100px;
+      height: 52px;
+      right: 160px;
+      bottom: 110px;
+      background: #7da883;
     }
 
-    .menu-right {
-      display: grid;
-      gap: 18px;
-      align-content: center;
-    }
-
-    .overview-card {
-      padding: 26px;
-      min-height: 220px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .overview-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: #cfe2ff;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .status-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #8ab4ff;
-      box-shadow: 0 0 18px #8ab4ff;
-    }
-
-    .overview-big {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(28px, 3vw, 44px);
-      line-height: 1.15;
-      text-transform: uppercase;
-      margin: 18px 0 12px;
-    }
-
-    .overview-copy {
-      color: var(--text-muted);
+    .art-caption {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 10px;
+      color: #7b6d52;
       line-height: 1.8;
-      font-size: 14px;
-      max-width: 440px;
     }
 
-    .overview-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+    .art-caption strong {
+      color: #1a1a1a;
     }
 
-    .mini-card {
-      padding: 22px;
-      min-height: 145px;
-    }
-
-    .mini-value {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 24px;
-      margin-bottom: 10px;
-      color: var(--white);
-    }
-
-    .mini-copy {
-      color: var(--text-muted);
-      font-size: 13px;
-      line-height: 1.7;
+    .footer-credits {
+      margin-top: 12px;
+      text-align: center;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 10px;
+      color: #8b806d;
     }
 
     /* =========================
-       WORK SECTION
+       WORK
     ========================== */
 
-    #work {
-      position: relative;
-      color: var(--text-light);
-      background:
-        radial-gradient(circle at 18% 22%, rgba(75, 120, 255, 0.18), transparent 28%),
-        radial-gradient(circle at 82% 20%, rgba(0, 201, 255, 0.13), transparent 24%),
-        radial-gradient(circle at 72% 76%, rgba(180, 120, 255, 0.16), transparent 26%),
-        linear-gradient(135deg, #070b12 0%, #0e1420 52%, #111b2b 100%);
+    #work,
+    #contact {
       overflow-y: auto;
       overflow-x: hidden;
     }
 
-    #work::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-      background-size: 44px 44px;
-      pointer-events: none;
-    }
-
-    .work-shell {
-      position: relative;
-      z-index: 10;
-      width: min(1280px, 92%);
-      margin: 0 auto;
-      padding: 110px 0 50px;
+    .work-layout,
+    .contact-layout {
+      flex: 1;
       display: grid;
-      grid-template-columns: 0.78fr 1.22fr;
+      grid-template-columns: 0.85fr 1.15fr;
       gap: 24px;
-      min-height: 100%;
+      min-height: 0;
     }
 
-    .project-list-panel {
-      padding: 24px;
-      align-self: start;
+    .work-left-panel,
+    .contact-left-panel {
+      padding: 30px;
     }
 
-    .project-list-panel h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(28px, 4vw, 44px);
-      text-transform: uppercase;
-      margin-bottom: 26px;
+    .work-right-panel,
+    .contact-right-panel {
+      padding: 26px;
+    }
+
+    .panel-title {
+      font-family: 'Press Start 2P', cursive;
+      font-size: clamp(18px, 2vw, 28px);
+      line-height: 1.6;
+      margin-bottom: 22px;
     }
 
     .project-list {
       display: flex;
       flex-direction: column;
       gap: 12px;
+      margin-top: 14px;
     }
 
     .project-item {
       width: 100%;
       text-align: left;
-      cursor: pointer;
-      padding: 16px 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.04);
-      color: var(--text-light);
-      transition: all 0.25s ease;
+      padding: 16px 18px;
+      border: 3px solid #111;
+      border-radius: 12px;
+      background: #f8f4ea;
+      box-shadow: 4px 4px 0 #111;
+      transition: transform 0.15s ease, background 0.15s ease;
     }
 
     .project-item:hover,
     .project-item.active {
-      background: rgba(138, 180, 255, 0.15);
-      border-color: rgba(138, 180, 255, 0.35);
-      transform: translateX(6px);
+      background: #fff3c9;
+      transform: translate(-2px, -2px);
     }
 
     .project-item-name {
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 14px;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
+      line-height: 1.7;
     }
 
     .project-item-type {
-      color: var(--text-muted);
-      font-size: 12px;
-      margin-top: 6px;
+      margin-top: 8px;
+      font-size: 22px;
+      color: #665d49;
     }
 
-    .project-preview-panel {
-      padding: 24px;
-      display: grid;
-      grid-template-rows: minmax(360px, 1fr) auto;
-      gap: 20px;
-      min-height: 620px;
-    }
-
-    .project-visual {
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.10);
+    .preview-window {
+      min-height: 340px;
+      border: 3px solid #111;
+      border-radius: 12px;
+      box-shadow: 4px 4px 0 #111;
       background:
-        radial-gradient(circle at 50% 45%, rgba(138,180,255,0.18), transparent 24%),
-        linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+        linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)),
+        repeating-linear-gradient(
+          0deg,
+          #e9e1d2 0px,
+          #e9e1d2 24px,
+          #efe7db 24px,
+          #efe7db 48px
+        );
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-bottom: 22px;
       position: relative;
       overflow: hidden;
     }
 
-    .project-visual::before {
+    .preview-window::before {
       content: "";
       position: absolute;
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
-      border: 1px solid rgba(138,180,255,0.25);
-      box-shadow:
-        0 0 0 40px rgba(138,180,255,0.05),
-        0 0 0 90px rgba(138,180,255,0.03);
+      inset: 14px;
+      border: 3px dashed rgba(0,0,0,0.18);
+      border-radius: 8px;
     }
 
-    .preview-placeholder {
+    .preview-big {
       position: relative;
       z-index: 2;
+      font-family: 'Press Start 2P', cursive;
+      font-size: clamp(32px, 5vw, 64px);
+      color: #222;
+      text-shadow: 2px 2px 0 #fff;
       text-align: center;
-    }
-
-    .preview-code {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(44px, 7vw, 92px);
-      color: rgba(255,255,255,0.9);
-      text-transform: uppercase;
-      letter-spacing: 4px;
-    }
-
-    .preview-note {
-      margin-top: 14px;
-      color: var(--text-muted);
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-
-    .project-meta h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(24px, 3vw, 42px);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .project-tags {
-      color: #bdd5ff;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .project-description {
-      color: var(--text-muted);
-      line-height: 1.85;
-      max-width: 760px;
-      font-size: 14px;
-    }
-
-    /* =========================
-       CONTACT SECTION
-    ========================== */
-
-    #contact {
-      position: relative;
-      color: var(--text-light);
-      background:
-        radial-gradient(circle at 18% 22%, rgba(75, 120, 255, 0.18), transparent 28%),
-        radial-gradient(circle at 82% 20%, rgba(0, 201, 255, 0.13), transparent 24%),
-        radial-gradient(circle at 72% 76%, rgba(180, 120, 255, 0.16), transparent 26%),
-        linear-gradient(135deg, #070b12 0%, #0e1420 52%, #111b2b 100%);
-      overflow-y: auto;
-      overflow-x: hidden;
-    }
-
-    #contact::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-      background-size: 44px 44px;
-      pointer-events: none;
-    }
-
-    .contact-shell {
-      position: relative;
-      z-index: 10;
-      width: min(1280px, 92%);
-      margin: 0 auto;
-      min-height: 100%;
-      padding: 110px 0 50px;
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .contact-info {
-      padding: 28px;
-    }
-
-    .contact-info h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(36px, 5vw, 72px);
-      line-height: 1.02;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .contact-copy {
-      color: var(--text-muted);
-      line-height: 1.85;
-      font-size: 14px;
-      max-width: 420px;
-    }
-
-    .contact-stats {
-      display: grid;
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .contact-stat {
-      padding: 16px 18px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .contact-stat strong {
-      display: block;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #cfe2ff;
-      margin-bottom: 6px;
-    }
-
-    .contact-stat span {
-      color: var(--text-muted);
-      font-size: 14px;
       line-height: 1.6;
     }
 
-    .contact-form-panel {
-      padding: 28px;
+    .preview-small {
+      position: relative;
+      z-index: 2;
+      margin-top: 14px;
+      text-align: center;
+      font-size: 24px;
+      color: #6c6452;
+    }
+
+    .project-meta-title {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+
+    .project-tags {
+      font-size: 24px;
+      color: #7a6c4c;
+      margin-bottom: 16px;
+    }
+
+    .project-description {
+      font-size: 25px;
+      line-height: 1.35;
+      color: #5f584b;
+    }
+
+    /* =========================
+       CONTACT
+    ========================== */
+
+    .contact-copy {
+      font-size: 28px;
+      line-height: 1.3;
+      color: #615948;
+      margin-bottom: 22px;
+      max-width: 460px;
+    }
+
+    .contact-card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .contact-card {
+      padding: 14px 16px;
+      border: 3px solid #111;
+      border-radius: 12px;
+      background: #f8f4ea;
+      box-shadow: 4px 4px 0 #111;
+    }
+
+    .contact-card strong {
+      display: block;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 10px;
+      margin-bottom: 10px;
+    }
+
+    .contact-card span {
+      font-size: 24px;
+      color: #5e5647;
+      line-height: 1.2;
     }
 
     .contact-form {
       display: flex;
       flex-direction: column;
-      gap: 22px;
+      gap: 16px;
     }
 
     .field {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     .field label {
-      color: var(--text-muted);
+      font-family: 'Press Start 2P', cursive;
       font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
+      color: #4f4736;
+      line-height: 1.8;
     }
 
     .field input,
     .field textarea {
       width: 100%;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.05);
-      color: var(--text-light);
-      padding: 16px 16px;
-      outline: none;
-      font-size: 15px;
+      background: #fffdfa;
+      border: 3px solid #111;
+      border-radius: 10px;
+      box-shadow: 4px 4px 0 #111;
+      padding: 14px 16px;
+      font-size: 26px;
+      color: #222;
       resize: none;
-      transition: border-color 0.2s ease, background 0.2s ease;
     }
 
     .field input::placeholder,
     .field textarea::placeholder {
-      color: rgba(232, 237, 247, 0.45);
-    }
-
-    .field input:focus,
-    .field textarea:focus {
-      border-color: rgba(138, 180, 255, 0.45);
-      background: rgba(255,255,255,0.07);
+      color: #9a927e;
     }
 
     .send-button {
-      width: fit-content;
-      padding: 16px 22px;
-      border-radius: 14px;
-      cursor: pointer;
-      font-weight: 600;
-      letter-spacing: 2px;
+      align-self: flex-start;
+      margin-top: 8px;
+      padding: 14px 18px;
+      font-family: 'Press Start 2P', cursive;
       font-size: 11px;
-      text-transform: uppercase;
-      color: #08101a;
-      background: linear-gradient(135deg, #dbe8ff 0%, #8ab4ff 100%);
-      box-shadow: 0 10px 30px rgba(138, 180, 255, 0.26);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      background: #ffe29a;
+      border: 3px solid #111;
+      border-radius: 10px;
+      box-shadow: 4px 4px 0 #111;
+      transition: transform 0.15s ease, background 0.15s ease;
     }
 
     .send-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 38px rgba(138, 180, 255, 0.32);
+      transform: translate(-2px, -2px);
+      background: #ffd66f;
     }
 
     /* =========================
@@ -795,58 +717,73 @@
     ========================== */
 
     @media (max-width: 980px) {
-      .menu-shell,
-      .work-shell,
-      .contact-shell {
+      .menu-layout,
+      .work-layout,
+      .contact-layout {
         grid-template-columns: 1fr;
       }
 
-      .menu-right {
-        margin-top: 10px;
+      .menu-left-panel,
+      .menu-right-panel {
+        min-height: auto;
+      }
+
+      .pixel-nav {
+        gap: 10px;
+      }
+
+      .pixel-nav span {
+        font-size: 11px;
       }
     }
 
     @media (max-width: 700px) {
-      .game-topbar {
-        top: 20px;
-        left: 18px;
-        right: 18px;
+      .game-wrap {
+        width: 94%;
+        padding-top: 16px;
       }
 
-      .menu-shell,
-      .work-shell,
-      .contact-shell {
-        width: 92%;
-        padding-top: 90px;
-      }
-
-      .overview-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .menu-option-inner {
+      .pixel-topbar {
         align-items: flex-start;
+        gap: 10px;
       }
 
-      .menu-option-title {
-        font-size: 24px;
+      .brand-home,
+      .hud-side {
+        height: 42px;
       }
 
-      .project-preview-panel {
-        min-height: 520px;
+      .brand-home {
+        font-size: 10px;
+        padding: 0 10px;
       }
 
-      .preview-code {
-        font-size: 56px;
+      .pixel-nav span {
+        font-size: 9px;
       }
 
-      .contact-info,
-      .contact-form-panel,
-      .project-list-panel,
-      .project-preview-panel,
-      .overview-card,
-      .mini-card {
-        padding: 20px;
+      .menu-left-panel,
+      .menu-right-panel,
+      .work-left-panel,
+      .work-right-panel,
+      .contact-left-panel,
+      .contact-right-panel {
+        padding: 18px;
+      }
+
+      .menu-desc,
+      .contact-copy,
+      .project-description {
+        font-size: 22px;
+      }
+
+      .project-item-type,
+      .project-tags,
+      .field input,
+      .field textarea,
+      .contact-card span,
+      .preview-small {
+        font-size: 20px;
       }
     }
   </style>
@@ -869,91 +806,79 @@
        MENU
   ========================== -->
   <section id="menu" class="screen game-screen">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+    <div class="game-wrap">
 
-    <div class="game-topbar">
-      <button class="game-brand" data-home>CADDY BOYS</button>
-      <div class="hud-pill">Melbourne · Studio Online</div>
-    </div>
+      <div class="pixel-topbar">
+        <button class="hud-side" data-home>L</button>
 
-    <div class="menu-shell">
-      <div class="menu-left">
-        <div class="eyebrow">Engineering · Design · Prototyping</div>
+        <div class="pixel-nav">
+          <span class="active-tab">MAIN MENU</span>
+          <span>WORKSHOP</span>
+          <span>QUEST</span>
+          <span>GUIDE</span>
+          <span>WORLD MAP</span>
+        </div>
 
-        <h1>Caddy Boys</h1>
+        <button class="hud-side">R</button>
+      </div>
 
-        <p class="menu-subtext">
-          Enter the workshop. Explore our design work, prototypes and engineering ideas,
-          or send us your concept and let’s build something together.
-        </p>
+      <div class="menu-layout">
+        <div class="menu-left-panel">
+          <div class="tiny-label">CADDY BOYS / START SCREEN</div>
 
-        <div class="menu-list">
-          <button class="menu-option" id="openWork">
-            <div class="menu-option-inner">
-              <div class="menu-option-left">
-                <div class="menu-index">01</div>
-                <div>
-                  <div class="menu-option-title">Our Work</div>
-                  <div class="menu-option-desc">Browse selected projects and concepts</div>
-                </div>
+          <div class="menu-title">
+            CHOOSE<br>
+            YOUR PATH
+          </div>
+
+          <div class="menu-desc">
+            Enter the workshop, explore our builds, or send us your next idea.
+          </div>
+
+          <div class="menu-options">
+            <button class="menu-option selected" id="openWork">
+              <div class="line-1">
+                <span class="pointer">▶</span>
+                <span>OUR WORK</span>
               </div>
-              <div class="menu-arrow">→</div>
-            </div>
-          </button>
+              <div class="line-2">Browse projects, concepts and prototypes.</div>
+            </button>
 
-          <button class="menu-option" id="openContact">
-            <div class="menu-option-inner">
-              <div class="menu-option-left">
-                <div class="menu-index">02</div>
-                <div>
-                  <div class="menu-option-title">Contact Us</div>
-                  <div class="menu-option-desc">Tell us what you want to make</div>
-                </div>
+            <button class="menu-option" id="openContact">
+              <div class="line-1">
+                <span class="pointer">▶</span>
+                <span>CONTACT US</span>
               </div>
-              <div class="menu-arrow">→</div>
-            </div>
-          </button>
+              <div class="line-2">Send us your idea and start a mission.</div>
+            </button>
+          </div>
+        </div>
+
+        <div class="menu-right-panel">
+          <div class="tiny-label">WORLD / HUB AREA</div>
+
+          <div class="menu-art">
+            <div class="pixel-sun"></div>
+            <div class="pixel-cloud cloud-1"></div>
+            <div class="pixel-cloud cloud-2"></div>
+
+            <div class="pixel-box box-1"></div>
+            <div class="pixel-box box-2"></div>
+            <div class="pixel-box box-3"></div>
+            <div class="pixel-box box-4"></div>
+
+            <div class="pixel-ground"></div>
+          </div>
+
+          <div class="art-caption">
+            <strong>MISSION:</strong> Turn ideas into 3D models, technical drawings,
+            printed parts and analysis-ready designs.
+          </div>
         </div>
       </div>
 
-      <div class="menu-right">
-        <div class="overview-card panel">
-          <div class="hud-title">System Overview</div>
-
-          <div class="overview-status">
-            <span class="status-dot"></span>
-            Creative Mode Active
-          </div>
-
-          <div class="overview-big">
-            From idea to engineered reality
-          </div>
-
-          <p class="overview-copy">
-            We focus on 3D modelling, technical drawings, 3D printing and FEA analysis,
-            helping turn concepts into visualised, testable and manufacturable outcomes.
-          </p>
-        </div>
-
-        <div class="overview-grid">
-          <div class="mini-card panel">
-            <div class="hud-title">Capabilities</div>
-            <div class="mini-value">CAD</div>
-            <p class="mini-copy">
-              Solid modelling, assemblies and production-ready geometry.
-            </p>
-          </div>
-
-          <div class="mini-card panel">
-            <div class="hud-title">Validation</div>
-            <div class="mini-value">FEA</div>
-            <p class="mini-copy">
-              Structural assessment, stress checks and design optimisation.
-            </p>
-          </div>
-        </div>
+      <div class="footer-credits">
+        © 2026 CADDY BOYS — ALL RIGHTS RESERVED
       </div>
     </div>
   </section>
@@ -961,55 +886,65 @@
   <!-- =========================
        WORK
   ========================== -->
-  <section id="work" class="screen">
-    <div class="game-topbar">
-      <button class="game-brand" data-home>CADDY BOYS</button>
-      <div class="hud-pill">Project Selection</div>
-    </div>
+  <section id="work" class="screen game-screen">
+    <div class="game-wrap">
 
-    <div class="work-shell">
-      <div class="project-list-panel panel">
-        <div class="eyebrow">Select Project</div>
-        <h2>Our Work</h2>
+      <div class="pixel-topbar">
+        <button class="brand-home" data-home>CADDY BOYS</button>
 
-        <div class="project-list">
-          <button class="project-item active" data-project="0">
-            <div class="project-item-name">Wheel Shunt Production Jig</div>
-            <div class="project-item-type">Reverse Engineering · 3D Printing</div>
-          </button>
+        <div class="pixel-nav">
+          <span>MAIN MENU</span>
+          <span class="active-tab">OUR WORK</span>
+          <span>PROJECT LOG</span>
+        </div>
 
-          <button class="project-item" data-project="1">
-            <div class="project-item-name">Custom Bracket Concept</div>
-            <div class="project-item-type">CAD Design · Technical Drawings</div>
-          </button>
+        <button class="hud-side">★</button>
+      </div>
 
-          <button class="project-item" data-project="2">
-            <div class="project-item-name">FEA Structural Study</div>
-            <div class="project-item-type">Simulation · Design Validation</div>
-          </button>
+      <div class="work-layout">
+        <div class="work-left-panel">
+          <div class="tiny-label">PROJECT SELECT</div>
+          <div class="panel-title">CHOOSE A BUILD</div>
+
+          <div class="project-list">
+            <button class="project-item active" data-project="0">
+              <div class="project-item-name">WHEEL SHUNT JIG</div>
+              <div class="project-item-type">Reverse engineering · 3D printing</div>
+            </button>
+
+            <button class="project-item" data-project="1">
+              <div class="project-item-name">CUSTOM BRACKET</div>
+              <div class="project-item-type">CAD design · technical drawing</div>
+            </button>
+
+            <button class="project-item" data-project="2">
+              <div class="project-item-name">FEA STUDY</div>
+              <div class="project-item-type">Simulation · validation</div>
+            </button>
+          </div>
+        </div>
+
+        <div class="work-right-panel">
+          <div class="tiny-label">PROJECT PREVIEW</div>
+
+          <div class="preview-window">
+            <div>
+              <div class="preview-big" id="previewCode">JIG</div>
+              <div class="preview-small">Interactive model coming next</div>
+            </div>
+          </div>
+
+          <div class="project-meta-title" id="projectTitle">WHEEL SHUNT PRODUCTION JIG</div>
+          <div class="project-tags" id="projectTags">CAD · REVERSE ENGINEERING · 3D PRINTING</div>
+          <div class="project-description" id="projectDescription">
+            A production jig concept built to improve repeatability and assembly workflow.
+            This area can later show your real STL model, rendered images or final printed result.
+          </div>
         </div>
       </div>
 
-      <div class="project-preview-panel panel">
-        <div class="project-visual">
-          <div class="preview-placeholder">
-            <div class="preview-code" id="previewCode">JIG</div>
-            <div class="preview-note">Interactive model / preview coming next</div>
-          </div>
-        </div>
-
-        <div class="project-meta">
-          <div class="hud-title">Project Brief</div>
-          <h3 id="projectTitle">Wheel Shunt Production Jig</h3>
-          <div class="project-tags" id="projectTags">
-            Reverse Engineering · CAD · 3D Printing
-          </div>
-          <p class="project-description" id="projectDescription">
-            A production jig concept created to improve repeatability and assembly workflow.
-            This section will later hold your interactive model or project renders, while the
-            project information on the right helps visitors quickly understand the scope.
-          </p>
-        </div>
+      <div class="footer-credits">
+        SELECT A PROJECT TO VIEW DETAILS
       </div>
     </div>
   </section>
@@ -1017,73 +952,86 @@
   <!-- =========================
        CONTACT
   ========================== -->
-  <section id="contact" class="screen">
-    <div class="game-topbar">
-      <button class="game-brand" data-home>CADDY BOYS</button>
-      <div class="hud-pill">Open Transmission</div>
-    </div>
+  <section id="contact" class="screen game-screen">
+    <div class="game-wrap">
 
-    <div class="contact-shell">
-      <div class="contact-info panel">
-        <div class="eyebrow">Start a Project</div>
+      <div class="pixel-topbar">
+        <button class="brand-home" data-home>CADDY BOYS</button>
 
-        <h2>Send us your idea</h2>
+        <div class="pixel-nav">
+          <span>MAIN MENU</span>
+          <span class="active-tab">CONTACT US</span>
+          <span>MESSAGE BOARD</span>
+        </div>
 
-        <p class="contact-copy">
-          Have an idea, a sketch, an existing part or even just a rough concept?
-          Tell us what you’re trying to build and we can help guide the next step.
-        </p>
+        <button class="hud-side">@</button>
+      </div>
 
-        <div class="contact-stats">
-          <div class="contact-stat">
-            <strong>Based In</strong>
-            <span>Melbourne, Australia</span>
+      <div class="contact-layout">
+        <div class="contact-left-panel">
+          <div class="tiny-label">START A NEW QUEST</div>
+          <div class="panel-title">SEND US YOUR IDEA</div>
+
+          <div class="contact-copy">
+            Got a sketch, part, concept or problem to solve?
+            Tell us what you want to make.
           </div>
 
-          <div class="contact-stat">
-            <strong>Services</strong>
-            <span>3D modelling, technical drawings, 3D printing, FEA analysis</span>
-          </div>
+          <div class="contact-card-list">
+            <div class="contact-card">
+              <strong>BASE</strong>
+              <span>Melbourne, Australia</span>
+            </div>
 
-          <div class="contact-stat">
-            <strong>Project Type</strong>
-            <span>Personal concepts, prototypes, mechanical ideas and engineering visuals</span>
+            <div class="contact-card">
+              <strong>SERVICES</strong>
+              <span>3D modelling, drawings, 3D printing, FEA</span>
+            </div>
+
+            <div class="contact-card">
+              <strong>STATUS</strong>
+              <span>Accepting ideas and prototypes</span>
+            </div>
           </div>
+        </div>
+
+        <div class="contact-right-panel">
+          <div class="tiny-label">MESSAGE CONSOLE</div>
+
+          <form class="contact-form" id="contactForm">
+            <div class="field">
+              <label>NAME</label>
+              <input type="text" name="name" placeholder="Your name" required />
+            </div>
+
+            <div class="field">
+              <label>EMAIL</label>
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </div>
+
+            <div class="field">
+              <label>WHAT DO YOU WANT TO MAKE?</label>
+              <textarea
+                name="message"
+                rows="6"
+                placeholder="Tell us about your idea..."
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="send-button">SEND MESSAGE</button>
+          </form>
         </div>
       </div>
 
-      <div class="contact-form-panel panel">
-        <div class="hud-title">Message Console</div>
-
-        <form class="contact-form" id="contactForm">
-          <div class="field">
-            <label>Name</label>
-            <input type="text" name="name" placeholder="Your name" required />
-          </div>
-
-          <div class="field">
-            <label>Email</label>
-            <input type="email" name="email" placeholder="you@example.com" required />
-          </div>
-
-          <div class="field">
-            <label>What do you want to make?</label>
-            <textarea
-              name="message"
-              rows="6"
-              placeholder="Tell us about your idea..."
-              required
-            ></textarea>
-          </div>
-
-          <button type="submit" class="send-button">Send Message →</button>
-        </form>
+      <div class="footer-credits">
+        PRESS SEND TO START A CONVERSATION
       </div>
     </div>
   </section>
 
   <!-- =========================
-       THREE.JS
+       THREE.JS IMPORTS
   ========================== -->
   <script type="importmap">
   {
@@ -1136,33 +1084,33 @@
     ========================== */
     document.getElementById('contactForm').addEventListener('submit', event => {
       event.preventDefault();
-      alert('Contact form design is working. We can connect the real email function next.');
+      alert('Form UI is working. Next we can connect it to real email.');
     });
 
     /* =========================
-       PROJECT SELECTOR
+       PROJECT DATA
     ========================== */
     const projects = [
       {
         code: 'JIG',
-        title: 'Wheel Shunt Production Jig',
-        tags: 'Reverse Engineering · CAD · 3D Printing',
+        title: 'WHEEL SHUNT PRODUCTION JIG',
+        tags: 'CAD · REVERSE ENGINEERING · 3D PRINTING',
         description:
-          'A production jig concept created to improve repeatability and assembly workflow. This section will later hold your interactive model or project renders, while the project information helps visitors quickly understand the scope.'
+          'A production jig concept built to improve repeatability and assembly workflow. This area can later show your real STL model, rendered images or final printed result.'
       },
       {
         code: 'CAD',
-        title: 'Custom Bracket Concept',
-        tags: '3D Modelling · Drawings · Prototype',
+        title: 'CUSTOM BRACKET CONCEPT',
+        tags: '3D MODELLING · DRAWINGS · PROTOTYPE',
         description:
-          'A custom mechanical bracket project showcasing concept development, CAD modelling and design-for-manufacture thinking. This is a good example of how your site can present client ideas in a polished and visual way.'
+          'A custom bracket design demonstrating concept development, CAD modelling and design-for-manufacture thinking for practical parts and assemblies.'
       },
       {
         code: 'FEA',
-        title: 'FEA Structural Study',
-        tags: 'Simulation · Stress Check · Optimisation',
+        title: 'FEA STRUCTURAL STUDY',
+        tags: 'SIMULATION · STRESS CHECK · VALIDATION',
         description:
-          'A structural analysis concept page for demonstrating design validation. You can later replace this placeholder with images, diagrams or an interactive result preview to show how you assess performance before fabrication.'
+          'A design validation concept page for showing how a part performs under load before production. Later you can replace this with your own simulation images and notes.'
       }
     ];
 
@@ -1281,12 +1229,10 @@
       if (!logo) return;
 
       const rect = renderer.domElement.getBoundingClientRect();
-
       mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
       raycaster.setFromCamera(mouse, camera);
-
       const intersects = raycaster.intersectObject(logo);
 
       if (intersects.length > 0) {
@@ -1302,12 +1248,10 @@
       if (!logo) return;
 
       const rect = renderer.domElement.getBoundingClientRect();
-
       mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
       raycaster.setFromCamera(mouse, camera);
-
       const intersects = raycaster.intersectObject(logo);
 
       if (intersects.length > 0) {
