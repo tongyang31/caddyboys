@@ -7,6 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link
     href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
     rel="stylesheet"
@@ -25,7 +26,7 @@
       height: 100%;
       overflow: hidden;
       background: #ffffff;
-      color: #111;
+      color: #171717;
       font-family: 'VT323', monospace;
     }
 
@@ -33,25 +34,24 @@
     input,
     textarea {
       font: inherit;
-      border: none;
-      background: none;
       color: inherit;
     }
 
     button {
+      border: none;
+      background: none;
       cursor: pointer;
     }
 
     :root {
-      --paper: #f3f0e8;
-      --paper-2: #ece7db;
+      --paper: #f5f2e9;
+      --paper-2: #ebe5d8;
       --ink: #171717;
-      --muted: #66604f;
-      --gold: #d8b85c;
-      --gold-dark: #a58734;
-      --panel: rgba(255,255,255,0.45);
-      --border: #1e1e1e;
-      --shadow: 4px 4px 0 #111;
+      --muted: #6c6454;
+      --gold: #ccb15f;
+      --gold-soft: #fff2bf;
+      --border: #191919;
+      --shadow: 5px 5px 0 #191919;
     }
 
     /* =========================
@@ -64,7 +64,9 @@
       opacity: 0;
       pointer-events: none;
       transform: translateY(10px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition:
+        opacity 0.45s ease,
+        transform 0.45s ease;
     }
 
     .screen.active {
@@ -104,23 +106,27 @@
     #enterText {
       font-family: 'Press Start 2P', cursive;
       font-size: 10px;
-      letter-spacing: 1px;
+      color: #4e4e4e;
       text-transform: uppercase;
-      color: #4d4d4d;
-      opacity: 0.9;
     }
 
     /* =========================
-       GAME THEME
+       GAME BACKGROUND
     ========================== */
 
     .game-screen {
       background:
-        linear-gradient(rgba(255,255,255,0.18), rgba(255,255,255,0.18)),
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.7), transparent 25%),
-        radial-gradient(circle at 80% 30%, rgba(255,255,255,0.5), transparent 20%),
-        linear-gradient(180deg, #f7f4ee 0%, #ede7dc 100%);
-      color: var(--ink);
+        linear-gradient(
+          rgba(255,255,255,0.28),
+          rgba(255,255,255,0.28)
+        ),
+        repeating-linear-gradient(
+          0deg,
+          #f5f2e9 0px,
+          #f5f2e9 2px,
+          #f2eee5 2px,
+          #f2eee5 4px
+        );
       overflow: hidden;
     }
 
@@ -128,539 +134,752 @@
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        repeating-linear-gradient(
-          to bottom,
-          rgba(0,0,0,0.03) 0px,
-          rgba(0,0,0,0.03) 1px,
-          transparent 1px,
-          transparent 4px
-        );
       pointer-events: none;
-      opacity: 0.3;
-    }
 
-    .game-screen::after {
-      content: "";
-      position: absolute;
-      inset: 0;
       background:
         repeating-linear-gradient(
           90deg,
-          rgba(0,0,0,0.025) 0px,
-          rgba(0,0,0,0.025) 1px,
+          rgba(0,0,0,0.018) 0px,
+          rgba(0,0,0,0.018) 1px,
           transparent 1px,
-          transparent 40px
+          transparent 36px
         );
-      pointer-events: none;
-      opacity: 0.2;
+
+      opacity: 0.35;
     }
 
     .game-wrap {
       position: relative;
       z-index: 2;
-      width: min(1300px, 94%);
+
+      width: min(1320px, 94%);
       height: 100%;
+
       margin: 0 auto;
-      padding: 24px 0 28px;
+
       display: flex;
       flex-direction: column;
+
+      padding: 28px 0 26px;
     }
 
-    .pixel-topbar {
+    /* =========================
+       CENTER TITLE
+    ========================== */
+
+    .screen-title {
+      min-height: 64px;
+
       display: flex;
+      justify-content: center;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+
+      font-family: 'Press Start 2P', cursive;
+      font-size: clamp(14px, 1.7vw, 22px);
+      color: var(--gold);
+      text-shadow: 2px 2px 0 #ffffff;
+
+      letter-spacing: 1px;
+
       margin-bottom: 18px;
     }
 
-    .brand-home,
-    .hud-side {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 14px;
-      color: #f8f1dd;
-      background: #29261f;
-      border: 3px solid #111;
-      box-shadow: var(--shadow);
-      width: 48px;
-      height: 48px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      flex-shrink: 0;
-    }
-
     .brand-home {
-      width: auto;
-      padding: 0 16px;
-    }
+      position: absolute;
+      top: 30px;
+      left: 0;
 
-    .pixel-nav {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      flex: 1;
-    }
-
-    .pixel-nav span {
       font-family: 'Press Start 2P', cursive;
-      font-size: 14px;
-      color: #c4b696;
-      text-shadow: 1px 1px 0 #fff;
-    }
+      font-size: 10px;
 
-    .pixel-nav .active-tab {
-      color: var(--gold-dark);
-    }
+      background: #24211b;
+      color: #fff5d8;
 
-    .menu-layout {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1.05fr;
-      gap: 24px;
-      align-items: center;
-      min-height: 0;
-    }
-
-    .menu-left-panel,
-    .menu-right-panel,
-    .work-left-panel,
-    .work-right-panel,
-    .contact-left-panel,
-    .contact-right-panel {
-      background: rgba(255,255,255,0.58);
       border: 3px solid #111;
-      box-shadow: 6px 6px 0 #111;
-      border-radius: 16px;
+      border-radius: 9px;
+      box-shadow: 4px 4px 0 #111;
+
+      padding: 13px 15px;
+
+      z-index: 10;
+    }
+
+    /* =========================
+       PANELS
+    ========================== */
+
+    .pixel-panel {
       position: relative;
+
+      background: rgba(255,255,255,0.6);
+
+      border: 3px solid var(--border);
+      border-radius: 16px;
+
+      box-shadow: var(--shadow);
+
       overflow: hidden;
     }
 
-    .menu-left-panel::before,
-    .menu-right-panel::before,
-    .work-left-panel::before,
-    .work-right-panel::before,
-    .contact-left-panel::before,
-    .contact-right-panel::before {
+    .pixel-panel::before {
       content: "";
       position: absolute;
       inset: 0;
+
       pointer-events: none;
+
       background:
-        linear-gradient(to bottom, rgba(255,255,255,0.25), transparent 18%);
-      opacity: 0.8;
+        linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.32),
+          transparent 20%
+        );
     }
 
-    .menu-left-panel {
-      padding: 42px 38px;
-      min-height: 520px;
+    .tiny-label {
+      position: relative;
+      z-index: 2;
+
+      font-family: 'Press Start 2P', cursive;
+      font-size: 9px;
+      line-height: 1.8;
+
+      color: #8b8068;
+
+      margin-bottom: 18px;
+    }
+
+    .page-heading {
+      position: relative;
+      z-index: 2;
+
+      font-family: 'Press Start 2P', cursive;
+
+      font-size: clamp(24px, 3vw, 46px);
+      line-height: 1.55;
+
+      color: #171717;
+
+      text-shadow: 2px 2px 0 #ffffff;
+
+      margin-bottom: 24px;
+    }
+
+    /* =========================
+       MAIN MENU
+    ========================== */
+
+    .menu-layout {
+      flex: 1;
+
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 26px;
+
+      min-height: 0;
+    }
+
+    .menu-left {
+      padding: 40px 38px;
+
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    .menu-right-panel {
-      min-height: 520px;
-      padding: 28px;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      gap: 20px;
-    }
+    .menu-description {
+      position: relative;
+      z-index: 2;
 
-    .tiny-label {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 10px;
-      color: #8a7d63;
-      margin-bottom: 16px;
-    }
-
-    .menu-title {
-      font-family: 'Press Start 2P', cursive;
-      font-size: clamp(24px, 3vw, 44px);
-      line-height: 1.5;
-      color: #181818;
-      margin-bottom: 24px;
-      text-shadow: 2px 2px 0 #fff;
-    }
-
-    .menu-desc {
       font-size: 28px;
       line-height: 1.3;
+
       color: var(--muted);
+
       max-width: 520px;
-      margin-bottom: 30px;
+      margin-bottom: 26px;
     }
 
     .menu-options {
+      position: relative;
+      z-index: 2;
+
       display: flex;
       flex-direction: column;
       gap: 14px;
-      margin-top: 10px;
     }
 
     .menu-option {
       width: 100%;
-      text-align: left;
+
       padding: 18px 20px;
+
+      text-align: left;
+
+      background: #fbf8ef;
+
       border: 3px solid #111;
-      border-radius: 12px;
-      background: #f8f4ea;
+      border-radius: 11px;
+
       box-shadow: 4px 4px 0 #111;
-      transition: transform 0.15s ease, background 0.15s ease;
-      position: relative;
+
+      transition:
+        transform 0.14s ease,
+        background 0.14s ease;
     }
 
-    .menu-option:hover,
-    .menu-option.selected {
-      background: #fff3c9;
+    .menu-option:hover {
+      background: var(--gold-soft);
       transform: translate(-2px, -2px);
     }
 
-    .menu-option .line-1 {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 14px;
+    .menu-option-title {
       display: flex;
       align-items: center;
-      gap: 12px;
-      color: #171717;
+      gap: 14px;
+
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
+      line-height: 1.7;
     }
 
-    .menu-option .line-2 {
-      margin-top: 8px;
-      margin-left: 32px;
-      font-size: 23px;
-      color: #6a6456;
-    }
-
-    .pointer {
-      color: var(--gold-dark);
-      min-width: 16px;
-      display: inline-block;
+    .selector {
+      color: #b29239;
       visibility: hidden;
     }
 
-    .menu-option:hover .pointer,
-    .menu-option.selected .pointer {
+    .menu-option:hover .selector {
       visibility: visible;
     }
 
-    .menu-art {
+    .menu-option-description {
+      margin-top: 7px;
+      margin-left: 31px;
+
+      font-size: 23px;
+      line-height: 1.2;
+
+      color: #6c6454;
+    }
+
+    /* =========================
+       INTERACTIVE WORKSHOP
+    ========================== */
+
+    .workshop-panel {
+      padding: 26px;
+
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+
+      gap: 15px;
+    }
+
+    .workshop-scene {
       position: relative;
-      height: 100%;
-      min-height: 260px;
-      border: 3px dashed rgba(0,0,0,0.25);
+
+      min-height: 400px;
+
+      border: 3px dashed #b7b4ad;
       border-radius: 14px;
+
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.65), rgba(0,0,0,0.03)),
+        repeating-linear-gradient(
+          -45deg,
+          rgba(0,0,0,0.022) 0,
+          rgba(0,0,0,0.022) 5px,
+          transparent 5px,
+          transparent 10px
+        ),
+        #faf8f2;
+
+      overflow: hidden;
+    }
+
+    .floor {
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      height: 100px;
+
+      border-top: 3px solid #111;
+
+      background:
+        repeating-linear-gradient(
+          90deg,
+          #bdb49e 0px,
+          #bdb49e 25px,
+          #aaa18b 25px,
+          #aaa18b 50px
+        );
+    }
+
+    .workbench {
+      position: absolute;
+
+      left: 50%;
+      bottom: 95px;
+
+      transform: translateX(-50%);
+
+      width: 72%;
+      height: 28px;
+
+      background: #8b7358;
+
+      border: 3px solid #111;
+      box-shadow: 4px 4px 0 #111;
+    }
+
+    .station {
+      position: absolute;
+
+      border: 3px solid #111;
+      box-shadow: 4px 4px 0 #111;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.14s ease,
+        filter 0.14s ease;
+    }
+
+    .station:hover,
+    .station.active {
+      transform: translate(-2px, -3px);
+      filter: brightness(1.08);
+    }
+
+    .station::after {
+      content: attr(data-short);
+
+      position: absolute;
+
+      left: 50%;
+      bottom: -34px;
+
+      transform: translateX(-50%);
+
+      font-family: 'Press Start 2P', cursive;
+      font-size: 7px;
+
+      white-space: nowrap;
+
+      color: #4f483b;
+    }
+
+    /* CAD monitor */
+
+    .cad-monitor {
+      left: 12%;
+      bottom: 150px;
+
+      width: 145px;
+      height: 95px;
+
+      border-radius: 9px;
+
+      background: #8ea4c4;
+    }
+
+    .cad-monitor::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 12px;
+
+      border: 3px solid #111;
+
+      background:
+        linear-gradient(135deg, transparent 48%, #fff 49%, #fff 52%, transparent 53%),
+        linear-gradient(45deg, transparent 48%, #fff 49%, #fff 52%, transparent 53%),
+        #607a9c;
+    }
+
+    /* 3D printer */
+
+    .printer {
+      left: 38%;
+      bottom: 145px;
+
+      width: 125px;
+      height: 150px;
+
+      background: #d7b46c;
+    }
+
+    .printer::before {
+      content: "";
+
+      position: absolute;
+
+      left: 18px;
+      right: 18px;
+      top: 20px;
+      bottom: 35px;
+
+      border: 3px solid #111;
+
+      background: #fcf7e8;
+    }
+
+    .printer::after {
+      content: "3D PRINT";
+
+      position: absolute;
+
+      left: 50%;
+      bottom: -34px;
+
+      transform: translateX(-50%);
+
+      font-family: 'Press Start 2P', cursive;
+      font-size: 7px;
+
+      white-space: nowrap;
+
+      color: #4f483b;
+    }
+
+    .printed-part {
+      position: absolute;
+
+      left: 50%;
+      bottom: 42px;
+
+      transform: translateX(-50%);
+
+      width: 40px;
+      height: 30px;
+
+      background: #6f89bb;
+
+      border: 3px solid #111;
+    }
+
+    /* Drawing station */
+
+    .drawing-board {
+      right: 28%;
+      bottom: 150px;
+
+      width: 118px;
+      height: 102px;
+
+      background: #f7f3e8;
+    }
+
+    .drawing-board::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 12px;
+
+      background:
+        linear-gradient(#5b5b5b 2px, transparent 2px),
+        linear-gradient(90deg, #5b5b5b 2px, transparent 2px);
+
+      background-size: 20px 20px;
+
+      border: 2px solid #111;
+    }
+
+    /* FEA station */
+
+    .fea-station {
+      right: 8%;
+      bottom: 145px;
+
+      width: 130px;
+      height: 118px;
+
+      background: #bf7a73;
+    }
+
+    .fea-station::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 14px;
+
+      border: 3px solid #111;
+
+      background:
+        repeating-linear-gradient(
+          45deg,
+          #6380be 0,
+          #6380be 8px,
+          #80a46f 8px,
+          #80a46f 16px,
+          #d0af61 16px,
+          #d0af61 24px,
+          #bf6464 24px,
+          #bf6464 32px
+        );
+    }
+
+    .workshop-info {
+      min-height: 72px;
+
+      padding: 12px 14px;
+
+      border: 3px solid #111;
+      border-radius: 9px;
+
+      background: #fff9e6;
+
+      box-shadow: 3px 3px 0 #111;
+    }
+
+    .workshop-info-title {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 9px;
+
+      color: #2b2925;
+
+      margin-bottom: 8px;
+    }
+
+    .workshop-info-text {
+      font-size: 22px;
+      color: #625a4b;
+    }
+
+    /* =========================
+       LOADING SCREEN
+    ========================== */
+
+    #loading {
+      z-index: 100;
+
+      background: #151411;
+      color: #fff1c7;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loading-content {
+      width: min(520px, 86%);
+
+      text-align: center;
+    }
+
+    #loadingText {
+      font-family: 'Press Start 2P', cursive;
+
+      font-size: clamp(18px, 3vw, 34px);
+
+      line-height: 1.5;
+
+      margin-bottom: 30px;
+    }
+
+    #loadingDestination {
+      font-family: 'Press Start 2P', cursive;
+
+      font-size: 9px;
+      line-height: 1.8;
+
+      color: #c9b47a;
+
+      margin-bottom: 30px;
+    }
+
+    .progress-shell {
+      width: 100%;
+
+      height: 30px;
+
+      padding: 4px;
+
+      border: 3px solid #fff1c7;
+
+      background: #151411;
+    }
+
+    #progressBar {
+      height: 100%;
+      width: 0%;
+
+      background:
+        repeating-linear-gradient(
+          90deg,
+          #fff1c7 0px,
+          #fff1c7 16px,
+          #c7aa57 16px,
+          #c7aa57 20px
+        );
+
+      transition: width 0.1s linear;
+    }
+
+    .loading-tip {
+      margin-top: 24px;
+
+      font-size: 20px;
+      color: #9e947d;
+    }
+
+    /* =========================
+       WORK / CONTACT / ABOUT
+    ========================== */
+
+    .content-layout {
+      flex: 1;
+
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 26px;
+
+      min-height: 0;
+    }
+
+    .content-left,
+    .content-right {
+      padding: 30px;
+    }
+
+    .back-button {
+      position: relative;
+      z-index: 2;
+
+      margin-top: 24px;
+
+      padding: 12px 16px;
+
+      border: 3px solid #111;
+      border-radius: 8px;
+
+      box-shadow: 4px 4px 0 #111;
+
+      background: #fff4c9;
+
+      font-family: 'Press Start 2P', cursive;
+      font-size: 8px;
+    }
+
+    .project-list {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .project-button {
+      text-align: left;
+
+      padding: 15px;
+
+      border: 3px solid #111;
+      border-radius: 9px;
+
+      box-shadow: 4px 4px 0 #111;
+
+      background: #fbf8ef;
+    }
+
+    .project-button:hover,
+    .project-button.active {
+      background: var(--gold-soft);
+      transform: translate(-2px, -2px);
+    }
+
+    .project-button strong {
+      display: block;
+
+      font-family: 'Press Start 2P', cursive;
+      font-size: 9px;
+      line-height: 1.7;
+
+      margin-bottom: 6px;
+    }
+
+    .project-button span {
+      font-size: 22px;
+      color: #675f51;
+    }
+
+    .project-preview {
+      min-height: 340px;
+
+      border: 3px dashed #a9a69e;
+      border-radius: 12px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
         repeating-linear-gradient(
           -45deg,
           rgba(0,0,0,0.02) 0px,
           rgba(0,0,0,0.02) 6px,
           transparent 6px,
           transparent 12px
-        );
-      overflow: hidden;
+        ),
+        #faf7ef;
+
+      margin-bottom: 20px;
     }
 
-    .pixel-cloud {
-      position: absolute;
-      background: #ffffff;
-      border: 3px solid #111;
-      box-shadow: 4px 4px 0 #111;
-      image-rendering: pixelated;
-    }
-
-    .cloud-1 {
-      width: 120px;
-      height: 44px;
-      top: 36px;
-      left: 40px;
-      border-radius: 8px;
-    }
-
-    .cloud-2 {
-      width: 84px;
-      height: 36px;
-      top: 76px;
-      right: 36px;
-      border-radius: 8px;
-    }
-
-    .pixel-sun {
-      position: absolute;
-      width: 72px;
-      height: 72px;
-      border-radius: 12px;
-      top: 36px;
-      right: 40px;
-      background: #ffe08a;
-      border: 3px solid #111;
-      box-shadow: 4px 4px 0 #111;
-    }
-
-    .pixel-ground {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 110px;
-      background:
-        repeating-linear-gradient(
-          90deg,
-          #b4a890 0px,
-          #b4a890 20px,
-          #c8bca4 20px,
-          #c8bca4 40px
-        );
-      border-top: 3px solid #111;
-    }
-
-    .pixel-box {
-      position: absolute;
-      border: 3px solid #111;
-      box-shadow: 4px 4px 0 #111;
-    }
-
-    .box-1 {
-      width: 70px;
-      height: 110px;
-      left: 58px;
-      bottom: 110px;
-      background: #d56464;
-    }
-
-    .box-2 {
-      width: 92px;
-      height: 70px;
-      left: 150px;
-      bottom: 110px;
-      background: #f1d3a5;
-    }
-
-    .box-3 {
-      width: 72px;
-      height: 150px;
-      right: 70px;
-      bottom: 110px;
-      background: #7c92d9;
-    }
-
-    .box-4 {
-      width: 100px;
-      height: 52px;
-      right: 160px;
-      bottom: 110px;
-      background: #7da883;
-    }
-
-    .art-caption {
+    .project-code {
       font-family: 'Press Start 2P', cursive;
-      font-size: 10px;
-      color: #7b6d52;
+      font-size: clamp(30px, 5vw, 62px);
+      text-align: center;
+    }
+
+    .project-title {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 13px;
       line-height: 1.8;
-    }
 
-    .art-caption strong {
-      color: #1a1a1a;
-    }
-
-    .footer-credits {
-      margin-top: 12px;
-      text-align: center;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 10px;
-      color: #8b806d;
-    }
-
-    /* =========================
-       WORK
-    ========================== */
-
-    #work,
-    #contact {
-      overflow-y: auto;
-      overflow-x: hidden;
-    }
-
-    .work-layout,
-    .contact-layout {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 24px;
-      min-height: 0;
-    }
-
-    .work-left-panel,
-    .contact-left-panel {
-      padding: 30px;
-    }
-
-    .work-right-panel,
-    .contact-right-panel {
-      padding: 26px;
-    }
-
-    .panel-title {
-      font-family: 'Press Start 2P', cursive;
-      font-size: clamp(18px, 2vw, 28px);
-      line-height: 1.6;
-      margin-bottom: 22px;
-    }
-
-    .project-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .project-item {
-      width: 100%;
-      text-align: left;
-      padding: 16px 18px;
-      border: 3px solid #111;
-      border-radius: 12px;
-      background: #f8f4ea;
-      box-shadow: 4px 4px 0 #111;
-      transition: transform 0.15s ease, background 0.15s ease;
-    }
-
-    .project-item:hover,
-    .project-item.active {
-      background: #fff3c9;
-      transform: translate(-2px, -2px);
-    }
-
-    .project-item-name {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 12px;
-      line-height: 1.7;
-    }
-
-    .project-item-type {
-      margin-top: 8px;
-      font-size: 22px;
-      color: #665d49;
-    }
-
-    .preview-window {
-      min-height: 340px;
-      border: 3px solid #111;
-      border-radius: 12px;
-      box-shadow: 4px 4px 0 #111;
-      background:
-        linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)),
-        repeating-linear-gradient(
-          0deg,
-          #e9e1d2 0px,
-          #e9e1d2 24px,
-          #efe7db 24px,
-          #efe7db 48px
-        );
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 22px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .preview-window::before {
-      content: "";
-      position: absolute;
-      inset: 14px;
-      border: 3px dashed rgba(0,0,0,0.18);
-      border-radius: 8px;
-    }
-
-    .preview-big {
-      position: relative;
-      z-index: 2;
-      font-family: 'Press Start 2P', cursive;
-      font-size: clamp(32px, 5vw, 64px);
-      color: #222;
-      text-shadow: 2px 2px 0 #fff;
-      text-align: center;
-      line-height: 1.6;
-    }
-
-    .preview-small {
-      position: relative;
-      z-index: 2;
-      margin-top: 14px;
-      text-align: center;
-      font-size: 24px;
-      color: #6c6452;
-    }
-
-    .project-meta-title {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 16px;
-      line-height: 1.8;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .project-tags {
-      font-size: 24px;
-      color: #7a6c4c;
-      margin-bottom: 16px;
+      font-size: 23px;
+      color: #8a7645;
+
+      margin-bottom: 12px;
     }
 
     .project-description {
-      font-size: 25px;
-      line-height: 1.35;
-      color: #5f584b;
-    }
-
-    /* =========================
-       CONTACT
-    ========================== */
-
-    .contact-copy {
-      font-size: 28px;
-      line-height: 1.3;
-      color: #615948;
-      margin-bottom: 22px;
-      max-width: 460px;
-    }
-
-    .contact-card-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .contact-card {
-      padding: 14px 16px;
-      border: 3px solid #111;
-      border-radius: 12px;
-      background: #f8f4ea;
-      box-shadow: 4px 4px 0 #111;
-    }
-
-    .contact-card strong {
-      display: block;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 10px;
-      margin-bottom: 10px;
-    }
-
-    .contact-card span {
       font-size: 24px;
-      color: #5e5647;
-      line-height: 1.2;
+      line-height: 1.3;
+
+      color: #625a4b;
+    }
+
+    .contact-copy,
+    .about-copy {
+      position: relative;
+      z-index: 2;
+
+      font-size: 26px;
+      line-height: 1.35;
+
+      color: #625a4b;
+
+      margin-bottom: 22px;
     }
 
     .contact-form {
+      position: relative;
+      z-index: 2;
+
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 15px;
     }
 
     .field {
@@ -671,45 +890,81 @@
 
     .field label {
       font-family: 'Press Start 2P', cursive;
-      font-size: 10px;
-      color: #4f4736;
-      line-height: 1.8;
+      font-size: 8px;
+      line-height: 1.7;
     }
 
     .field input,
     .field textarea {
       width: 100%;
-      background: #fffdfa;
-      border: 3px solid #111;
-      border-radius: 10px;
-      box-shadow: 4px 4px 0 #111;
-      padding: 14px 16px;
-      font-size: 26px;
-      color: #222;
-      resize: none;
-    }
 
-    .field input::placeholder,
-    .field textarea::placeholder {
-      color: #9a927e;
+      padding: 13px 15px;
+
+      border: 3px solid #111;
+      border-radius: 8px;
+
+      box-shadow: 4px 4px 0 #111;
+
+      background: #fffdf7;
+
+      font-size: 24px;
+
+      resize: none;
+      outline: none;
     }
 
     .send-button {
       align-self: flex-start;
+
       margin-top: 8px;
-      padding: 14px 18px;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 11px;
-      background: #ffe29a;
+
+      padding: 13px 17px;
+
       border: 3px solid #111;
-      border-radius: 10px;
+      border-radius: 8px;
+
       box-shadow: 4px 4px 0 #111;
-      transition: transform 0.15s ease, background 0.15s ease;
+
+      background: #ffe398;
+
+      font-family: 'Press Start 2P', cursive;
+      font-size: 8px;
     }
 
-    .send-button:hover {
-      transform: translate(-2px, -2px);
-      background: #ffd66f;
+    .about-stats {
+      position: relative;
+      z-index: 2;
+
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+
+      margin-top: 20px;
+    }
+
+    .stat-card {
+      padding: 17px;
+
+      border: 3px solid #111;
+      border-radius: 9px;
+
+      box-shadow: 4px 4px 0 #111;
+
+      background: #fbf8ef;
+    }
+
+    .stat-card strong {
+      display: block;
+
+      font-family: 'Press Start 2P', cursive;
+      font-size: 8px;
+
+      margin-bottom: 10px;
+    }
+
+    .stat-card span {
+      font-size: 23px;
+      color: #625a4b;
     }
 
     /* =========================
@@ -718,22 +973,23 @@
 
     @media (max-width: 980px) {
       .menu-layout,
-      .work-layout,
-      .contact-layout {
+      .content-layout {
         grid-template-columns: 1fr;
       }
 
-      .menu-left-panel,
-      .menu-right-panel {
-        min-height: auto;
+      .game-screen {
+        overflow-y: auto;
       }
 
-      .pixel-nav {
-        gap: 10px;
+      .game-wrap {
+        height: auto;
+        min-height: 100%;
       }
 
-      .pixel-nav span {
-        font-size: 11px;
+      .brand-home {
+        position: static;
+        align-self: flex-start;
+        margin-bottom: 8px;
       }
     }
 
@@ -743,47 +999,52 @@
         padding-top: 16px;
       }
 
-      .pixel-topbar {
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      .brand-home,
-      .hud-side {
-        height: 42px;
-      }
-
-      .brand-home {
-        font-size: 10px;
-        padding: 0 10px;
-      }
-
-      .pixel-nav span {
-        font-size: 9px;
-      }
-
-      .menu-left-panel,
-      .menu-right-panel,
-      .work-left-panel,
-      .work-right-panel,
-      .contact-left-panel,
-      .contact-right-panel {
+      .menu-left,
+      .workshop-panel,
+      .content-left,
+      .content-right {
         padding: 18px;
       }
 
-      .menu-desc,
+      .menu-description,
       .contact-copy,
+      .about-copy,
       .project-description {
-        font-size: 22px;
+        font-size: 21px;
       }
 
-      .project-item-type,
+      .menu-option-description,
+      .project-button span,
       .project-tags,
       .field input,
       .field textarea,
-      .contact-card span,
-      .preview-small {
-        font-size: 20px;
+      .workshop-info-text {
+        font-size: 19px;
+      }
+
+      .workshop-scene {
+        min-height: 360px;
+        overflow-x: auto;
+      }
+
+      .cad-monitor {
+        left: 4%;
+      }
+
+      .printer {
+        left: 34%;
+      }
+
+      .drawing-board {
+        right: 28%;
+      }
+
+      .fea-station {
+        right: 3%;
+      }
+
+      .about-stats {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -794,491 +1055,1585 @@
   <!-- =========================
        LANDING
   ========================== -->
+
   <section id="landing" class="screen active">
+
     <div id="scene"></div>
 
     <div class="landing-content">
       <div id="enterText">Stay tuned.</div>
     </div>
+
   </section>
 
+
   <!-- =========================
-       MENU
+       MAIN MENU
   ========================== -->
+
   <section id="menu" class="screen game-screen">
+
     <div class="game-wrap">
 
-      <div class="pixel-topbar">
-        <button class="hud-side" data-home>L</button>
-
-        <div class="pixel-nav">
-          <span class="active-tab">MAIN MENU</span>
-          <span>WORKSHOP</span>
-          <span>QUEST</span>
-          <span>GUIDE</span>
-          <span>WORLD MAP</span>
-        </div>
-
-        <button class="hud-side">R</button>
+      <div class="screen-title">
+        MAIN MENU
       </div>
 
       <div class="menu-layout">
-        <div class="menu-left-panel">
-          <div class="tiny-label">CADDY BOYS / START SCREEN</div>
 
-          <div class="menu-title">
+        <!-- LEFT -->
+
+        <div class="menu-left pixel-panel">
+
+          <div class="tiny-label">
+            CADDY BOYS / START SCREEN
+          </div>
+
+          <div class="page-heading">
             CHOOSE<br>
             YOUR PATH
           </div>
 
-          <div class="menu-desc">
-            Enter the workshop, explore our builds, or send us your next idea.
+          <div class="menu-description">
+            Explore our work, learn about Caddy Boys,
+            or send us your next idea.
           </div>
 
           <div class="menu-options">
-            <button class="menu-option selected" id="openWork">
-              <div class="line-1">
-                <span class="pointer">▶</span>
-                <span>OUR WORK</span>
+
+            <button
+              class="menu-option"
+              data-destination="work"
+            >
+
+              <div class="menu-option-title">
+                <span class="selector">▶</span>
+                OUR WORK
               </div>
-              <div class="line-2">Browse projects, concepts and prototypes.</div>
+
+              <div class="menu-option-description">
+                Browse projects, concepts and prototypes.
+              </div>
+
             </button>
 
-            <button class="menu-option" id="openContact">
-              <div class="line-1">
-                <span class="pointer">▶</span>
-                <span>CONTACT US</span>
+
+            <button
+              class="menu-option"
+              data-destination="contact"
+            >
+
+              <div class="menu-option-title">
+                <span class="selector">▶</span>
+                CONTACT US
               </div>
-              <div class="line-2">Send us your idea and start a mission.</div>
+
+              <div class="menu-option-description">
+                Send us your idea and start a project.
+              </div>
+
             </button>
+
+
+            <button
+              class="menu-option"
+              data-destination="about"
+            >
+
+              <div class="menu-option-title">
+                <span class="selector">▶</span>
+                ABOUT
+              </div>
+
+              <div class="menu-option-description">
+                Learn who we are and what we do.
+              </div>
+
+            </button>
+
           </div>
+
         </div>
 
-        <div class="menu-right-panel">
-          <div class="tiny-label">WORLD / HUB AREA</div>
 
-          <div class="menu-art">
-            <div class="pixel-sun"></div>
-            <div class="pixel-cloud cloud-1"></div>
-            <div class="pixel-cloud cloud-2"></div>
+        <!-- RIGHT WORKSHOP -->
 
-            <div class="pixel-box box-1"></div>
-            <div class="pixel-box box-2"></div>
-            <div class="pixel-box box-3"></div>
-            <div class="pixel-box box-4"></div>
+        <div class="workshop-panel pixel-panel">
 
-            <div class="pixel-ground"></div>
+          <div class="tiny-label">
+            INTERACTIVE WORKSHOP
           </div>
 
-          <div class="art-caption">
-            <strong>MISSION:</strong> Turn ideas into 3D models, technical drawings,
-            printed parts and analysis-ready designs.
+          <div class="workshop-scene">
+
+            <div
+              class="station cad-monitor"
+              data-short="CAD"
+              data-title="3D MODELLING"
+              data-info="Mechanical parts, assemblies, product concepts and CAD development."
+            ></div>
+
+            <div
+              class="station printer"
+              data-short="PRINT"
+              data-title="3D PRINTING"
+              data-info="Rapid prototypes and physical parts produced from digital designs."
+            >
+              <div class="printed-part"></div>
+            </div>
+
+            <div
+              class="station drawing-board"
+              data-short="DRAWING"
+              data-title="TECHNICAL DRAWINGS"
+              data-info="Manufacturing-ready dimensions, drawings and design documentation."
+            ></div>
+
+            <div
+              class="station fea-station"
+              data-short="FEA"
+              data-title="FEA ANALYSIS"
+              data-info="Stress, deformation and structural performance checks before production."
+            ></div>
+
+            <div class="workbench"></div>
+            <div class="floor"></div>
+
           </div>
+
+          <div class="workshop-info">
+
+            <div
+              class="workshop-info-title"
+              id="workshopInfoTitle"
+            >
+              SELECT A STATION
+            </div>
+
+            <div
+              class="workshop-info-text"
+              id="workshopInfoText"
+            >
+              Hover or click a workstation to explore what Caddy Boys can do.
+            </div>
+
+          </div>
+
         </div>
+
       </div>
 
-      <div class="footer-credits">
-        © 2026 CADDY BOYS — ALL RIGHTS RESERVED
-      </div>
     </div>
+
   </section>
+
 
   <!-- =========================
-       WORK
+       LOADING
   ========================== -->
+
+  <section id="loading" class="screen">
+
+    <div class="loading-content">
+
+      <div id="loadingText">
+        LOADING.
+      </div>
+
+      <div id="loadingDestination">
+        PLEASE WAIT
+      </div>
+
+      <div class="progress-shell">
+        <div id="progressBar"></div>
+      </div>
+
+      <div class="loading-tip">
+        Initialising Caddy Boys...
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       OUR WORK
+  ========================== -->
+
   <section id="work" class="screen game-screen">
+
     <div class="game-wrap">
 
-      <div class="pixel-topbar">
-        <button class="brand-home" data-home>CADDY BOYS</button>
+      <button class="brand-home" data-menu>
+        CADDY BOYS
+      </button>
 
-        <div class="pixel-nav">
-          <span>MAIN MENU</span>
-          <span class="active-tab">OUR WORK</span>
-          <span>PROJECT LOG</span>
-        </div>
-
-        <button class="hud-side">★</button>
+      <div class="screen-title">
+        OUR WORK
       </div>
 
-      <div class="work-layout">
-        <div class="work-left-panel">
-          <div class="tiny-label">PROJECT SELECT</div>
-          <div class="panel-title">CHOOSE A BUILD</div>
+      <div class="content-layout">
+
+        <div class="content-left pixel-panel">
+
+          <div class="tiny-label">
+            PROJECT SELECT
+          </div>
+
+          <div class="page-heading">
+            CHOOSE<br>
+            A BUILD
+          </div>
 
           <div class="project-list">
-            <button class="project-item active" data-project="0">
-              <div class="project-item-name">WHEEL SHUNT JIG</div>
-              <div class="project-item-type">Reverse engineering · 3D printing</div>
+
+            <button
+              class="project-button active"
+              data-project="0"
+            >
+
+              <strong>
+                WHEEL SHUNT JIG
+              </strong>
+
+              <span>
+                Reverse engineering · 3D printing
+              </span>
+
             </button>
 
-            <button class="project-item" data-project="1">
-              <div class="project-item-name">CUSTOM BRACKET</div>
-              <div class="project-item-type">CAD design · technical drawing</div>
+
+            <button
+              class="project-button"
+              data-project="1"
+            >
+
+              <strong>
+                CUSTOM BRACKET
+              </strong>
+
+              <span>
+                CAD · technical drawings
+              </span>
+
             </button>
 
-            <button class="project-item" data-project="2">
-              <div class="project-item-name">FEA STUDY</div>
-              <div class="project-item-type">Simulation · validation</div>
+
+            <button
+              class="project-button"
+              data-project="2"
+            >
+
+              <strong>
+                FEA STUDY
+              </strong>
+
+              <span>
+                Simulation · design validation
+              </span>
+
             </button>
+
           </div>
+
+          <button class="back-button" data-menu>
+            ← MAIN MENU
+          </button>
+
         </div>
 
-        <div class="work-right-panel">
-          <div class="tiny-label">PROJECT PREVIEW</div>
 
-          <div class="preview-window">
-            <div>
-              <div class="preview-big" id="previewCode">JIG</div>
-              <div class="preview-small">Interactive model coming next</div>
+        <div class="content-right pixel-panel">
+
+          <div class="tiny-label">
+            PROJECT PREVIEW
+          </div>
+
+          <div class="project-preview">
+
+            <div
+              class="project-code"
+              id="projectCode"
+            >
+              JIG
             </div>
+
           </div>
 
-          <div class="project-meta-title" id="projectTitle">WHEEL SHUNT PRODUCTION JIG</div>
-          <div class="project-tags" id="projectTags">CAD · REVERSE ENGINEERING · 3D PRINTING</div>
-          <div class="project-description" id="projectDescription">
-            A production jig concept built to improve repeatability and assembly workflow.
-            This area can later show your real STL model, rendered images or final printed result.
+          <div
+            class="project-title"
+            id="projectTitle"
+          >
+            WHEEL SHUNT PRODUCTION JIG
           </div>
+
+          <div
+            class="project-tags"
+            id="projectTags"
+          >
+            CAD · REVERSE ENGINEERING · 3D PRINTING
+          </div>
+
+          <div
+            class="project-description"
+            id="projectDescription"
+          >
+            A production jig designed to improve assembly
+            repeatability and support manufacturing workflow.
+            Your real interactive STL model can replace this
+            preview later.
+          </div>
+
         </div>
+
       </div>
 
-      <div class="footer-credits">
-        SELECT A PROJECT TO VIEW DETAILS
-      </div>
     </div>
+
   </section>
+
 
   <!-- =========================
        CONTACT
   ========================== -->
+
   <section id="contact" class="screen game-screen">
+
     <div class="game-wrap">
 
-      <div class="pixel-topbar">
-        <button class="brand-home" data-home>CADDY BOYS</button>
+      <button class="brand-home" data-menu>
+        CADDY BOYS
+      </button>
 
-        <div class="pixel-nav">
-          <span>MAIN MENU</span>
-          <span class="active-tab">CONTACT US</span>
-          <span>MESSAGE BOARD</span>
-        </div>
-
-        <button class="hud-side">@</button>
+      <div class="screen-title">
+        CONTACT US
       </div>
 
-      <div class="contact-layout">
-        <div class="contact-left-panel">
-          <div class="tiny-label">START A NEW QUEST</div>
-          <div class="panel-title">SEND US YOUR IDEA</div>
+      <div class="content-layout">
+
+        <div class="content-left pixel-panel">
+
+          <div class="tiny-label">
+            NEW PROJECT
+          </div>
+
+          <div class="page-heading">
+            SEND US<br>
+            YOUR IDEA
+          </div>
 
           <div class="contact-copy">
-            Got a sketch, part, concept or problem to solve?
+            Got a sketch, broken part, concept,
+            prototype or engineering problem?
             Tell us what you want to make.
           </div>
 
-          <div class="contact-card-list">
-            <div class="contact-card">
+          <div class="about-stats">
+
+            <div class="stat-card">
               <strong>BASE</strong>
               <span>Melbourne, Australia</span>
             </div>
 
-            <div class="contact-card">
-              <strong>SERVICES</strong>
-              <span>3D modelling, drawings, 3D printing, FEA</span>
+            <div class="stat-card">
+              <strong>PROJECTS</strong>
+              <span>Local and worldwide</span>
             </div>
 
-            <div class="contact-card">
-              <strong>STATUS</strong>
-              <span>Accepting ideas and prototypes</span>
-            </div>
           </div>
+
+          <button class="back-button" data-menu>
+            ← MAIN MENU
+          </button>
+
         </div>
 
-        <div class="contact-right-panel">
-          <div class="tiny-label">MESSAGE CONSOLE</div>
 
-          <form class="contact-form" id="contactForm">
+        <div class="content-right pixel-panel">
+
+          <div class="tiny-label">
+            MESSAGE BOARD
+          </div>
+
+          <form
+            class="contact-form"
+            id="contactForm"
+          >
+
             <div class="field">
-              <label>NAME</label>
-              <input type="text" name="name" placeholder="Your name" required />
+
+              <label>
+                NAME
+              </label>
+
+              <input
+                type="text"
+                placeholder="Your name"
+                required
+              >
+
             </div>
 
-            <div class="field">
-              <label>EMAIL</label>
-              <input type="email" name="email" placeholder="you@example.com" required />
-            </div>
 
             <div class="field">
-              <label>WHAT DO YOU WANT TO MAKE?</label>
+
+              <label>
+                EMAIL
+              </label>
+
+              <input
+                type="email"
+                placeholder="you@example.com"
+                required
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label>
+                WHAT DO YOU WANT TO MAKE?
+              </label>
+
               <textarea
-                name="message"
-                rows="6"
+                rows="7"
                 placeholder="Tell us about your idea..."
                 required
               ></textarea>
+
             </div>
 
-            <button type="submit" class="send-button">SEND MESSAGE</button>
+
+            <button
+              class="send-button"
+              type="submit"
+            >
+              SEND MESSAGE
+            </button>
+
           </form>
+
         </div>
+
       </div>
 
-      <div class="footer-credits">
-        PRESS SEND TO START A CONVERSATION
-      </div>
     </div>
+
   </section>
 
+
   <!-- =========================
-       THREE.JS IMPORTS
+       ABOUT
   ========================== -->
+
+  <section id="about" class="screen game-screen">
+
+    <div class="game-wrap">
+
+      <button class="brand-home" data-menu>
+        CADDY BOYS
+      </button>
+
+      <div class="screen-title">
+        ABOUT
+      </div>
+
+      <div class="content-layout">
+
+        <div class="content-left pixel-panel">
+
+          <div class="tiny-label">
+            CHARACTER PROFILE
+          </div>
+
+          <div class="page-heading">
+            CADDY<br>
+            BOYS
+          </div>
+
+          <div class="about-copy">
+            Caddy Boys is a Melbourne-based engineering
+            design and prototyping studio focused on
+            turning ideas into functional digital and
+            physical designs.
+          </div>
+
+          <button class="back-button" data-menu>
+            ← MAIN MENU
+          </button>
+
+        </div>
+
+
+        <div class="content-right pixel-panel">
+
+          <div class="tiny-label">
+            SKILL TREE
+          </div>
+
+          <div class="about-stats">
+
+            <div class="stat-card">
+              <strong>CAD</strong>
+              <span>
+                3D modelling, parts and assemblies
+              </span>
+            </div>
+
+            <div class="stat-card">
+              <strong>DRAWINGS</strong>
+              <span>
+                Technical and manufacturing drawings
+              </span>
+            </div>
+
+            <div class="stat-card">
+              <strong>PRINTING</strong>
+              <span>
+                Rapid prototyping and physical parts
+              </span>
+            </div>
+
+            <div class="stat-card">
+              <strong>FEA</strong>
+              <span>
+                Structural analysis and validation
+              </span>
+            </div>
+
+          </div>
+
+          <div
+            class="about-copy"
+            style="margin-top: 28px;"
+          >
+            Our goal is simple: help turn a rough idea,
+            sketch or concept into something that can
+            actually be visualised, tested and made.
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       THREE.JS
+  ========================== -->
+
   <script type="importmap">
   {
     "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.179.1/examples/jsm/"
+      "three":
+      "https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.js",
+
+      "three/addons/":
+      "https://cdn.jsdelivr.net/npm/three@0.179.1/examples/jsm/"
     }
   }
   </script>
 
   <script type="module">
+
     import * as THREE from 'three';
-    import { STLLoader } from 'three/addons/loaders/STLLoader.js';
-    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    import {
+      STLLoader
+    } from 'three/addons/loaders/STLLoader.js';
+
+    import {
+      OrbitControls
+    } from 'three/addons/controls/OrbitControls.js';
+
 
     /* =========================
-       SCREEN NAVIGATION
+       SCREEN MANAGEMENT
     ========================== */
+
     const screens = {
-      landing: document.getElementById('landing'),
-      menu: document.getElementById('menu'),
-      work: document.getElementById('work'),
-      contact: document.getElementById('contact')
+
+      landing:
+        document.getElementById('landing'),
+
+      menu:
+        document.getElementById('menu'),
+
+      loading:
+        document.getElementById('loading'),
+
+      work:
+        document.getElementById('work'),
+
+      contact:
+        document.getElementById('contact'),
+
+      about:
+        document.getElementById('about')
+
     };
 
-    function showScreen(name) {
-      Object.values(screens).forEach(screen => {
-        screen.classList.remove('active');
-      });
 
-      screens[name].classList.add('active');
+    function showScreen(name) {
+
+      Object.values(screens)
+        .forEach(screen => {
+
+          screen.classList.remove(
+            'active'
+          );
+
+        });
+
+
+      screens[name]
+        .classList.add(
+          'active'
+        );
+
     }
 
-    document.getElementById('openWork').addEventListener('click', () => {
-      showScreen('work');
-    });
 
-    document.getElementById('openContact').addEventListener('click', () => {
-      showScreen('contact');
-    });
+    /* =========================
+       LOADING TRANSITION
+    ========================== */
 
-    document.querySelectorAll('[data-home]').forEach(button => {
-      button.addEventListener('click', () => {
-        showScreen('menu');
+    const loadingText =
+      document.getElementById(
+        'loadingText'
+      );
+
+
+    const loadingDestination =
+      document.getElementById(
+        'loadingDestination'
+      );
+
+
+    const progressBar =
+      document.getElementById(
+        'progressBar'
+      );
+
+
+    const destinationMessages = {
+
+      work:
+        'ENTERING PROJECT ARCHIVE',
+
+      contact:
+        'OPENING MESSAGE BOARD',
+
+      about:
+        'ACCESSING CADDY BOYS PROFILE'
+
+    };
+
+
+    let loadingInterval = null;
+
+    let progressInterval = null;
+
+
+    function loadSection(destination) {
+
+      clearInterval(
+        loadingInterval
+      );
+
+      clearInterval(
+        progressInterval
+      );
+
+
+      showScreen(
+        'loading'
+      );
+
+
+      loadingDestination
+        .textContent =
+        destinationMessages[
+          destination
+        ];
+
+
+      progressBar.style.width =
+        '0%';
+
+
+      let dotCount = 1;
+
+      let progress = 0;
+
+
+      loadingText.textContent =
+        'LOADING.';
+
+
+      loadingInterval =
+        setInterval(() => {
+
+          dotCount++;
+
+          if (dotCount > 3) {
+            dotCount = 1;
+          }
+
+          loadingText.textContent =
+            'LOADING' +
+            '.'.repeat(dotCount);
+
+        }, 380);
+
+
+      progressInterval =
+        setInterval(() => {
+
+          progress +=
+            Math.random() * 7 + 2;
+
+
+          if (progress > 96) {
+            progress = 96;
+          }
+
+
+          progressBar.style.width =
+            progress + '%';
+
+        }, 120);
+
+
+      setTimeout(() => {
+
+        clearInterval(
+          loadingInterval
+        );
+
+        clearInterval(
+          progressInterval
+        );
+
+
+        progressBar.style.width =
+          '100%';
+
+
+        loadingText.textContent =
+          'LOADED!';
+
+
+        setTimeout(() => {
+
+          showScreen(
+            destination
+          );
+
+        }, 180);
+
+      }, 3000);
+
+    }
+
+
+    /* MAIN MENU OPTIONS */
+
+    document
+      .querySelectorAll(
+        '[data-destination]'
+      )
+      .forEach(button => {
+
+        button.addEventListener(
+          'click',
+          () => {
+
+            loadSection(
+              button.dataset.destination
+            );
+
+          }
+        );
+
       });
-    });
+
+
+    /* RETURN TO MENU */
+
+    document
+      .querySelectorAll(
+        '[data-menu]'
+      )
+      .forEach(button => {
+
+        button.addEventListener(
+          'click',
+          () => {
+
+            showScreen(
+              'menu'
+            );
+
+          }
+        );
+
+      });
+
+
+    /* =========================
+       INTERACTIVE WORKSHOP
+    ========================== */
+
+    const workshopTitle =
+      document.getElementById(
+        'workshopInfoTitle'
+      );
+
+
+    const workshopText =
+      document.getElementById(
+        'workshopInfoText'
+      );
+
+
+    const stations =
+      document.querySelectorAll(
+        '.station'
+      );
+
+
+    function selectStation(
+      station
+    ) {
+
+      stations.forEach(item => {
+
+        item.classList.remove(
+          'active'
+        );
+
+      });
+
+
+      station.classList.add(
+        'active'
+      );
+
+
+      workshopTitle.textContent =
+        station.dataset.title;
+
+
+      workshopText.textContent =
+        station.dataset.info;
+
+    }
+
+
+    stations.forEach(
+      station => {
+
+        station.addEventListener(
+          'mouseenter',
+          () => {
+
+            selectStation(
+              station
+            );
+
+          }
+        );
+
+
+        station.addEventListener(
+          'click',
+          () => {
+
+            selectStation(
+              station
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =========================
+       PROJECT SELECTOR
+    ========================== */
+
+    const projects = [
+
+      {
+
+        code:
+          'JIG',
+
+        title:
+          'WHEEL SHUNT PRODUCTION JIG',
+
+        tags:
+          'CAD · REVERSE ENGINEERING · 3D PRINTING',
+
+        description:
+          'A production jig designed to improve assembly repeatability and support manufacturing workflow. Your real interactive STL model can replace this preview later.'
+
+      },
+
+      {
+
+        code:
+          'CAD',
+
+        title:
+          'CUSTOM BRACKET CONCEPT',
+
+        tags:
+          '3D MODELLING · TECHNICAL DRAWINGS',
+
+        description:
+          'A mechanical design example showing concept development, CAD modelling and design-for-manufacture thinking.'
+
+      },
+
+      {
+
+        code:
+          'FEA',
+
+        title:
+          'FEA STRUCTURAL STUDY',
+
+        tags:
+          'SIMULATION · STRESS · VALIDATION',
+
+        description:
+          'A structural assessment showing how a design behaves under load before manufacturing or prototyping.'
+
+      }
+
+    ];
+
+
+    const projectButtons =
+      document.querySelectorAll(
+        '.project-button'
+      );
+
+
+    const projectCode =
+      document.getElementById(
+        'projectCode'
+      );
+
+
+    const projectTitle =
+      document.getElementById(
+        'projectTitle'
+      );
+
+
+    const projectTags =
+      document.getElementById(
+        'projectTags'
+      );
+
+
+    const projectDescription =
+      document.getElementById(
+        'projectDescription'
+      );
+
+
+    function updateProject(index) {
+
+      const project =
+        projects[index];
+
+
+      projectCode.textContent =
+        project.code;
+
+
+      projectTitle.textContent =
+        project.title;
+
+
+      projectTags.textContent =
+        project.tags;
+
+
+      projectDescription.textContent =
+        project.description;
+
+
+      projectButtons.forEach(
+        button => {
+
+          button.classList.remove(
+            'active'
+          );
+
+        }
+      );
+
+
+      projectButtons[index]
+        .classList.add(
+          'active'
+        );
+
+    }
+
+
+    projectButtons.forEach(
+      button => {
+
+        button.addEventListener(
+          'click',
+          () => {
+
+            updateProject(
+              Number(
+                button.dataset.project
+              )
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    updateProject(0);
+
 
     /* =========================
        CONTACT FORM
     ========================== */
-    document.getElementById('contactForm').addEventListener('submit', event => {
-      event.preventDefault();
-      alert('Form UI is working. Next we can connect it to real email.');
-    });
+
+    document
+      .getElementById(
+        'contactForm'
+      )
+      .addEventListener(
+        'submit',
+        event => {
+
+          event.preventDefault();
+
+          alert(
+            'Contact form design works. We can connect the real email sending next.'
+          );
+
+        }
+      );
+
 
     /* =========================
-       PROJECT DATA
+       LANDING THREE.JS
     ========================== */
-    const projects = [
-      {
-        code: 'JIG',
-        title: 'WHEEL SHUNT PRODUCTION JIG',
-        tags: 'CAD · REVERSE ENGINEERING · 3D PRINTING',
-        description:
-          'A production jig concept built to improve repeatability and assembly workflow. This area can later show your real STL model, rendered images or final printed result.'
-      },
-      {
-        code: 'CAD',
-        title: 'CUSTOM BRACKET CONCEPT',
-        tags: '3D MODELLING · DRAWINGS · PROTOTYPE',
-        description:
-          'A custom bracket design demonstrating concept development, CAD modelling and design-for-manufacture thinking for practical parts and assemblies.'
-      },
-      {
-        code: 'FEA',
-        title: 'FEA STRUCTURAL STUDY',
-        tags: 'SIMULATION · STRESS CHECK · VALIDATION',
-        description:
-          'A design validation concept page for showing how a part performs under load before production. Later you can replace this with your own simulation images and notes.'
-      }
-    ];
 
-    const projectButtons = document.querySelectorAll('.project-item');
-    const previewCode = document.getElementById('previewCode');
-    const projectTitle = document.getElementById('projectTitle');
-    const projectTags = document.getElementById('projectTags');
-    const projectDescription = document.getElementById('projectDescription');
+    const container =
+      document.getElementById(
+        'scene'
+      );
 
-    function updateProject(index) {
-      const project = projects[index];
 
-      previewCode.textContent = project.code;
-      projectTitle.textContent = project.title;
-      projectTags.textContent = project.tags;
-      projectDescription.textContent = project.description;
+    const scene =
+      new THREE.Scene();
 
-      projectButtons.forEach(button => button.classList.remove('active'));
-      projectButtons[index].classList.add('active');
-    }
 
-    projectButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const index = Number(button.dataset.project);
-        updateProject(index);
-      });
-    });
+    scene.background =
+      new THREE.Color(
+        0xffffff
+      );
 
-    updateProject(0);
 
-    /* =========================
-       THREE.JS LANDING LOGO
-    ========================== */
-    const container = document.getElementById('scene');
+    const camera =
+      new THREE.PerspectiveCamera(
 
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff);
+        45,
 
-    const camera = new THREE.PerspectiveCamera(
-      45,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
+        window.innerWidth /
+        window.innerHeight,
+
+        0.1,
+
+        1000
+
+      );
+
+
+    camera.position.set(
+      0,
+      0,
+      120
     );
-    camera.position.set(0, 0, 120);
 
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true
-    });
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    container.appendChild(renderer.domElement);
+    const renderer =
+      new THREE.WebGLRenderer({
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 2);
-    scene.add(ambientLight);
+        antialias:
+          true,
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 3);
-    directionalLight.position.set(50, 50, 100);
-    scene.add(directionalLight);
+        alpha:
+          true
 
-    const backLight = new THREE.DirectionalLight(0xffffff, 2);
-    backLight.position.set(-50, -20, -50);
-    scene.add(backLight);
+      });
 
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.enableZoom = true;
-    controls.enablePan = false;
 
-    const raycaster = new THREE.Raycaster();
-    const mouse = new THREE.Vector2();
+    renderer.setSize(
+      window.innerWidth,
+      window.innerHeight
+    );
 
-    let rotationSpeed = 0.004;
-    let targetRotationSpeed = 0.004;
 
-    const loader = new STLLoader();
+    renderer.setPixelRatio(
+
+      Math.min(
+        window.devicePixelRatio,
+        2
+      )
+
+    );
+
+
+    container.appendChild(
+      renderer.domElement
+    );
+
+
+    /* LIGHTS */
+
+    const ambientLight =
+      new THREE.AmbientLight(
+        0xffffff,
+        2
+      );
+
+
+    scene.add(
+      ambientLight
+    );
+
+
+    const directionalLight =
+      new THREE.DirectionalLight(
+        0xffffff,
+        3
+      );
+
+
+    directionalLight.position.set(
+      50,
+      50,
+      100
+    );
+
+
+    scene.add(
+      directionalLight
+    );
+
+
+    const backLight =
+      new THREE.DirectionalLight(
+        0xffffff,
+        2
+      );
+
+
+    backLight.position.set(
+      -50,
+      -20,
+      -50
+    );
+
+
+    scene.add(
+      backLight
+    );
+
+
+    /* CONTROLS */
+
+    const controls =
+      new OrbitControls(
+        camera,
+        renderer.domElement
+      );
+
+
+    controls.enableDamping =
+      true;
+
+
+    controls.dampingFactor =
+      0.05;
+
+
+    controls.enableZoom =
+      true;
+
+
+    controls.enablePan =
+      false;
+
+
+    /* RAYCASTER */
+
+    const raycaster =
+      new THREE.Raycaster();
+
+
+    const mouse =
+      new THREE.Vector2();
+
+
+    let rotationSpeed =
+      0.004;
+
+
+    let targetRotationSpeed =
+      0.004;
+
+
+    /* LOAD STL */
+
+    const loader =
+      new STLLoader();
+
+
     let logo;
 
+
     loader.load(
+
       './caddyboys-logo.STL',
+
       function (geometry) {
-        geometry.computeVertexNormals();
+
+        geometry
+          .computeVertexNormals();
+
+
         geometry.center();
 
-        const material = new THREE.MeshStandardMaterial({
-          color: 0x111111,
-          roughness: 0.35,
-          metalness: 0.15
-        });
 
-        logo = new THREE.Mesh(geometry, material);
+        const material =
+          new THREE
+            .MeshStandardMaterial({
 
-        const box = new THREE.Box3().setFromObject(logo);
-        const size = new THREE.Vector3();
-        box.getSize(size);
+              color:
+                0x111111,
 
-        const maxDimension = Math.max(size.x, size.y, size.z);
-        const desiredSize = 50;
-        const scale = desiredSize / maxDimension;
+              roughness:
+                0.35,
 
-        logo.scale.setScalar(scale);
-        logo.rotation.x = -0.15;
+              metalness:
+                0.15
 
-        scene.add(logo);
+            });
+
+
+        logo =
+          new THREE.Mesh(
+            geometry,
+            material
+          );
+
+
+        const box =
+          new THREE.Box3()
+            .setFromObject(
+              logo
+            );
+
+
+        const size =
+          new THREE.Vector3();
+
+
+        box.getSize(
+          size
+        );
+
+
+        const maxDimension =
+          Math.max(
+
+            size.x,
+
+            size.y,
+
+            size.z
+
+          );
+
+
+        const desiredSize =
+          50;
+
+
+        const scale =
+          desiredSize /
+          maxDimension;
+
+
+        logo.scale.setScalar(
+          scale
+        );
+
+
+        logo.rotation.x =
+          -0.15;
+
+
+        scene.add(
+          logo
+        );
+
       },
+
       undefined,
+
       function (error) {
-        console.error('Could not load STL:', error);
+
+        console.error(
+          'Could not load STL:',
+          error
+        );
+
       }
+
     );
 
-    renderer.domElement.addEventListener('mousemove', event => {
-      if (!logo) return;
 
-      const rect = renderer.domElement.getBoundingClientRect();
-      mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    /* HOVER */
 
-      raycaster.setFromCamera(mouse, camera);
-      const intersects = raycaster.intersectObject(logo);
+    renderer.domElement
+      .addEventListener(
+        'mousemove',
+        event => {
 
-      if (intersects.length > 0) {
-        targetRotationSpeed = 0.0007;
-        renderer.domElement.style.cursor = 'pointer';
-      } else {
-        targetRotationSpeed = 0.004;
-        renderer.domElement.style.cursor = 'default';
-      }
-    });
+          if (!logo) {
+            return;
+          }
 
-    renderer.domElement.addEventListener('click', event => {
-      if (!logo) return;
 
-      const rect = renderer.domElement.getBoundingClientRect();
-      mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+          const rect =
+            renderer
+              .domElement
+              .getBoundingClientRect();
 
-      raycaster.setFromCamera(mouse, camera);
-      const intersects = raycaster.intersectObject(logo);
 
-      if (intersects.length > 0) {
-        showScreen('menu');
-      }
-    });
+          mouse.x =
+            (
+              (
+                event.clientX -
+                rect.left
+              ) /
+              rect.width
+            ) * 2 - 1;
+
+
+          mouse.y =
+            -(
+              (
+                event.clientY -
+                rect.top
+              ) /
+              rect.height
+            ) * 2 + 1;
+
+
+          raycaster.setFromCamera(
+            mouse,
+            camera
+          );
+
+
+          const intersects =
+            raycaster
+              .intersectObject(
+                logo
+              );
+
+
+          if (
+            intersects.length >
+            0
+          ) {
+
+            targetRotationSpeed =
+              0.0007;
+
+
+            renderer
+              .domElement
+              .style
+              .cursor =
+              'pointer';
+
+          }
+
+          else {
+
+            targetRotationSpeed =
+              0.004;
+
+
+            renderer
+              .domElement
+              .style
+              .cursor =
+              'default';
+
+          }
+
+        }
+      );
+
+
+    /* CLICK LOGO */
+
+    renderer.domElement
+      .addEventListener(
+        'click',
+        event => {
+
+          if (!logo) {
+            return;
+          }
+
+
+          const rect =
+            renderer
+              .domElement
+              .getBoundingClientRect();
+
+
+          mouse.x =
+            (
+              (
+                event.clientX -
+                rect.left
+              ) /
+              rect.width
+            ) * 2 - 1;
+
+
+          mouse.y =
+            -(
+              (
+                event.clientY -
+                rect.top
+              ) /
+              rect.height
+            ) * 2 + 1;
+
+
+          raycaster.setFromCamera(
+            mouse,
+            camera
+          );
+
+
+          const intersects =
+            raycaster
+              .intersectObject(
+                logo
+              );
+
+
+          if (
+            intersects.length >
+            0
+          ) {
+
+            showScreen(
+              'menu'
+            );
+
+          }
+
+        }
+      );
+
+
+    /* ANIMATION */
 
     function animate() {
-      requestAnimationFrame(animate);
 
-      rotationSpeed += (targetRotationSpeed - rotationSpeed) * 0.08;
+      requestAnimationFrame(
+        animate
+      );
+
+
+      rotationSpeed +=
+        (
+          targetRotationSpeed -
+          rotationSpeed
+        ) * 0.08;
+
 
       if (logo) {
-        logo.rotation.y += rotationSpeed;
+
+        logo.rotation.y +=
+          rotationSpeed;
+
       }
 
+
       controls.update();
-      renderer.render(scene, camera);
+
+
+      renderer.render(
+        scene,
+        camera
+      );
+
     }
+
 
     animate();
 
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+
+    /* RESIZE */
+
+    window.addEventListener(
+      'resize',
+      () => {
+
+        camera.aspect =
+          window.innerWidth /
+          window.innerHeight;
+
+
+        camera
+          .updateProjectionMatrix();
+
+
+        renderer.setSize(
+          window.innerWidth,
+          window.innerHeight
+        );
+
+      }
+    );
+
   </script>
+
 </body>
 </html>
