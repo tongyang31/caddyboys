@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Caddy Boys</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
   <style>
     * {
       margin: 0;
@@ -17,9 +24,9 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
+      font-family: 'Inter', sans-serif;
       background: #ffffff;
       color: #111111;
-      font-family: Arial, Helvetica, sans-serif;
     }
 
     button,
@@ -30,10 +37,25 @@
 
     button {
       color: inherit;
+      border: none;
+      background: transparent;
+    }
+
+    :root {
+      --bg-dark: #0a0f18;
+      --bg-mid: #111826;
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-strong: rgba(255, 255, 255, 0.12);
+      --border: rgba(255, 255, 255, 0.16);
+      --text-light: #e8edf7;
+      --text-muted: rgba(232, 237, 247, 0.68);
+      --accent: #8ab4ff;
+      --accent-soft: rgba(138, 180, 255, 0.18);
+      --white: #ffffff;
     }
 
     /* =========================
-       GLOBAL SCREENS
+       GLOBAL SCREEN SYSTEM
     ========================== */
 
     .screen {
@@ -41,13 +63,10 @@
       inset: 0;
       opacity: 0;
       pointer-events: none;
-      transform: translateY(12px);
-
+      transform: translateY(14px);
       transition:
         opacity 0.7s ease,
         transform 0.7s ease;
-
-      background: #ffffff;
     }
 
     .screen.active {
@@ -56,32 +75,151 @@
       transform: translateY(0);
     }
 
-    .topbar {
+    .brand-button {
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .game-topbar {
       position: absolute;
-      top: 32px;
-      left: 42px;
-      right: 42px;
-      z-index: 20;
+      top: 30px;
+      left: 34px;
+      right: 34px;
+      z-index: 30;
 
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .brand-button {
-      border: none;
-      background: transparent;
+    .game-brand {
       cursor: pointer;
-
+      color: var(--text-light);
       font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 3px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
     }
 
-    .small-label {
+    .hud-pill {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .game-screen {
+      background:
+        radial-gradient(circle at 18% 22%, rgba(75, 120, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 82% 20%, rgba(0, 201, 255, 0.13), transparent 24%),
+        radial-gradient(circle at 72% 76%, rgba(180, 120, 255, 0.16), transparent 26%),
+        linear-gradient(135deg, #070b12 0%, #0e1420 52%, #111b2b 100%);
+      color: var(--text-light);
+      overflow: hidden;
+    }
+
+    .game-screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.15));
+      pointer-events: none;
+    }
+
+    .game-screen::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.04),
+        transparent 18%,
+        transparent 82%,
+        rgba(255,255,255,0.03)
+      );
+      pointer-events: none;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(55px);
+      opacity: 0.6;
+      pointer-events: none;
+      animation: floatOrb 11s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 240px;
+      height: 240px;
+      background: rgba(90, 145, 255, 0.24);
+      top: 10%;
+      right: 12%;
+    }
+
+    .orb-2 {
+      width: 190px;
+      height: 190px;
+      background: rgba(126, 80, 255, 0.22);
+      bottom: 12%;
+      left: 10%;
+      animation-delay: -4s;
+    }
+
+    .orb-3 {
+      width: 130px;
+      height: 130px;
+      background: rgba(0, 225, 255, 0.18);
+      bottom: 20%;
+      right: 28%;
+      animation-delay: -2s;
+    }
+
+    @keyframes floatOrb {
+      0%, 100% {
+        transform: translateY(0px) translateX(0px) scale(1);
+      }
+      50% {
+        transform: translateY(-16px) translateX(10px) scale(1.06);
+      }
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+    }
+
+    .eyebrow {
+      color: var(--text-muted);
       font-size: 11px;
       letter-spacing: 3px;
-      color: #777777;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hud-title {
+      color: var(--text-muted);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
     }
 
     /* =========================
@@ -89,6 +227,7 @@
     ========================== */
 
     #landing {
+      background: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -102,7 +241,6 @@
     .landing-content {
       position: absolute;
       inset: 0;
-
       pointer-events: none;
 
       display: flex;
@@ -118,249 +256,480 @@
       letter-spacing: 4px;
       color: #555555;
       text-transform: uppercase;
-      opacity: 0.8;
+      opacity: 0.82;
     }
 
     /* =========================
-       MENU
+       MENU SCREEN
     ========================== */
 
     #menu {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: relative;
     }
 
-    .menu-wrapper {
-      width: min(1100px, 86%);
-
+    .menu-shell {
+      position: relative;
+      z-index: 10;
+      width: min(1280px, 92%);
+      height: 100%;
+      margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.08fr 0.92fr;
       gap: 28px;
+      align-items: center;
+      padding: 90px 0 40px;
     }
 
-    .menu-card {
-      min-height: 330px;
+    .menu-left {
+      padding: 24px 10px 24px 6px;
+    }
 
-      border: 1px solid #dcdcdc;
-      background: #ffffff;
+    .menu-left h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(54px, 8vw, 108px);
+      line-height: 0.96;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      text-shadow: 0 0 30px rgba(255,255,255,0.06);
+    }
 
+    .menu-subtext {
+      max-width: 520px;
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 36px;
+    }
+
+    .menu-list {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 16px;
+      max-width: 560px;
+    }
 
-      padding: 36px;
-
+    .menu-option {
+      width: 100%;
+      text-align: left;
       cursor: pointer;
-
+      padding: 24px 24px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-light);
       transition:
-        transform 0.35s ease,
-        background 0.35s ease,
-        color 0.35s ease,
-        border-color 0.35s ease;
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    .menu-card:hover {
-      transform: translateY(-8px);
-      background: #111111;
-      color: #ffffff;
-      border-color: #111111;
+    .menu-option::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(138, 180, 255, 0.15),
+        rgba(255,255,255,0.02)
+      );
+      opacity: 0;
+      transition: opacity 0.25s ease;
     }
 
-    .menu-number {
-      font-size: 11px;
-      letter-spacing: 3px;
-      opacity: 0.55;
+    .menu-option:hover {
+      transform: translateX(10px);
+      border-color: rgba(138, 180, 255, 0.5);
+      box-shadow: 0 0 0 1px rgba(138, 180, 255, 0.18), 0 16px 40px rgba(0,0,0,0.22);
+      background: rgba(255, 255, 255, 0.10);
     }
 
-    .menu-title {
-      font-size: clamp(34px, 5vw, 64px);
-      font-weight: 500;
-      letter-spacing: -2px;
+    .menu-option:hover::before {
+      opacity: 1;
     }
 
-    .menu-description {
+    .menu-option-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .menu-option-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .menu-index {
+      color: var(--accent);
+      font-family: 'Orbitron', sans-serif;
       font-size: 13px;
-      line-height: 1.7;
-      max-width: 300px;
-      opacity: 0.7;
+      letter-spacing: 2px;
+      min-width: 30px;
+    }
+
+    .menu-option-title {
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .menu-option-desc {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-top: 6px;
     }
 
     .menu-arrow {
+      font-size: 28px;
+      color: var(--accent);
+      transform: translateX(0);
+      transition: transform 0.25s ease;
+    }
+
+    .menu-option:hover .menu-arrow {
+      transform: translateX(6px);
+    }
+
+    .menu-right {
+      display: grid;
+      gap: 18px;
+      align-content: center;
+    }
+
+    .overview-card {
+      padding: 26px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .overview-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #cfe2ff;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #8ab4ff;
+      box-shadow: 0 0 18px #8ab4ff;
+    }
+
+    .overview-big {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(28px, 3vw, 44px);
+      line-height: 1.15;
+      text-transform: uppercase;
+      margin: 18px 0 12px;
+    }
+
+    .overview-copy {
+      color: var(--text-muted);
+      line-height: 1.8;
+      font-size: 14px;
+      max-width: 440px;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .mini-card {
+      padding: 22px;
+      min-height: 145px;
+    }
+
+    .mini-value {
+      font-family: 'Orbitron', sans-serif;
       font-size: 24px;
-      margin-top: 20px;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+
+    .mini-copy {
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.7;
     }
 
     /* =========================
-       OUR WORK
+       WORK SECTION
     ========================== */
 
     #work {
-      padding: 110px 7% 60px;
+      position: relative;
+      color: var(--text-light);
+      background:
+        radial-gradient(circle at 18% 22%, rgba(75, 120, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 82% 20%, rgba(0, 201, 255, 0.13), transparent 24%),
+        radial-gradient(circle at 72% 76%, rgba(180, 120, 255, 0.16), transparent 26%),
+        linear-gradient(135deg, #070b12 0%, #0e1420 52%, #111b2b 100%);
       overflow-y: auto;
+      overflow-x: hidden;
     }
 
-    .section-heading {
-      margin-bottom: 70px;
+    #work::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+      pointer-events: none;
     }
 
-    .section-heading h1 {
-      font-size: clamp(44px, 8vw, 105px);
-      font-weight: 400;
-      letter-spacing: -5px;
-    }
-
-    .section-heading p {
-      margin-top: 14px;
-      font-size: 12px;
-      letter-spacing: 3px;
-      color: #777777;
-    }
-
-    .project-viewer {
+    .work-shell {
+      position: relative;
+      z-index: 10;
+      width: min(1280px, 92%);
+      margin: 0 auto;
+      padding: 110px 0 50px;
       display: grid;
-      grid-template-columns: 1.3fr 0.7fr;
-      gap: 60px;
-      align-items: center;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: 24px;
+      min-height: 100%;
     }
 
-    .project-model {
-      min-height: 520px;
+    .project-list-panel {
+      padding: 24px;
+      align-self: start;
+    }
 
-      border: 1px solid #e1e1e1;
-      background: #fafafa;
+    .project-list-panel h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
 
+    .project-list {
       display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .placeholder-model {
-      text-align: center;
-      color: #999999;
-    }
-
-    .placeholder-model .big {
-      font-size: 70px;
-      font-weight: 300;
-      margin-bottom: 16px;
-    }
-
-    .placeholder-model p {
-      font-size: 11px;
-      letter-spacing: 3px;
-    }
-
-    .project-info {
-      padding: 20px 0;
-    }
-
-    .project-count {
-      font-size: 11px;
-      letter-spacing: 3px;
-      color: #888888;
-      margin-bottom: 30px;
-    }
-
-    .project-info h2 {
-      font-size: clamp(32px, 4vw, 56px);
-      font-weight: 400;
-      line-height: 1.05;
-
-      margin-bottom: 20px;
-    }
-
-    .project-tags {
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: #777777;
-
-      margin-bottom: 28px;
-    }
-
-    .project-description {
-      max-width: 460px;
-
-      line-height: 1.8;
-      color: #444444;
-      font-size: 14px;
-    }
-
-    .project-controls {
-      display: flex;
+      flex-direction: column;
       gap: 12px;
-
-      margin-top: 40px;
     }
 
-    .outline-button {
-      border: 1px solid #222222;
-      background: #ffffff;
-
-      padding: 14px 22px;
-
-      font-size: 11px;
-      letter-spacing: 2px;
-
+    .project-item {
+      width: 100%;
+      text-align: left;
       cursor: pointer;
-
+      padding: 16px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      color: var(--text-light);
       transition: all 0.25s ease;
     }
 
-    .outline-button:hover {
-      background: #111111;
-      color: #ffffff;
+    .project-item:hover,
+    .project-item.active {
+      background: rgba(138, 180, 255, 0.15);
+      border-color: rgba(138, 180, 255, 0.35);
+      transform: translateX(6px);
     }
 
-    /* =========================
-       CONTACT
-    ========================== */
-
-    #contact {
-      padding: 110px 7% 60px;
-      overflow-y: auto;
-    }
-
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 100px;
-      align-items: start;
-
-      margin-top: 50px;
-    }
-
-    .contact-intro h1 {
-      font-size: clamp(48px, 7vw, 90px);
-      line-height: 0.95;
-      font-weight: 400;
-      letter-spacing: -4px;
-    }
-
-    .contact-intro p {
-      margin-top: 32px;
-
-      max-width: 420px;
-
-      line-height: 1.8;
-      color: #555555;
+    .project-item-name {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       font-size: 14px;
     }
 
-    .contact-location {
-      margin-top: 40px;
+    .project-item-type {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
 
+    .project-preview-panel {
+      padding: 24px;
+      display: grid;
+      grid-template-rows: minmax(360px, 1fr) auto;
+      gap: 20px;
+      min-height: 620px;
+    }
+
+    .project-visual {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background:
+        radial-gradient(circle at 50% 45%, rgba(138,180,255,0.18), transparent 24%),
+        linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-visual::before {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      border: 1px solid rgba(138,180,255,0.25);
+      box-shadow:
+        0 0 0 40px rgba(138,180,255,0.05),
+        0 0 0 90px rgba(138,180,255,0.03);
+    }
+
+    .preview-placeholder {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .preview-code {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(44px, 7vw, 92px);
+      color: rgba(255,255,255,0.9);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    .preview-note {
+      margin-top: 14px;
+      color: var(--text-muted);
       font-size: 11px;
-      letter-spacing: 2px;
-      line-height: 2;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
 
-      color: #777777;
+    .project-meta h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(24px, 3vw, 42px);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .project-tags {
+      color: #bdd5ff;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .project-description {
+      color: var(--text-muted);
+      line-height: 1.85;
+      max-width: 760px;
+      font-size: 14px;
+    }
+
+    /* =========================
+       CONTACT SECTION
+    ========================== */
+
+    #contact {
+      position: relative;
+      color: var(--text-light);
+      background:
+        radial-gradient(circle at 18% 22%, rgba(75, 120, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 82% 20%, rgba(0, 201, 255, 0.13), transparent 24%),
+        radial-gradient(circle at 72% 76%, rgba(180, 120, 255, 0.16), transparent 26%),
+        linear-gradient(135deg, #070b12 0%, #0e1420 52%, #111b2b 100%);
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    #contact::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+      pointer-events: none;
+    }
+
+    .contact-shell {
+      position: relative;
+      z-index: 10;
+      width: min(1280px, 92%);
+      margin: 0 auto;
+      min-height: 100%;
+      padding: 110px 0 50px;
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .contact-info {
+      padding: 28px;
+    }
+
+    .contact-info h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(36px, 5vw, 72px);
+      line-height: 1.02;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .contact-copy {
+      color: var(--text-muted);
+      line-height: 1.85;
+      font-size: 14px;
+      max-width: 420px;
+    }
+
+    .contact-stats {
+      display: grid;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .contact-stat {
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact-stat strong {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #cfe2ff;
+      margin-bottom: 6px;
+    }
+
+    .contact-stat span {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .contact-form-panel {
+      padding: 28px;
     }
 
     .contact-form {
       display: flex;
       flex-direction: column;
-      gap: 32px;
+      gap: 22px;
     }
 
     .field {
@@ -370,93 +739,114 @@
     }
 
     .field label {
+      color: var(--text-muted);
       font-size: 10px;
       letter-spacing: 3px;
-      color: #777777;
+      text-transform: uppercase;
     }
 
     .field input,
     .field textarea {
       width: 100%;
-
-      border: none;
-      border-bottom: 1px solid #bbbbbb;
-
-      padding: 12px 0;
-
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      color: var(--text-light);
+      padding: 16px 16px;
       outline: none;
-      background: transparent;
-
-      font-size: 16px;
-
+      font-size: 15px;
       resize: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: rgba(232, 237, 247, 0.45);
     }
 
     .field input:focus,
     .field textarea:focus {
-      border-bottom-color: #111111;
+      border-color: rgba(138, 180, 255, 0.45);
+      background: rgba(255,255,255,0.07);
     }
 
     .send-button {
-      margin-top: 20px;
       width: fit-content;
-
-      border: 1px solid #111111;
-      background: #111111;
-      color: #ffffff;
-
-      padding: 16px 28px;
-
+      padding: 16px 22px;
+      border-radius: 14px;
       cursor: pointer;
-
+      font-weight: 600;
+      letter-spacing: 2px;
       font-size: 11px;
-      letter-spacing: 3px;
-
-      transition: all 0.25s ease;
+      text-transform: uppercase;
+      color: #08101a;
+      background: linear-gradient(135deg, #dbe8ff 0%, #8ab4ff 100%);
+      box-shadow: 0 10px 30px rgba(138, 180, 255, 0.26);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .send-button:hover {
-      background: #ffffff;
-      color: #111111;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 38px rgba(138, 180, 255, 0.32);
     }
 
     /* =========================
        MOBILE
     ========================== */
 
-    @media (max-width: 800px) {
-      .topbar {
-        top: 24px;
-        left: 22px;
-        right: 22px;
-      }
-
-      .menu-wrapper {
+    @media (max-width: 980px) {
+      .menu-shell,
+      .work-shell,
+      .contact-shell {
         grid-template-columns: 1fr;
-        width: 88%;
       }
 
-      .menu-card {
-        min-height: 240px;
+      .menu-right {
+        margin-top: 10px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .game-topbar {
+        top: 20px;
+        left: 18px;
+        right: 18px;
       }
 
-      .project-viewer {
+      .menu-shell,
+      .work-shell,
+      .contact-shell {
+        width: 92%;
+        padding-top: 90px;
+      }
+
+      .overview-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
       }
 
-      .project-model {
-        min-height: 360px;
+      .menu-option-inner {
+        align-items: flex-start;
       }
 
-      .contact-layout {
-        grid-template-columns: 1fr;
-        gap: 50px;
+      .menu-option-title {
+        font-size: 24px;
       }
 
-      #work,
-      #contact {
-        padding: 100px 6% 40px;
+      .project-preview-panel {
+        min-height: 520px;
+      }
+
+      .preview-code {
+        font-size: 56px;
+      }
+
+      .contact-info,
+      .contact-form-panel,
+      .project-list-panel,
+      .project-preview-panel,
+      .overview-card,
+      .mini-card {
+        padding: 20px;
       }
     }
   </style>
@@ -467,284 +857,234 @@
   <!-- =========================
        LANDING
   ========================== -->
-
   <section id="landing" class="screen active">
-
     <div id="scene"></div>
 
     <div class="landing-content">
-      <div id="enterText">
-        Stay tuned.
-      </div>
+      <div id="enterText">Stay tuned.</div>
     </div>
-
   </section>
 
   <!-- =========================
        MENU
   ========================== -->
+  <section id="menu" class="screen game-screen">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
-  <section id="menu" class="screen">
+    <div class="game-topbar">
+      <button class="game-brand" data-home>CADDY BOYS</button>
+      <div class="hud-pill">Melbourne · Studio Online</div>
+    </div>
 
-    <div class="topbar">
+    <div class="menu-shell">
+      <div class="menu-left">
+        <div class="eyebrow">Engineering · Design · Prototyping</div>
 
-      <button class="brand-button" data-home>
-        CADDY BOYS
-      </button>
+        <h1>Caddy Boys</h1>
 
-      <div class="small-label">
-        MELBOURNE
+        <p class="menu-subtext">
+          Enter the workshop. Explore our design work, prototypes and engineering ideas,
+          or send us your concept and let’s build something together.
+        </p>
+
+        <div class="menu-list">
+          <button class="menu-option" id="openWork">
+            <div class="menu-option-inner">
+              <div class="menu-option-left">
+                <div class="menu-index">01</div>
+                <div>
+                  <div class="menu-option-title">Our Work</div>
+                  <div class="menu-option-desc">Browse selected projects and concepts</div>
+                </div>
+              </div>
+              <div class="menu-arrow">→</div>
+            </div>
+          </button>
+
+          <button class="menu-option" id="openContact">
+            <div class="menu-option-inner">
+              <div class="menu-option-left">
+                <div class="menu-index">02</div>
+                <div>
+                  <div class="menu-option-title">Contact Us</div>
+                  <div class="menu-option-desc">Tell us what you want to make</div>
+                </div>
+              </div>
+              <div class="menu-arrow">→</div>
+            </div>
+          </button>
+        </div>
       </div>
 
-    </div>
+      <div class="menu-right">
+        <div class="overview-card panel">
+          <div class="hud-title">System Overview</div>
 
-    <div class="menu-wrapper">
-
-      <button class="menu-card" id="openWork">
-
-        <div class="menu-number">
-          01
-        </div>
-
-        <div>
-
-          <div class="menu-title">
-            OUR WORK
+          <div class="overview-status">
+            <span class="status-dot"></span>
+            Creative Mode Active
           </div>
 
-          <p class="menu-description">
-            Explore our engineering,
-            design and prototyping projects.
+          <div class="overview-big">
+            From idea to engineered reality
+          </div>
+
+          <p class="overview-copy">
+            We focus on 3D modelling, technical drawings, 3D printing and FEA analysis,
+            helping turn concepts into visualised, testable and manufacturable outcomes.
           </p>
-
-          <div class="menu-arrow">
-            →
-          </div>
-
         </div>
 
-      </button>
-
-      <button class="menu-card" id="openContact">
-
-        <div class="menu-number">
-          02
-        </div>
-
-        <div>
-
-          <div class="menu-title">
-            CONTACT US
+        <div class="overview-grid">
+          <div class="mini-card panel">
+            <div class="hud-title">Capabilities</div>
+            <div class="mini-value">CAD</div>
+            <p class="mini-copy">
+              Solid modelling, assemblies and production-ready geometry.
+            </p>
           </div>
 
-          <p class="menu-description">
-            Have an idea, sketch or part?
-            Let's build something.
-          </p>
-
-          <div class="menu-arrow">
-            →
+          <div class="mini-card panel">
+            <div class="hud-title">Validation</div>
+            <div class="mini-value">FEA</div>
+            <p class="mini-copy">
+              Structural assessment, stress checks and design optimisation.
+            </p>
           </div>
-
         </div>
-
-      </button>
-
+      </div>
     </div>
-
   </section>
 
   <!-- =========================
-       OUR WORK
+       WORK
   ========================== -->
-
   <section id="work" class="screen">
+    <div class="game-topbar">
+      <button class="game-brand" data-home>CADDY BOYS</button>
+      <div class="hud-pill">Project Selection</div>
+    </div>
 
-    <div class="topbar">
+    <div class="work-shell">
+      <div class="project-list-panel panel">
+        <div class="eyebrow">Select Project</div>
+        <h2>Our Work</h2>
 
-      <button class="brand-button" data-home>
-        CADDY BOYS
-      </button>
+        <div class="project-list">
+          <button class="project-item active" data-project="0">
+            <div class="project-item-name">Wheel Shunt Production Jig</div>
+            <div class="project-item-type">Reverse Engineering · 3D Printing</div>
+          </button>
 
-      <div class="small-label">
-        OUR WORK
+          <button class="project-item" data-project="1">
+            <div class="project-item-name">Custom Bracket Concept</div>
+            <div class="project-item-type">CAD Design · Technical Drawings</div>
+          </button>
+
+          <button class="project-item" data-project="2">
+            <div class="project-item-name">FEA Structural Study</div>
+            <div class="project-item-type">Simulation · Design Validation</div>
+          </button>
+        </div>
       </div>
 
-    </div>
-
-    <div class="section-heading">
-
-      <h1>
-        Selected Work
-      </h1>
-
-      <p>
-        DESIGN · ENGINEERING · PROTOTYPING
-      </p>
-
-    </div>
-
-    <div class="project-viewer">
-
-      <div class="project-model">
-
-        <div class="placeholder-model">
-
-          <div class="big">
-            3D
+      <div class="project-preview-panel panel">
+        <div class="project-visual">
+          <div class="preview-placeholder">
+            <div class="preview-code" id="previewCode">JIG</div>
+            <div class="preview-note">Interactive model / preview coming next</div>
           </div>
+        </div>
 
-          <p>
-            INTERACTIVE MODEL COMING NEXT
+        <div class="project-meta">
+          <div class="hud-title">Project Brief</div>
+          <h3 id="projectTitle">Wheel Shunt Production Jig</h3>
+          <div class="project-tags" id="projectTags">
+            Reverse Engineering · CAD · 3D Printing
+          </div>
+          <p class="project-description" id="projectDescription">
+            A production jig concept created to improve repeatability and assembly workflow.
+            This section will later hold your interactive model or project renders, while the
+            project information on the right helps visitors quickly understand the scope.
           </p>
-
         </div>
-
       </div>
-
-      <div class="project-info">
-
-        <div class="project-count">
-          01 / 01
-        </div>
-
-        <h2>
-          First Project
-        </h2>
-
-        <div class="project-tags">
-          CAD · 3D PRINTING · ENGINEERING
-        </div>
-
-        <p class="project-description">
-          This area will contain your interactive project models.
-          Visitors will be able to rotate, zoom and inspect your work
-          directly in the browser.
-        </p>
-
-        <div class="project-controls">
-
-          <button class="outline-button">
-            ← PREVIOUS
-          </button>
-
-          <button class="outline-button">
-            NEXT →
-          </button>
-
-        </div>
-
-      </div>
-
     </div>
-
   </section>
 
   <!-- =========================
        CONTACT
   ========================== -->
-
   <section id="contact" class="screen">
-
-    <div class="topbar">
-
-      <button class="brand-button" data-home>
-        CADDY BOYS
-      </button>
-
-      <div class="small-label">
-        CONTACT
-      </div>
-
+    <div class="game-topbar">
+      <button class="game-brand" data-home>CADDY BOYS</button>
+      <div class="hud-pill">Open Transmission</div>
     </div>
 
-    <div class="contact-layout">
+    <div class="contact-shell">
+      <div class="contact-info panel">
+        <div class="eyebrow">Start a Project</div>
 
-      <div class="contact-intro">
+        <h2>Send us your idea</h2>
 
-        <h1>
-          Let's make
-          something.
-        </h1>
-
-        <p>
-          Have an idea, sketch, existing part or design?
-          Tell us what you're trying to create and we'll
-          help you figure out the next step.
+        <p class="contact-copy">
+          Have an idea, a sketch, an existing part or even just a rough concept?
+          Tell us what you’re trying to build and we can help guide the next step.
         </p>
 
-        <div class="contact-location">
-          MELBOURNE, AUSTRALIA
-          <br>
-          PROJECTS WELCOME WORLDWIDE
-        </div>
+        <div class="contact-stats">
+          <div class="contact-stat">
+            <strong>Based In</strong>
+            <span>Melbourne, Australia</span>
+          </div>
 
+          <div class="contact-stat">
+            <strong>Services</strong>
+            <span>3D modelling, technical drawings, 3D printing, FEA analysis</span>
+          </div>
+
+          <div class="contact-stat">
+            <strong>Project Type</strong>
+            <span>Personal concepts, prototypes, mechanical ideas and engineering visuals</span>
+          </div>
+        </div>
       </div>
 
-      <form class="contact-form" id="contactForm">
+      <div class="contact-form-panel panel">
+        <div class="hud-title">Message Console</div>
 
-        <div class="field">
+        <form class="contact-form" id="contactForm">
+          <div class="field">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Your name" required />
+          </div>
 
-          <label>
-            NAME
-          </label>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </div>
 
-          <input
-            type="text"
-            name="name"
-            placeholder="Your name"
-            required
-          />
+          <div class="field">
+            <label>What do you want to make?</label>
+            <textarea
+              name="message"
+              rows="6"
+              placeholder="Tell us about your idea..."
+              required
+            ></textarea>
+          </div>
 
-        </div>
-
-        <div class="field">
-
-          <label>
-            EMAIL
-          </label>
-
-          <input
-            type="email"
-            name="email"
-            placeholder="you@example.com"
-            required
-          />
-
-        </div>
-
-        <div class="field">
-
-          <label>
-            WHAT ARE YOU LOOKING TO MAKE?
-          </label>
-
-          <textarea
-            name="message"
-            rows="5"
-            placeholder="Tell us about your idea..."
-            required
-          ></textarea>
-
-        </div>
-
-        <button
-          type="submit"
-          class="send-button"
-        >
-          SEND →
-        </button>
-
-      </form>
-
+          <button type="submit" class="send-button">Send Message →</button>
+        </form>
+      </div>
     </div>
-
   </section>
 
   <!-- =========================
-       THREE.JS IMPORTS
+       THREE.JS
   ========================== -->
-
   <script type="importmap">
   {
     "imports": {
@@ -755,21 +1095,13 @@
   </script>
 
   <script type="module">
-
     import * as THREE from 'three';
-
-    import {
-      STLLoader
-    } from 'three/addons/loaders/STLLoader.js';
-
-    import {
-      OrbitControls
-    } from 'three/addons/controls/OrbitControls.js';
+    import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
     /* =========================
        SCREEN NAVIGATION
     ========================== */
-
     const screens = {
       landing: document.getElementById('landing'),
       menu: document.getElementById('menu'),
@@ -778,413 +1110,231 @@
     };
 
     function showScreen(name) {
-
       Object.values(screens).forEach(screen => {
         screen.classList.remove('active');
       });
 
       screens[name].classList.add('active');
-
     }
 
-    document
-      .getElementById('openWork')
-      .addEventListener('click', () => {
-        showScreen('work');
+    document.getElementById('openWork').addEventListener('click', () => {
+      showScreen('work');
+    });
+
+    document.getElementById('openContact').addEventListener('click', () => {
+      showScreen('contact');
+    });
+
+    document.querySelectorAll('[data-home]').forEach(button => {
+      button.addEventListener('click', () => {
+        showScreen('menu');
       });
-
-    document
-      .getElementById('openContact')
-      .addEventListener('click', () => {
-        showScreen('contact');
-      });
-
-    document
-      .querySelectorAll('[data-home]')
-      .forEach(button => {
-
-        button.addEventListener('click', () => {
-          showScreen('menu');
-        });
-
-      });
+    });
 
     /* =========================
        CONTACT FORM
     ========================== */
+    document.getElementById('contactForm').addEventListener('submit', event => {
+      event.preventDefault();
+      alert('Contact form design is working. We can connect the real email function next.');
+    });
 
-    document
-      .getElementById('contactForm')
-      .addEventListener('submit', event => {
+    /* =========================
+       PROJECT SELECTOR
+    ========================== */
+    const projects = [
+      {
+        code: 'JIG',
+        title: 'Wheel Shunt Production Jig',
+        tags: 'Reverse Engineering · CAD · 3D Printing',
+        description:
+          'A production jig concept created to improve repeatability and assembly workflow. This section will later hold your interactive model or project renders, while the project information helps visitors quickly understand the scope.'
+      },
+      {
+        code: 'CAD',
+        title: 'Custom Bracket Concept',
+        tags: '3D Modelling · Drawings · Prototype',
+        description:
+          'A custom mechanical bracket project showcasing concept development, CAD modelling and design-for-manufacture thinking. This is a good example of how your site can present client ideas in a polished and visual way.'
+      },
+      {
+        code: 'FEA',
+        title: 'FEA Structural Study',
+        tags: 'Simulation · Stress Check · Optimisation',
+        description:
+          'A structural analysis concept page for demonstrating design validation. You can later replace this placeholder with images, diagrams or an interactive result preview to show how you assess performance before fabrication.'
+      }
+    ];
 
-        event.preventDefault();
+    const projectButtons = document.querySelectorAll('.project-item');
+    const previewCode = document.getElementById('previewCode');
+    const projectTitle = document.getElementById('projectTitle');
+    const projectTags = document.getElementById('projectTags');
+    const projectDescription = document.getElementById('projectDescription');
 
-        alert(
-          'Contact form design is working. We will connect the actual email sending later.'
-        );
+    function updateProject(index) {
+      const project = projects[index];
 
+      previewCode.textContent = project.code;
+      projectTitle.textContent = project.title;
+      projectTags.textContent = project.tags;
+      projectDescription.textContent = project.description;
+
+      projectButtons.forEach(button => button.classList.remove('active'));
+      projectButtons[index].classList.add('active');
+    }
+
+    projectButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const index = Number(button.dataset.project);
+        updateProject(index);
       });
+    });
+
+    updateProject(0);
 
     /* =========================
-       THREE.JS LANDING
+       THREE.JS LANDING LOGO
     ========================== */
+    const container = document.getElementById('scene');
 
-    const container =
-      document.getElementById('scene');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xffffff);
 
-    const scene =
-      new THREE.Scene();
-
-    scene.background =
-      new THREE.Color(0xffffff);
-
-    const camera =
-      new THREE.PerspectiveCamera(
-        45,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
-      );
-
-    camera.position.set(
-      0,
-      0,
-      120
+    const camera = new THREE.PerspectiveCamera(
+      45,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
     );
+    camera.position.set(0, 0, 120);
 
-    const renderer =
-      new THREE.WebGLRenderer({
-        antialias: true,
-        alpha: true
-      });
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true
+    });
 
-    renderer.setSize(
-      window.innerWidth,
-      window.innerHeight
-    );
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
 
-    renderer.setPixelRatio(
-      Math.min(
-        window.devicePixelRatio,
-        2
-      )
-    );
+    const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+    scene.add(ambientLight);
 
-    container.appendChild(
-      renderer.domElement
-    );
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 3);
+    directionalLight.position.set(50, 50, 100);
+    scene.add(directionalLight);
 
-    /* =========================
-       LIGHTING
-    ========================== */
+    const backLight = new THREE.DirectionalLight(0xffffff, 2);
+    backLight.position.set(-50, -20, -50);
+    scene.add(backLight);
 
-    const ambientLight =
-      new THREE.AmbientLight(
-        0xffffff,
-        2
-      );
-
-    scene.add(
-      ambientLight
-    );
-
-    const directionalLight =
-      new THREE.DirectionalLight(
-        0xffffff,
-        3
-      );
-
-    directionalLight.position.set(
-      50,
-      50,
-      100
-    );
-
-    scene.add(
-      directionalLight
-    );
-
-    const backLight =
-      new THREE.DirectionalLight(
-        0xffffff,
-        2
-      );
-
-    backLight.position.set(
-      -50,
-      -20,
-      -50
-    );
-
-    scene.add(
-      backLight
-    );
-
-    /* =========================
-       CONTROLS
-    ========================== */
-
-    const controls =
-      new OrbitControls(
-        camera,
-        renderer.domElement
-      );
-
+    const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
-
     controls.enableZoom = true;
     controls.enablePan = false;
 
-    /* =========================
-       RAYCASTER
-    ========================== */
-
-    const raycaster =
-      new THREE.Raycaster();
-
-    const mouse =
-      new THREE.Vector2();
-
-    /* =========================
-       ROTATION SPEED
-    ========================== */
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
 
     let rotationSpeed = 0.004;
     let targetRotationSpeed = 0.004;
 
-    /* =========================
-       LOAD LOGO
-    ========================== */
-
-    const loader =
-      new STLLoader();
-
+    const loader = new STLLoader();
     let logo;
 
     loader.load(
-
       './caddyboys-logo.STL',
-
       function (geometry) {
-
         geometry.computeVertexNormals();
         geometry.center();
 
-        const material =
-          new THREE.MeshStandardMaterial({
+        const material = new THREE.MeshStandardMaterial({
+          color: 0x111111,
+          roughness: 0.35,
+          metalness: 0.15
+        });
 
-            color: 0x111111,
-            roughness: 0.35,
-            metalness: 0.15
+        logo = new THREE.Mesh(geometry, material);
 
-          });
-
-        logo =
-          new THREE.Mesh(
-            geometry,
-            material
-          );
-
-        const box =
-          new THREE.Box3()
-            .setFromObject(logo);
-
-        const size =
-          new THREE.Vector3();
-
+        const box = new THREE.Box3().setFromObject(logo);
+        const size = new THREE.Vector3();
         box.getSize(size);
 
-        const maxDimension =
-          Math.max(
-            size.x,
-            size.y,
-            size.z
-          );
-
+        const maxDimension = Math.max(size.x, size.y, size.z);
         const desiredSize = 50;
+        const scale = desiredSize / maxDimension;
 
-        const scale =
-          desiredSize /
-          maxDimension;
+        logo.scale.setScalar(scale);
+        logo.rotation.x = -0.15;
 
-        logo.scale.setScalar(
-          scale
-        );
-
-        logo.rotation.x =
-          -0.15;
-
-        scene.add(
-          logo
-        );
-
+        scene.add(logo);
       },
-
       undefined,
-
       function (error) {
-
-        console.error(
-          'Could not load STL:',
-          error
-        );
-
+        console.error('Could not load STL:', error);
       }
-
     );
 
-    /* =========================
-       MOUSE HOVER
-    ========================== */
+    renderer.domElement.addEventListener('mousemove', event => {
+      if (!logo) return;
 
-    renderer.domElement
-      .addEventListener(
-        'mousemove',
-        event => {
+      const rect = renderer.domElement.getBoundingClientRect();
 
-          if (!logo) return;
+      mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-          const rect =
-            renderer.domElement
-              .getBoundingClientRect();
+      raycaster.setFromCamera(mouse, camera);
 
-          mouse.x =
-            ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      const intersects = raycaster.intersectObject(logo);
 
-          mouse.y =
-            -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      if (intersects.length > 0) {
+        targetRotationSpeed = 0.0007;
+        renderer.domElement.style.cursor = 'pointer';
+      } else {
+        targetRotationSpeed = 0.004;
+        renderer.domElement.style.cursor = 'default';
+      }
+    });
 
-          raycaster.setFromCamera(
-            mouse,
-            camera
-          );
+    renderer.domElement.addEventListener('click', event => {
+      if (!logo) return;
 
-          const intersects =
-            raycaster.intersectObject(
-              logo
-            );
+      const rect = renderer.domElement.getBoundingClientRect();
 
-          if (intersects.length > 0) {
+      mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-            targetRotationSpeed = 0.0007;
+      raycaster.setFromCamera(mouse, camera);
 
-            renderer.domElement.style.cursor =
-              'pointer';
+      const intersects = raycaster.intersectObject(logo);
 
-          } else {
-
-            targetRotationSpeed = 0.004;
-
-            renderer.domElement.style.cursor =
-              'default';
-
-          }
-
-        }
-      );
-
-    /* =========================
-       CLICK LOGO
-    ========================== */
-
-    renderer.domElement
-      .addEventListener(
-        'click',
-        event => {
-
-          if (!logo) return;
-
-          const rect =
-            renderer.domElement
-              .getBoundingClientRect();
-
-          mouse.x =
-            ((event.clientX - rect.left) / rect.width) * 2 - 1;
-
-          mouse.y =
-            -((event.clientY - rect.top) / rect.height) * 2 + 1;
-
-          raycaster.setFromCamera(
-            mouse,
-            camera
-          );
-
-          const intersects =
-            raycaster.intersectObject(
-              logo
-            );
-
-          if (intersects.length > 0) {
-
-            showScreen(
-              'menu'
-            );
-
-          }
-
-        }
-      );
-
-    /* =========================
-       ANIMATION
-    ========================== */
+      if (intersects.length > 0) {
+        showScreen('menu');
+      }
+    });
 
     function animate() {
+      requestAnimationFrame(animate);
 
-      requestAnimationFrame(
-        animate
-      );
-
-      rotationSpeed +=
-        (
-          targetRotationSpeed -
-          rotationSpeed
-        ) * 0.08;
+      rotationSpeed += (targetRotationSpeed - rotationSpeed) * 0.08;
 
       if (logo) {
-
-        logo.rotation.y +=
-          rotationSpeed;
-
+        logo.rotation.y += rotationSpeed;
       }
 
       controls.update();
-
-      renderer.render(
-        scene,
-        camera
-      );
-
+      renderer.render(scene, camera);
     }
 
     animate();
 
-    /* =========================
-       RESIZE
-    ========================== */
-
-    window
-      .addEventListener(
-        'resize',
-        () => {
-
-          camera.aspect =
-            window.innerWidth /
-            window.innerHeight;
-
-          camera
-            .updateProjectionMatrix();
-
-          renderer.setSize(
-            window.innerWidth,
-            window.innerHeight
-          );
-
-        }
-      );
-
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
   </script>
-
 </body>
 </html>
